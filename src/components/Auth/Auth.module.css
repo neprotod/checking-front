@@ -1,0 +1,28 @@
+@value gray-color from '../../variables.module.css';
+@value dark-blue-color from '../../variables.module.css';
+
+.logo {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+.logo p {
+  color: dark-blue-color;
+  margin: 0;
+  font-weight: bold;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  width: 270px;
+  margin: auto;
+}
+
+.nav {
+  color: #727377;
+}

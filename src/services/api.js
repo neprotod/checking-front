@@ -4,40 +4,52 @@ import config from '../config';
 axios.defaults.baseURL = config.baseUrl;
 
 export default {
-  register(user) {
-    axios.post('user/register', user);
+  async register(user) {
+    const result = await axios.post('user/register', user);
+    return result;
   },
-  login(user) {
-    axios.post('user/login', user);
+  async login(user) {
+    const result = await axios.post('user/login', user);
+    return result;
   },
-  logout() {
-    axios.get('user/logout');
+  async logout() {
+    const result = await axios.get('user/logout');
+    return result;
   },
-  getTask(id) {
-    axios.get(`tasks/${id}`);
+  async getTask(id) {
+    const result = await axios.get(`tasks/${id}`);
+    return result;
   },
-  getTasks(value = '') {
-    axios.get(`tasks?filter=${value}`);
+  async getTasks(value = '') {
+    const result = await axios.get(`tasks?filter=${value}`);
+    return result;
   },
-  createTask(task) {
-    axios.post('tasks', task);
+  async createTask(task) {
+    const result = await axios.post('tasks', task);
+    return result;
   },
-  updateTask(id, value) {
-    axios.put(`tasks${id}`, value);
+  async updateTask(id, value) {
+    const result = await axios.put(`tasks${id}`, value);
+    return result;
   },
-  deleteTask(id) {
-    axios.delete(`tasks/${id}`);
+  async deleteTask(id) {
+    const result = await axios.delete(`tasks/${id}`);
+    return result;
   },
-  getAllPriority() {
-    axios.get('tasks/priority');
+  async getAllPriority() {
+    const result = await axios.get('tasks/priority');
+    return result;
   },
-  getAllUserRoles() {
-    axios.get('user/roles');
+  async getAllUserRoles() {
+    const result = await axios.get('user/roles');
+    return result;
   },
-  createRole(role) {
-    axios.post('user/roles', role);
+  async createRole(role) {
+    const result = await axios.post('user/roles', role);
+    return result;
   },
-  deleteRole(id) {
-    axios.delete(`user/roles/${id}`);
+  async deleteRole(id) {
+    const result = await axios.delete(`user/roles/${id}`);
+    return result;
   },
 };
