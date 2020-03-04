@@ -1,11 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Auth from '../Auth/index';
+import Loader from '../Loader/Loader';
+import * as authSelectors from '../../redux/auth/authSelectors';
 
-const App = () => {
+const App = ({ isLoading }) => {
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <>
+      {isLoading && <Loader />}
+      <Auth />
+    </>
   );
 };
 
-export default App;
+App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+};
+const mapStateToProps = store => ({
+  isLoading: authSelectors.getIsLoading(store),
+});
+
+export default connect(mapStateToProps)(App);
