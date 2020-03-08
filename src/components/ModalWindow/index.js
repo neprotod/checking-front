@@ -1,3 +1,3 @@
-import ModalWindowToggle from './ModalWindowToggle';
+import ModalWindow from './ModalWindow';
 
-export default ModalWindowToggle;
+export default ModalWindow;

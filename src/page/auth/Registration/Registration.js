@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import ModalWindowToggle from '../../../components/ModalWindow/ModalWindowToggle';
+import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 
 const Registration = ({ onSave }) => {
   return (
@@ -97,7 +97,7 @@ const Registration = ({ onSave }) => {
                 component="div"
                 className="invalid-feedback"
               />
-              <ModalWindowToggle />
+              <ModalWindow />
             </div>
             <button type="submit">Registration</button>
           </Form>
