@@ -27,3 +27,8 @@ export const loginError = error => ({
   type: types.LOGIN_ERROR,
   payload: { error },
 });
+
+export const loginGoogle = token => ({
+  type: types.LOGIN_GOOGLE,
+  payload: { token },
+});

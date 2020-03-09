@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import ModalWindow from '../../../components/ModalWindow/ModalWindow';
+import styles from './Registration.module.css';
 
 const Registration = ({ onSave }) => {
   return (
@@ -37,70 +37,75 @@ const Registration = ({ onSave }) => {
         onSave(user);
         resetForm({});
       }}
-      render={({ errors, touched }) => {
+      render={() => {
         return (
-          <Form>
-            <p>Your Account</p>
-            <div>
-              <label htmlFor="email">Email</label>
-              <Field
-                name="email"
-                type="email"
-                className={`form-control${
-                  errors.email && touched.email ? ' is-invalid' : ''
-                }`}
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="invalid-feedback"
-              />
-              <label htmlFor="password">Password</label>
-              <Field
-                name="password"
-                type="password"
-                className={`form-control${
-                  errors.password && touched.password ? ' is-invalid' : ''
-                }`}
-              />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="invalid-feedback"
-              />
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <Field
-                name="confirmPassword"
-                type="password"
-                className={`form-control${
-                  errors.confirmPassword && touched.confirmPassword
-                    ? ' is-invalid'
-                    : ''
-                }`}
-              />
-              <ErrorMessage
-                name="confirmPassword"
-                component="div"
-                className="invalid-feedback"
-              />
-              <Field
-                type="checkbox"
-                name="acceptPolicy"
-                className={`form-check-input ${
-                  errors.acceptPolicy && touched.acceptPolicy
-                    ? ' is-invalid'
-                    : ''
-                }`}
-              />
-              <ErrorMessage
-                name="acceptPolicy"
-                component="div"
-                className="invalid-feedback"
-              />
-              <ModalWindow />
-            </div>
-            <button type="submit">Registration</button>
-          </Form>
+          <>
+            <Form className={styles.form}>
+              <p className={styles.title}>Your Account</p>
+              <div className={styles.container}>
+                <label htmlFor="email">
+                  E-mail<span className={styles.span}>*</span>
+                </label>
+                <Field
+                  placeholder="your@email.com"
+                  name="email"
+                  type="email"
+                  className={styles.input}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className={styles.error}
+                />
+                <label htmlFor="password">
+                  Password<span className={styles.span}>*</span>
+                </label>
+                <Field
+                  placeholder="yourpassword"
+                  name="password"
+                  type="password"
+                  className={styles.input}
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className={styles.error}
+                />
+                <label htmlFor="confirmPassword">
+                  Password Confirmation<span className={styles.span}>*</span>
+                </label>
+                <Field
+                  placeholder="confirmation"
+                  name="confirmPassword"
+                  type="password"
+                  className={styles.input}
+                />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="div"
+                  className={styles.error}
+                />
+                <div className={styles.wrapAgree}>
+                  <Field type="checkbox" name="acceptPolicy" />
+                  <ErrorMessage
+                    name="acceptPolicy"
+                    component="div"
+                    className={styles.error}
+                  />
+                  <button
+                    className={styles.btnAgree}
+                    type="button"
+                    onClick={() => alert('Here must be modalka')}
+                  >
+                    Agreed with Privacy Policy
+                  </button>
+                </div>
+              </div>
+              <button className={styles.btn} type="submit">
+                Registration
+              </button>
+            </Form>
+          </>
         );
       }}
     />

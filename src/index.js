@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './redux/store';
 import ErrorBoundary from './components/ErrorBoundary';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './components/App';
 
