@@ -27,3 +27,17 @@ export const loginError = error => ({
   type: types.LOGIN_ERROR,
   payload: { error },
 });
+
+export const logOutStart = () => ({
+  type: types.LOGOUT_START,
+});
+
+export const logOutSuccess = token => ({
+  type: types.LOGOUT_SUCCESS,
+  payload: { token },
+});
+
+export const logOutError = error => ({
+  type: types.LOGOUT_ERROR,
+  payload: { error },
+});

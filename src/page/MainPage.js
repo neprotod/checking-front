@@ -1,12 +1,12 @@
 import React from 'react';
 
+// eslint-disable-next-line import/no-cycle
+import LogOut from '../components/LogOut/LogOut';
+
 const MainPage = () => {
   return (
     <div>
-      <p>
-        Передаю эстафету))) Рома, этого файл и всё что касается MainPage
-        удалишь!!!))))))
-      </p>
+      <LogOut />
     </div>
   );
 };
