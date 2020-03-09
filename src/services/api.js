@@ -56,7 +56,7 @@ class Api {
     return result;
   }
 
-  async getAllPriority() {
+  async getAllPriorities() {
     const result = await axios.get('tasks/priority');
     return result;
   }

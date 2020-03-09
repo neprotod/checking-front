@@ -1,0 +1,45 @@
+@value variables: '../variables.module.css';
+@value primary-font-stack, primary-background-color, primary-box-shadow from variables;
+
+* {
+  outline: none;
+}
+
+.dateSelector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 15px 0 10px;
+  width: 150px;
+  height: 40px;
+  font-family: primary-font-stack;
+  font-size: 12px;
+  background-color: primary-background-color;
+  box-shadow: primary-box-shadow;
+  border: none;
+  cursor: pointer;
+}
+
+.datePickerContainer {
+  position: absolute;
+  z-index: 2;
+  top: 80px;
+  right: 10px;
+}
+
+.calendar {
+  display: flex !important;
+  box-sizing: border-box;
+  justify-content: center;
+  width: 300px;
+}
+
+.react-datepicker__header {
+  background-color: #fff !important;
+}
+
+.iconArrow {
+  width: 24px;
+  height: 24px;
+}
