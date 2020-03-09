@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import styles from './Registration.module.css';
+import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 
 const Registration = ({ onSave }) => {
   return (
@@ -92,13 +93,7 @@ const Registration = ({ onSave }) => {
                     component="div"
                     className={styles.error}
                   />
-                  <button
-                    className={styles.btnAgree}
-                    type="button"
-                    onClick={() => alert('Here must be modalka')}
-                  >
-                    Agreed with Privacy Policy
-                  </button>
+                  <ModalWindow />
                 </div>
               </div>
               <button className={styles.btn} type="submit">

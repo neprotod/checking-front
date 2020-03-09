@@ -7,8 +7,7 @@ const styles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     overlay: {
-      backgroundColor: '#e3bd32',
-      opacity: '99%',
+      backgroundColor: '#ff6b08',
     },
   },
   xButton: {
@@ -20,7 +19,7 @@ const styles = {
     fontSize: '1.5rem',
     fontWeight: '300',
     borderRadius: '100%',
-    backgroundColor: '#e3bd32',
+    backgroundColor: '#ff6b08',
     zIndex: '999',
     color: '#fff',
     lineHeight: '3rem',
@@ -35,15 +34,20 @@ const styles = {
     fontSize: '1rem',
     fontWeight: '300',
     borderRadius: '10%',
-    backgroundColor: '#e3bd32',
+    backgroundColor: '#ff6b08',
     zIndex: '999',
     color: '#fff',
     lineHeight: '1rem',
     cursor: 'pointer',
     textDecoration: 'none',
   },
-  title: {
-    textAlign: 'center',
+  btnAgree: {
+    border: 'none',
+    cursor: 'pointer',
+    color: 'gray-color',
+    fontSize: '12px',
+    fontFamily: 'font-stack',
+    backgroundColor: 'white',
   },
 };
 

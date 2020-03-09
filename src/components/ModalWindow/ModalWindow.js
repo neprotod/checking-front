@@ -17,8 +17,8 @@ const ModalWindow = () => {
 
   return (
     <div>
-      <button type="button" onClick={openModal}>
-        Terms and Conditions
+      <button type="button" style={styles.btnAgree} onClick={openModal}>
+        Agreed with Privacy Policy
       </button>
       <Modal
         isOpen={modalIsOpen}
