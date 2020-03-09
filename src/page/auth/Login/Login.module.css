@@ -1,0 +1,135 @@
+@value gray-color from '../../../variables.module.css';
+@value dark-blue-color from '../../../variables.module.css';
+@value font-stack from '../../../variables.module.css';
+@value orange-color from '../../../variables.module.css';
+@value red-color from '../../../variables.module.css';
+@value gray-background-color from '../../../variables.module.css';
+
+.title {
+  font-family: font-stack;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: font-stack;
+  color: gray-color;
+}
+
+.wrapAgree {
+  display: flex;
+  padding-top: 10px;
+  margin-bottom: 30px;
+}
+
+.btnAgree {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: gray-color;
+  font-size: 12px;
+  font-family: font-stack;
+  background-color: #eeeeee7c;
+}
+
+label {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.span {
+  color: orange-color;
+}
+
+.btn {
+  background-color: orange-color;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  font-weight: 600;
+  font-family: font-stack;
+  margin-bottom: 30px;
+}
+
+.error {
+  color: red-color;
+  font-size: 11px;
+}
+
+.inputOne,
+.inputTwo {
+  background-color: gray-background-color;
+  padding: 5px;
+  border-width: 0.5px;
+  box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.inputOne {
+  margin-bottom: 5px;
+}
+
+.inputTwo {
+  margin-bottom: 30px;
+}
+
+.form {
+  padding: 20px;
+}
+
+.googleSignUpButton {
+  padding: 15px 0;
+  margin: 0 auto 30px auto;
+  letter-spacing: 0.03em;
+  display: block;
+  width: 160px;
+  background-color: rgb(250, 250, 250);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.googleBtnContentWraper {
+  color: #000;
+  letter-spacing: 0.03em;
+  display: flex;
+  justify-content: center;
+}
+
+.googleBtnContentWraper > span {
+  font-family: font-stack;
+  letter-spacing: 0.03em;
+  vertical-align: 4px;
+  font-size: 14px;
+}
+
+.googleBtnContentWraper > img {
+  width: 18px;
+  margin: 0 12px 0 0;
+  height: 18px;
+}
+
+@media (min-width: 768px) {
+  .form {
+    background-color: #ffffff;
+    padding: 30px;
+  }
+
+  .inputOne {
+    margin-bottom: 5px;
+  }
+
+  .inputTwo {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn {
+    margin-top: 30px;
+  }
+
+  .inputTwo {
+    margin-bottom: 5px;
+  }
+}
