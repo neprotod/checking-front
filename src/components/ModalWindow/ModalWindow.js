@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
+import ModalText from './ModalText';
 import styles from './Modal.css';
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('body');
 
 const ModalWindow = () => {
@@ -18,21 +18,21 @@ const ModalWindow = () => {
   return (
     <div>
       <button type="button" onClick={openModal}>
-        Open Modal
+        Terms and Conditions
       </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={styles.modal}
-        overlayClassName={styles.overlay}
         contentLabel="Example Modal"
       >
-        <button type="button" onClick={closeModal}>
-          close
+        <button type="button" style={styles.xButton} onClick={closeModal}>
+          X
         </button>
-        <h2>Terms and Conditions</h2>
-        <div>I am a modal</div>
-        <button type="button" onClick={closeModal}>
+        <div>
+          <ModalText />
+        </div>
+        <button type="button" style={styles.closeButton} onClick={closeModal}>
           close
         </button>
       </Modal>
