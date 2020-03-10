@@ -2,7 +2,7 @@ import * as actions from './statisticsActions';
 
 import API from '../../services/api';
 
-const setTasksByDate = category => dispatch => {
+export const setTasksByDate = category => dispatch => {
   dispatch(actions.getTasksStart());
 
   API.getTasks(category)
@@ -14,4 +14,14 @@ const setTasksByDate = category => dispatch => {
     });
 };
 
-export default setTasksByDate;
+export const setUserRoles = () => dispatch => {
+  dispatch(actions.getStatisticsRolesStart());
+
+  API.getAllUserRoles()
+    .then(res => {
+      dispatch(actions.getStatisticsRolesSuccess(res.data));
+    })
+    .catch(error => {
+      dispatch(actions.getStatisticsRolesError(error));
+    });
+};

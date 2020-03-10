@@ -13,3 +13,17 @@ export const getTasksError = error => ({
   typee: types.GET_DATE_TASKS_ERROR,
   payload: { error },
 });
+
+export const getStatisticsRolesStart = () => ({
+  type: types.GET_STATISTICS_ROLES_START,
+});
+
+export const getStatisticsRolesSuccess = roles => ({
+  type: types.GET_STATISTICS_ROLES_SUCCESS,
+  payload: { roles },
+});
+
+export const getStatisticsRolesError = error => ({
+  typee: types.GET_STATISTICS_ROLES_ERROR,
+  payload: { error },
+});
