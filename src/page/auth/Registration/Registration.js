@@ -5,8 +5,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
-import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import styles from './Registration.module.css';
+import withAuthRedirect from '../../../hoc/withAuthRedirect';
+import imageAuth from '../../../materials/imageAuth.jpg';
 
 const Registration = ({ onSave }) => {
   return (
@@ -39,7 +40,7 @@ const Registration = ({ onSave }) => {
       }}
       render={() => {
         return (
-          <>
+          <div className={styles.wrapAuth}>
             <Form className={styles.form}>
               <p className={styles.title}>Your Account</p>
               <div className={styles.container}>
@@ -105,7 +106,14 @@ const Registration = ({ onSave }) => {
                 Registration
               </button>
             </Form>
-          </>
+            <div className={styles.imageContainer}>
+              <img
+                className={styles.image}
+                src={imageAuth}
+                alt="boy with lap book"
+              />
+            </div>
+          </div>
         );
       }}
     />

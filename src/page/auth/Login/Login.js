@@ -6,10 +6,10 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import * as authOperations from '../../../redux/auth/authOperations';
 import * as authActions from '../../../redux/auth/authActions';
-import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import * as authSelectors from '../../../redux/auth/authSelectors';
 import styles from './Login.module.css';
 import googleIcon from '../../../materials/svg/icons8-google.svg';
+import withAuthRedirect from '../../../hoc/withAuthRedirect';
+import imageAuth from '../../../materials/imageAuth.jpg';
 
 const Login = ({ location, onLogin, onGoogle }) => {
   if (location.search) {
@@ -42,7 +42,7 @@ const Login = ({ location, onLogin, onGoogle }) => {
       }}
       render={() => {
         return (
-          <>
+          <div className={styles.wrapAuth}>
             <Form className={styles.form}>
               <p className={styles.title}>Take control of your life.</p>
               <p className={styles.title}>Just check in.</p>
@@ -89,7 +89,14 @@ const Login = ({ location, onLogin, onGoogle }) => {
                 </div>
               </a>
             </Form>
-          </>
+            <div className={styles.imageContainer}>
+              <img
+                className={styles.image}
+                src={imageAuth}
+                alt="boy with lap book"
+              />
+            </div>
+          </div>
         );
       }}
     />
@@ -102,15 +109,9 @@ Login.propTypes = {
   location: PropTypes.shape(PropTypes.shape()).isRequired,
 };
 
-const mapStateToProps = store => ({
-  isAuth: authSelectors.getIsAuth(store),
-});
-
 const mapDispatchToProps = dispatch => ({
   onLogin: user => dispatch(authOperations.login(user)),
   onGoogle: token => dispatch(authActions.loginGoogle(token)),
 });
 
-export default withAuthRedirect(
-  connect(mapStateToProps, mapDispatchToProps)(Login),
-);
+export default withAuthRedirect(connect(null, mapDispatchToProps)(Login));
