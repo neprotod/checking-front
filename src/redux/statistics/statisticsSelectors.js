@@ -34,3 +34,15 @@ export const percentsCompletedTasks = (store, roleId) => {
 
   return 0;
 };
+
+export const statistics = store => {
+  const roles = getAllRoles(store);
+
+  const statistic = roles.map(role => ({
+    ...role,
+    completedTask: getDoneTasksByRole(store, role._id),
+    precents: percentsCompletedTasks(store, role._id),
+  }));
+
+  return statistic;
+};
