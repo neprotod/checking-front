@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-cycle
 import routes from '../../routes/routes';
-import * as action from '../../redux/auth/authActions';
+import * as authOperations from '../../redux/auth/authOperations';
 
 const Logout = ({ logout }) => {
   return (
@@ -16,7 +16,7 @@ const Logout = ({ logout }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(action.logOutStart()),
+  logout: () => dispatch(authOperations.logOut()),
 });
 
 Logout.propTypes = {
