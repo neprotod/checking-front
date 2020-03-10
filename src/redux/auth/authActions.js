@@ -32,9 +32,8 @@ export const logOutStart = () => ({
   type: types.LOGOUT_START,
 });
 
-export const logOutSuccess = token => ({
+export const logOutSuccess = () => ({
   type: types.LOGOUT_SUCCESS,
-  payload: { token },
 });
 
 export const logOutError = error => ({
