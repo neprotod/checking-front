@@ -12,16 +12,16 @@ export const getIsLoading = store => store.statistics.isLoading;
 export const getTasksByRole = (store, roleId) => {
   const tasks = getDateTasks(store);
 
-  return tasks.filter(task => task.role[0].id === roleId);
+  return tasks.filter(task => task.role[0]._id === roleId);
 };
 
-export const getDoneTasksByRole = (store, roleId) => {
+const getDoneTasksByRole = (store, roleId) => {
   const tasks = getTasksByRole(store, roleId);
 
   return tasks.filter(task => task.done);
 };
 
-export const percentsCompletedTasks = (store, roleId) => {
+const percentsCompletedTasks = (store, roleId) => {
   const doneTasks = getDoneTasksByRole(store, roleId).length;
 
   if (doneTasks) {
@@ -40,8 +40,9 @@ export const statistics = store => {
 
   const statistic = roles.map(role => ({
     ...role,
-    completedTask: getDoneTasksByRole(store, role._id),
+    completedTask: getDoneTasksByRole(store, role._id).length,
     precents: percentsCompletedTasks(store, role._id),
+    totalRoleTasks: getTasksByRole(store, role._id).length,
   }));
 
   return statistic;

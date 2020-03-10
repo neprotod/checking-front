@@ -23,13 +23,17 @@ class StatisticsPage extends Component {
     return (
       <div>
         <h1>Statistics</h1>
-        <p>туту будет круг)))</p>
+
         <StatisticsList />
       </div>
     );
   }
 }
 
+// const mapDispatchToProps = dispatch => ({
+//   getDateTasks: () => dispatch(operations.setTasksByDate('all')),
+//   getRoles: () => dispatch(operations.setUserRoles()),
+// });
 const mapDispatchToProps = {
   getDateTasks: operations.setTasksByDate,
   getRoles: operations.setUserRoles,

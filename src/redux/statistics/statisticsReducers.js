@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import * as types from './statisticsActions';
+import * as types from './statisticsTypes';
 
 const dateTasks = (state = [], { type, payload }) => {
   switch (type) {
-    case types.getTasksSuccess:
+    case types.GET_DATE_TASKS_SUCCESS:
       return payload.tasks;
 
     default:
@@ -14,7 +14,7 @@ const dateTasks = (state = [], { type, payload }) => {
 
 const statisticsRoles = (state = [], { type, payload }) => {
   switch (type) {
-    case types.getStatisticsRolesSuccess:
+    case types.GET_STATISTICS_ROLES_SUCCESS:
       return payload.roles;
 
     default:
@@ -24,8 +24,8 @@ const statisticsRoles = (state = [], { type, payload }) => {
 
 const error = (state = null, { type, payload }) => {
   switch (type) {
-    case types.getTasksError:
-    case types.getStatisticsRolesError:
+    case types.GET_DATE_TASKS_ERROR:
+    case types.GET_STATISTICS_ROLES_ERROR:
       return payload.error;
 
     default:
@@ -35,14 +35,14 @@ const error = (state = null, { type, payload }) => {
 
 const isLoading = (state = false, { type }) => {
   switch (type) {
-    case types.getTasksStart:
-    case types.getStatisticsRolesStart:
+    case types.GET_DATE_TASKS_START:
+    case types.GET_STATISTICS_ROLES_START:
       return true;
 
-    case types.getTasksSuccess:
-    case types.getStatisticsRolesSuccess:
-    case types.getTasksError:
-    case types.getStatisticsRolesError:
+    case types.GET_DATE_TASKS_SUCCESS:
+    case types.GET_STATISTICS_ROLES_SUCCESS:
+    case types.GET_DATE_TASKS_ERROR:
+    case types.GET_STATISTICS_ROLES_ERROR:
       return false;
 
     default:

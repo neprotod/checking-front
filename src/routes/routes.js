@@ -1,6 +1,7 @@
 import RegistrationPage from '../page/auth/Registration/index';
 import LoginPage from '../page/auth/Login/index';
 import MainPage from '../page/MainPage';
+// import StatisticsPage from '../page/StatisticsPage';
 
 export default {
   REGISTRATION_PAGE: {

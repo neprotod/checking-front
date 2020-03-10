@@ -7,7 +7,7 @@ export const setTasksByDate = category => dispatch => {
 
   API.getTasks(category)
     .then(res => {
-      dispatch(actions.getTasksSuccess(res.data));
+      dispatch(actions.getTasksSuccess(res.data[0].tasks));
     })
     .catch(error => {
       dispatch(actions.getTasksError(error));

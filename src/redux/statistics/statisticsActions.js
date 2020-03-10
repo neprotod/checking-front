@@ -10,7 +10,7 @@ export const getTasksSuccess = tasks => ({
 });
 
 export const getTasksError = error => ({
-  typee: types.GET_DATE_TASKS_ERROR,
+  type: types.GET_DATE_TASKS_ERROR,
   payload: { error },
 });
 
@@ -24,6 +24,6 @@ export const getStatisticsRolesSuccess = roles => ({
 });
 
 export const getStatisticsRolesError = error => ({
-  typee: types.GET_STATISTICS_ROLES_ERROR,
+  type: types.GET_STATISTICS_ROLES_ERROR,
   payload: { error },
 });
