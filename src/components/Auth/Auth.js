@@ -1,32 +1,19 @@
 import React from 'react';
-
 import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-
 import PropTypes from 'prop-types';
-
 import routes from '../../routes/routes';
-
 import * as authSelectors from '../../redux/auth/authSelectors';
-
 import ProtectedRoute from '../ProtectedRoute/index';
-
 import styles from './Auth.module.css';
-
 import imageAuth from '../../materials/imageAuth.jpg';
 
 const activeStyle = {
   fontWeight: '600',
-
   fontSize: 24,
-
   textDecoration: 'none',
-
   color: '#0a1e3f',
-
   transform: 'translate(5px, -14px)',
-
   fontFamily: 'Montserrat, sans-serif',
 };
 
