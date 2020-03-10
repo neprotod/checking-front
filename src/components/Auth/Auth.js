@@ -60,11 +60,9 @@ const Auth = ({ isAuth }) => {
             path={routes.MAIN_PAGE.path}
             component={routes.MAIN_PAGE.component}
           />
-
           <Redirect to={routes.LOGIN_PAGE.path} />
         </Switch>
       </div>
-
       {!isAuth && (
         <div className={styles.imageContainer}>
           <img
