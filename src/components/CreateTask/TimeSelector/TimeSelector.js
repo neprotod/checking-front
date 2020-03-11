@@ -63,9 +63,7 @@ const TimeSelector = ({
             className={styles.openListBtn}
             onClick={endHoursListDisplayToggle}
           >
-            <span>
-              {startHour > endHour ? `${startHour}:00` : `${endHour}:00`}
-            </span>
+            <span>{`${endHour}:00`}</span>
             {endHoursListIsOpen ? (
               <svg className={styles.iconArrow}>
                 <use href="#drop_up" />

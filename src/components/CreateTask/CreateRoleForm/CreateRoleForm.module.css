@@ -1,5 +1,5 @@
 @value variables: '../variables.module.css';
-@value primary-font-stack, color-light-grey, color-dark-grey, primary-background-color, primary-box-shadow from variables;
+@value primary-font-stack, color-light-grey, color-dark-grey,  color-orange, primary-background-color, primary-box-shadow from variables;
 
 .container {
   margin-bottom: 10px;
@@ -74,7 +74,7 @@
   width: 40px;
   height: 40px;
   box-shadow: primary-box-shadow;
-  background-color: #ff6b08;
+  background-color: color-orange;
 }
 
 .iconSave {
@@ -124,7 +124,7 @@
 }
 
 .iconEdit {
-  fill: rgb(90, 158, 247);
+  fill: rgb(122, 124, 126);
   width: 24px;
   height: 24px;
 }

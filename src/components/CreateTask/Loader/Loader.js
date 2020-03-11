@@ -7,7 +7,7 @@ const Loader = () => {
     <div className={styles.Loader}>
       <LoaderComponent
         type="ThreeDots"
-        color="#6766a7"
+        color="#ff6b08"
         height={100}
         width={100}
       />

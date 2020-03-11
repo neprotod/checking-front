@@ -71,6 +71,11 @@ class Api {
     return result;
   }
 
+  async updateRole(id, data) {
+    const result = await axios.put(`user/roles/${id}`, data);
+    return result;
+  }
+
   async deleteRole(id) {
     const result = await axios.delete(`user/roles/${id}`);
     return result;

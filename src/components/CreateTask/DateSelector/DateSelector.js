@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './react-datepicker-custom.css';
 import styles from './DateSelector.module.css';
 
 const DateSelector = ({
@@ -11,40 +13,13 @@ const DateSelector = ({
   onSetDate,
 }) => {
   const dateCreator = () => {
-    const monthNumber = startDate.getMonth();
+    const formatter = new Intl.DateTimeFormat('en-us', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
 
-    const month =
-      monthNumber === 0
-        ? 'Jan'
-        : monthNumber === 1
-        ? 'Feb'
-        : monthNumber === 2
-        ? 'Mar'
-        : monthNumber === 3
-        ? 'Apr'
-        : monthNumber === 4
-        ? 'May'
-        : monthNumber === 5
-        ? 'Jun'
-        : monthNumber === 6
-        ? 'Jul'
-        : monthNumber === 7
-        ? 'Aug'
-        : monthNumber === 8
-        ? 'Sep'
-        : monthNumber === 9
-        ? 'Oct'
-        : monthNumber === 10
-        ? 'Nov'
-        : monthNumber === 11
-        ? 'Dec'
-        : null;
-
-    const day = startDate.getDate();
-    const year = startDate.getFullYear();
-    const date = `${month} ${day}, ${year}`;
-
-    return date;
+    return formatter.format(startDate);
   };
 
   return (

@@ -8,26 +8,25 @@ const PrioritySelector = ({ priorities, selectedPriority, onSetPriority }) => {
     <>
       <span className={styles.selectorTitle}>Priority</span>
       <div className={styles.container}>
-        {priorities.map(priority => (
-          <button
-            className={
-              priority.name === '1'
-                ? styles.priorityBtnHigh
-                : styles.priorityBtnLow
-            }
-            style={
-              selectedPriority.name === priority.name
-                ? { width: '32px', height: '32px' }
-                : { width: '26px', height: '26px' }
-            }
-            key={priority._id}
-            type="button"
-            name={priority.name}
-            onClick={onSetPriority}
-          >
-            {priority.name}
-          </button>
-        ))}
+        {priorities.map(priority => {
+          const priorityClass = `priority${priority.type}`;
+          return (
+            <button
+              className={styles[priorityClass]}
+              style={
+                selectedPriority.name === priority.name
+                  ? { width: '32px', height: '32px' }
+                  : { width: '26px', height: '26px' }
+              }
+              key={priority._id}
+              type="button"
+              name={priority.name}
+              onClick={onSetPriority}
+            >
+              {priority.name}
+            </button>
+          );
+        })}
       </div>
     </>
   );

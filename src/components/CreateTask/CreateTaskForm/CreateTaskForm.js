@@ -7,7 +7,6 @@ import TimeSelector from '../TimeSelector/TimeSelector';
 import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import Message from '../Message/Message';
 import API from '../../../services/api';
-import 'react-datepicker/dist/react-datepicker.css';
 import styles from './CreateTaskForm.module.css';
 
 const defaultRole = {
@@ -233,6 +232,7 @@ class CreateTask extends Component {
     if (
       title.trim() === '' ||
       title.trim().length > 150 ||
+      description.trim() === '' ||
       description.trim().length > 800
     ) {
       if (title.trim() === '') {
@@ -241,22 +241,22 @@ class CreateTask extends Component {
       if (title.trim().length > 150) {
         this.showTitleMessage('(up to 150 characters)*');
       }
+      if (description.trim() === '') {
+        this.showDescriptionMessage('(task description is required)*');
+      }
       if (description.trim().length > 800) {
         this.showDescriptionMessage('(up to 800 characters)');
       }
       return;
     }
 
-    const startTime = this.fixedHourDateCreator(startDate, startHour);
-    const endTime = this.fixedHourDateCreator(startDate, endHour);
-
     const task = {
-      role: selectedRole.name !== 'None' ? selectedRole._id : '',
+      role: selectedRole.name === 'None' ? '' : selectedRole._id,
       priority: priority === null ? priorities[0]._id : priority._id,
       title,
       description,
-      start_date: startTime,
-      end_date: endTime,
+      start_date: this.fixedHourDateCreator(startDate, startHour),
+      end_date: this.fixedHourDateCreator(startDate, endHour),
       done: false,
     };
 
@@ -361,9 +361,12 @@ class CreateTask extends Component {
             {descriptionMessageIsShowing ? (
               <Message text={descriptionMessageText} />
             ) : (
-              <span className={styles.inputLabelSmall}>
-                (up to 800 characters)
-              </span>
+              <>
+                <span className={styles.inputLabelSmall}>
+                  (up to 800 characters)
+                </span>
+                <span className={styles.required}>*</span>
+              </>
             )}
             <textarea
               className={styles.descriptionTextarea}
