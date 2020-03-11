@@ -3,25 +3,41 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as operations from '../redux/statistics/statisticsOperations';
+import * as selectors from '../redux/statistics/statisticsSelectors';
 
+import Loader from '../components/Loader';
 import Statistics from '../components/Statistics';
 
 class StatisticsPage extends Component {
   static propTypes = {
     getRoles: PropTypes.func.isRequired,
     getDateTasks: PropTypes.func.isRequired,
+    category: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
-    const { getRoles, getDateTasks } = this.props;
+    const { getRoles, getDateTasks, category } = this.props;
 
     getRoles();
-    getDateTasks('all');
+    getDateTasks(category);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { getRoles, getDateTasks, category } = this.props;
+
+    if (prevProps.category !== category) {
+      getRoles();
+      getDateTasks(category);
+    }
   }
 
   render() {
+    const { isLoading } = this.props;
+
     return (
       <div>
+        {isLoading && <Loader />}
         <h1>Statistics</h1>
         <Statistics />
       </div>
@@ -29,13 +45,14 @@ class StatisticsPage extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   getDateTasks: () => dispatch(operations.setTasksByDate('all')),
-//   getRoles: () => dispatch(operations.setUserRoles()),
-// });
+const mapStateToProps = store => ({
+  category: selectors.getCategory(store),
+  isLoading: selectors.getIsLoading(store),
+});
+
 const mapDispatchToProps = {
   getDateTasks: operations.setTasksByDate,
   getRoles: operations.setUserRoles,
 };
 
-export default connect(null, mapDispatchToProps)(StatisticsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(StatisticsPage);

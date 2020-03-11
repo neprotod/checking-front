@@ -25,3 +25,7 @@ export const setUserRoles = () => dispatch => {
       dispatch(actions.getStatisticsRolesError(error));
     });
 };
+
+export const setCategory = category => dispatch => {
+  dispatch(actions.setCategory(category));
+};

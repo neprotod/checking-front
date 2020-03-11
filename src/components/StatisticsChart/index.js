@@ -1,3 +1,3 @@
-import StatisticsChart from './StatisticsChart';
+import StatisticsChart from './StatisticsChartContainer';
 
 export default StatisticsChart;

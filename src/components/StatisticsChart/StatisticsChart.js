@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut, defaults } from 'react-chartjs-2';
 
@@ -18,66 +18,48 @@ const getData = statistics => {
   };
 };
 
-export default class StatisticsChart extends Component {
-  static propTypes = {
-    statistics: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        color: PropTypes.string.isRequired,
-        id_user: PropTypes.string.isRequired,
-        completedTask: PropTypes.number.isRequired,
-        precents: PropTypes.number.isRequired,
-        totalRoleTasks: PropTypes.number.isRequired,
-      }),
-    ).isRequired,
-  };
-
-  state = {
-    categoryDropDown: false,
-  };
-
-  render() {
-    const { categoryDropDown } = this.state;
-    const { statistics } = this.props;
-
-    const data = getData(statistics);
-
-    return (
-      <div width="500" height="500">
-        <Doughnut
-          data={data}
-          width={300}
-          height={300}
-          options={{
-            legend: false,
-            responsive: false,
-            hover: {
-              mode: false,
-            },
-          }}
-        />
-        {/* <div className={styles.row}>
-          <button
-            className={styles.openRoleFormBtn}
-            type="button"
-            onClick={this.roleFormDisplayToggle}
-          >
-            <span className={styles.myRolesTitle}>My&nbsp;roles</span>
-            {categoryDropDown ? (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_up" />
-              </svg>
-            ) : (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_down" />
-              </svg>
-            )}
-          </button>
-          <div className={styles.line} />
-        </div> */}
-        {categoryDropDown && <p>hello</p>}
+const StatisticsChart = ({ statistics, setCategory, category }) => {
+  const data = getData(statistics);
+  return (
+    <div width="500" height="500">
+      <Doughnut
+        data={data}
+        width={300}
+        height={300}
+        options={{
+          legend: false,
+          responsive: false,
+          hover: {
+            mode: false,
+          },
+        }}
+      />
+      <div>
+        <select value={category} onChange={e => setCategory(e.target.value)}>
+          <option value="All">all</option>
+          <option value="Lastweek">week</option>
+          <option value="Month">month</option>
+          <option value="Year">year</option>
+        </select>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+StatisticsChart.propTypes = {
+  statistics: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+      id_user: PropTypes.string.isRequired,
+      completedTask: PropTypes.number.isRequired,
+      precents: PropTypes.number.isRequired,
+      totalRoleTasks: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  category: PropTypes.string.isRequired,
+  setCategory: PropTypes.func.isRequired,
+};
+
+export default StatisticsChart;

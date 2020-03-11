@@ -2,3 +2,15 @@
   display: flex;
   justify-content: space-around;
 }
+
+.item__name {
+  position: relative;
+}
+
+.item__element_color {
+  position: absolute;
+  top: 0;
+  left: -25px;
+  height: 15px;
+  width: 15px;
+}

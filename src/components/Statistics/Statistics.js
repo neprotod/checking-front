@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+
+import routes from '../../routes/routes';
 
 import StatisticsList from '../StatisticsList';
 import StatisticsChart from '../StatisticsChart';
@@ -9,6 +12,7 @@ const Statistics = ({ statistics }) => {
     <div>
       <StatisticsChart statistics={statistics} />
       <StatisticsList statistics={statistics} />
+      <NavLink to={routes.MAIN_PAGE.path}>Back to Dashboard</NavLink>
     </div>
   );
 };
