@@ -1,19 +1,10 @@
 import React from 'react';
-import API from '../services/api';
+import CreateTask from '../components/CreateTask';
 
 const MainPage = () => {
   return (
     <div>
-      <p>
-        Передаю эстафету))) Рома, этого файл и всё что касается MainPage
-        удалишь!!!))))))
-      </p>
-      <button
-        type="button"
-        onClick={() => API.getAllPriority().then(console.log)}
-      >
-        CLICK
-      </button>
+      <CreateTask />
     </div>
   );
 };

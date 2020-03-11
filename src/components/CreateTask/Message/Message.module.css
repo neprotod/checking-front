@@ -1,0 +1,19 @@
+.roleMessageContainer {
+  position: absolute;
+  top: -25px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(212, 38, 38);
+}
+
+.taskMessageContainer {
+  display: inline;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(212, 38, 38);
+}

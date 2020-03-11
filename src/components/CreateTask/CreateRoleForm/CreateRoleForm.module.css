@@ -1,0 +1,135 @@
+@value variables: '../variables.module.css';
+@value primary-font-stack, color-light-grey, color-dark-grey,  color-orange, primary-background-color, primary-box-shadow from variables;
+
+.container {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e5eb;
+}
+
+.button {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.createRoleForm {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 320px;
+}
+
+.roleInput {
+  box-sizing: border-box;
+  padding: 0 15px;
+  width: 150px;
+  height: 40px;
+  background-color: primary-background-color;
+  box-shadow: primary-box-shadow;
+  border: none;
+  outline: none;
+}
+
+.roleInput::placeholder {
+  font-family: primary-font-stack;
+  font-size: 12px;
+  color: color-light-grey;
+}
+
+.roleColorBth {
+  composes: button;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  width: 100px;
+  height: 40px;
+  font-size: 12px;
+  font-family: inherit;
+  box-shadow: primary-box-shadow;
+}
+
+.iconArrow {
+  width: 24px;
+  height: 24px;
+}
+
+.colorPicker {
+  position: absolute;
+  z-index: 3;
+  top: 50px;
+  right: 10px;
+}
+
+.saveRoleBtn {
+  composes: button;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  box-shadow: primary-box-shadow;
+  background-color: color-orange;
+}
+
+.iconSave {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.rolesList {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.roleItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 12px;
+  border: 1px solid #e7e8eb;
+}
+
+.roleName {
+  display: flex;
+  align-items: center;
+}
+
+.roleItemControls {
+  display: flex;
+}
+
+.deleteBtn {
+  composes: button;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: inherit;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #e7e8eb;
+}
+
+.editBtn {
+  composes: deleteBtn;
+  margin-right: 10px;
+}
+
+.iconEdit {
+  fill: rgb(122, 124, 126);
+  width: 24px;
+  height: 24px;
+}
+
+.iconDelete {
+  composes: iconEdit;
+  fill: rgb(255, 84, 98);
+}

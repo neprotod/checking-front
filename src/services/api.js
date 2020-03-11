@@ -56,7 +56,7 @@ class Api {
     return result;
   }
 
-  async getAllPriority() {
+  async getAllPriorities() {
     const result = await axios.get('tasks/priority');
     return result;
   }
@@ -68,6 +68,11 @@ class Api {
 
   async createRole(role) {
     const result = await axios.post('user/roles', role);
+    return result;
+  }
+
+  async updateRole(id, data) {
+    const result = await axios.put(`user/roles/${id}`, data);
     return result;
   }
 
