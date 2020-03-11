@@ -77,6 +77,8 @@ label {
 
 .form {
   padding: 20px;
+  width: 280px;
+  margin: auto;
 }
 
 .googleSignUpButton {
@@ -109,6 +111,10 @@ label {
   height: 18px;
 }
 
+.image {
+  display: none;
+}
+
 @media (min-width: 768px) {
   .form {
     background-color: #ffffff;
@@ -124,7 +130,25 @@ label {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
+  .wrapAuth {
+    display: flex;
+  }
+
+  .form {
+    width: 354px;
+  }
+
+  .image {
+    display: block;
+    height: 750px;
+    width: 100%;
+  }
+
+  .imageContainer {
+    width: 60%;
+  }
+
   .btn {
     margin-top: 30px;
   }

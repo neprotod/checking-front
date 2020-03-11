@@ -35,7 +35,7 @@ const isLoading = (state = false, { type }) => {
     case types.REGISTRATION_ERROR:
     case types.LOGIN_ERROR:
     case types.LOGIN_SUCCESS:
-    case type.LOGIN_GOOGLE:
+    case types.LOGIN_GOOGLE:
       return false;
     default:
       return state;
@@ -46,7 +46,7 @@ const isAuth = (state = false, { type }) => {
   switch (type) {
     case types.REGISTRATION_SUCCESS:
     case types.LOGIN_SUCCESS:
-    case type.LOGIN_GOOGLE:
+    case types.LOGIN_GOOGLE:
       return true;
     case types.REGISTRATION_START:
     case types.REGISTRATION_ERROR:

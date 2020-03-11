@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth/authReducer';
 import statisticsReducer from './statistics/statisticsReducers';
+import tasksReducer from './tasks/tasksReducer';
 
 const persistConfig = {
   key: 'auth',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistConfig, authReducer),
+  tasks: tasksReducer,
   statistics: statisticsReducer,
 });
 

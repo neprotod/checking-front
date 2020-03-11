@@ -1,0 +1,38 @@
+@value variables: '../variables.module.css';
+@value primary-box-shadow from variables;
+
+.roleSelectBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 150px;
+  height: 40px;
+  padding: 0 15px 0 10px;
+  font-family: inherit;
+  font-size: 12px;
+  box-shadow: primary-box-shadow;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.rolesList {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roleBtn {
+  composes: roleSelectBtn;
+  border-top: 1px solid #f5f7fa;
+  border-bottom: 1px solid #f5f7fa;
+  box-shadow: none;
+}
+
+.iconArrow {
+  width: 24px;
+  height: 24px;
+}
