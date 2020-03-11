@@ -11,7 +11,6 @@ export default {
     path: '/login',
     component: LoginPage,
   },
-  // Вместо этого компонента Рома вставит свой
   MAIN_PAGE: {
     path: '/main',
     component: MainPage,

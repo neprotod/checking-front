@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
+@value variables: '../variables.module.css';
+@value primary-font-stack, color-light-grey, color-dark-grey, color-orange, primary-background-color, primary-box-shadow from variables;
+
+.formWrapper {
+  width: 100%;
+}
+
+.container {
+  font-family: primary-font-stack;
+  width: 320px;
+  margin: 0 auto;
+  padding: 54px 0 62px;
+}
+
+.button {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.header {
+  margin: 0 0 24px;
+  font-weight: 500;
+}
+
+.createTaskForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.selectorLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: color-dark-grey;
+}
+
+.line {
+  display: block;
+  margin-bottom: 1px;
+  width: 100%;
+  height: 1px;
+  background-color: #e8e8e8;
+}
+
+.selectorContainer {
+  position: relative;
+  width: 150px;
+}
+
+.inputLabel {
+  font-size: 14px;
+  color: color-dark-grey;
+}
+
+.inputLabelSmall {
+  font-size: 12px;
+}
+
+.required {
+  color: #f25137;
+}
+
+.input {
+  box-sizing: border-box;
+  background-color: primary-background-color;
+  border: none;
+  box-shadow: primary-box-shadow;
+  outline: none;
+  color: #091e3f;
+}
+
+.titleInput {
+  composes: input;
+  margin: 10px 0 20px;
+  padding: 0 10px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.descriptionTextarea {
+  composes: input;
+  margin: 10px 0 20px;
+  padding: 10px;
+  min-width: 320px;
+  max-width: 320px;
+  min-height: 140px;
+}
+
+.titleInput::placeholder,
+.descriptionTextarea::placeholder {
+  font-family: primary-font-stack;
+  font-weight: 400;
+  color: color-light-grey;
+  font-size: 16px;
+}
+
+.descriptionTextarea::placeholder {
+  font-size: 12px;
+}
+
+.formControls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancelBtn,
+.submitBtn {
+  composes: button;
+  width: 150px;
+  height: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+}
+
+.cancelBtn {
+  color: #000;
+  background-color: primary-background-color;
+}
+
+.submitBtn {
+  color: #fff;
+  background-color: color-orange;
+}
