@@ -27,3 +27,8 @@ export const getStatisticsRolesError = error => ({
   type: types.GET_STATISTICS_ROLES_ERROR,
   payload: { error },
 });
+
+export const setCategory = category => ({
+  type: types.SET_CATEGORY,
+  payload: { category },
+});

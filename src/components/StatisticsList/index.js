@@ -1,3 +1,3 @@
-import StatisticsList from './StatisticsListContainer';
+import StatisticsList from './StatisticsList';
 
 export default StatisticsList;

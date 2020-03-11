@@ -3,6 +3,7 @@
 export const getDateTasks = store => store.statistics.dateTasks;
 export const getAllRoles = store => store.statistics.statisticsRoles;
 export const getIsLoading = store => store.statistics.isLoading;
+export const getCategory = store => store.statistics.category;
 
 // export const getTasksByRole = createSelector(
 //   [(store, roleId) => roleId, getDateTasks],
@@ -21,13 +22,13 @@ const getDoneTasksByRole = (store, roleId) => {
   return tasks.filter(task => task.done);
 };
 
-const percentsCompletedTasks = (store, roleId) => {
-  const doneTasks = getDoneTasksByRole(store, roleId).length;
+const rolePercents = (store, roleId) => {
+  const roleTasks = getTasksByRole(store, roleId).length;
 
-  if (doneTasks) {
-    const allTasks = getTasksByRole(store, roleId).length;
+  if (roleTasks) {
+    const allTasks = getDateTasks(store).length;
 
-    const difference = doneTasks / allTasks;
+    const difference = roleTasks / allTasks;
 
     return Math.round(difference * 100);
   }
@@ -41,7 +42,7 @@ export const statistics = store => {
   const statistic = roles.map(role => ({
     ...role,
     completedTask: getDoneTasksByRole(store, role._id).length,
-    precents: percentsCompletedTasks(store, role._id),
+    precents: rolePercents(store, role._id),
     totalRoleTasks: getTasksByRole(store, role._id).length,
   }));
 

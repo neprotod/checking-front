@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import StatisticsListItem from '../StatisticsListItem';
 
 const StatisticsList = ({ statistics }) => {
+  console.log(statistics);
   return (
     <>
       {statistics && (

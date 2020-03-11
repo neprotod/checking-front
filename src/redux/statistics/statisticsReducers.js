@@ -22,6 +22,16 @@ const statisticsRoles = (state = [], { type, payload }) => {
   }
 };
 
+const category = (state = 'all', { type, payload }) => {
+  switch (type) {
+    case types.SET_CATEGORY:
+      return payload.category;
+
+    default:
+      return state;
+  }
+};
+
 const error = (state = null, { type, payload }) => {
   switch (type) {
     case types.GET_DATE_TASKS_ERROR:
@@ -53,6 +63,7 @@ const isLoading = (state = false, { type }) => {
 export default combineReducers({
   dateTasks,
   statisticsRoles,
+  category,
   error,
   isLoading,
 });

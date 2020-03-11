@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import * as operations from '../redux/statistics/statisticsOperations';
 
-import StatisticsList from '../components/StatisticsList';
+import Statistics from '../components/Statistics';
 
 class StatisticsPage extends Component {
   static propTypes = {
@@ -23,8 +23,7 @@ class StatisticsPage extends Component {
     return (
       <div>
         <h1>Statistics</h1>
-
-        <StatisticsList />
+        <Statistics />
       </div>
     );
   }
