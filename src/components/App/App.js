@@ -26,10 +26,6 @@ const App = ({ isLoading, isAuth }) => {
           path={routes.MAIN_PAGE.path}
           component={routes.MAIN_PAGE.component}
         />
-        <ProtectedRoute
-          path={routes.ST_PAGE.path}
-          component={routes.ST_PAGE.component}
-        />
         <Redirect to={routes.LOGIN_PAGE.path} />
       </Switch>
     </>
