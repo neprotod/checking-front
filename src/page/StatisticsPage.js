@@ -38,7 +38,6 @@ class StatisticsPage extends Component {
     return (
       <div>
         {isLoading && <Loader />}
-        <h1>Statistics</h1>
         <Statistics />
       </div>
     );

@@ -1,0 +1,57 @@
+@value variables: '../../variables.module.css';
+@value dark-blue-color, orange-color, white-color, gray-underline, font-stack from variables;
+
+.statistics__wrapper {
+  font-family: font-stack;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 0 auto;
+}
+
+.statistics__title {
+  position: relative;
+  font-size: 26px;
+  color: dark-blue-color;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.statistics__title::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -15px;
+  height: 1px;
+  background-color: gray-underline;
+}
+
+.statistics__section {
+  margin-top: 52px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home__button_wrapper {
+  display: block;
+  margin-bottom: 40px;
+  text-align: right;
+}
+
+.home__button {
+  text-decoration: none;
+  color: white-color;
+  padding: 11px 13px 11px 13px;
+  background-color: orange-color;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@media (min-width: 470px) {
+  .home__button_wrapper {
+    display: none;
+  }
+}

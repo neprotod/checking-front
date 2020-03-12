@@ -11,19 +11,19 @@ const StatisticsListItem = ({
   totalRoleTasks,
 }) => {
   return (
-    <li className={styles.statistics__list_item}>
-      <p className={styles.item__name}>
+    <>
+      <div className={styles.item__name_wrapper}>
         <div
           className={styles.item__element_color}
           style={{ backgroundColor: roleColor }}
         />
-        {role}
+        <p className={styles.item__value}>{role}</p>
+      </div>
+      <p className={styles.item__value}>{precents} %</p>
+      <p className={styles.item__value}>
+        {completedTask} / {totalRoleTasks}
       </p>
-      <p>{precents}%</p>
-      <p>
-        {completedTask}/{totalRoleTasks}
-      </p>
-    </li>
+    </>
   );
 };
 

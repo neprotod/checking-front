@@ -1,11 +1,6 @@
 @value variables: '../../variables.module.css';
 @value text-gray-color, font-stack from variables;
 
-.chart__wrapper {
-  position: relative;
-  margin-bottom: 38px;
-}
-
 .chart__select_wrapper {
   position: absolute;
   top: 47%;

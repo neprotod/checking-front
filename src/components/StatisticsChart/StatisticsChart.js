@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut, defaults } from 'react-chartjs-2';
 
-// import styles from './StatisticsChart.module.css';
+import StatisticsSelectCategory from '../StatisticsSelectCategory';
+
+import styles from './StatisticsChart.module.css';
 
 defaults.global.tooltips = false;
 
@@ -18,48 +20,66 @@ const getData = statistics => {
   };
 };
 
-const StatisticsChart = ({ statistics, setCategory, category }) => {
-  const data = getData(statistics);
-  return (
-    <div width="500" height="500">
-      <Doughnut
-        data={data}
-        width={300}
-        height={300}
-        options={{
-          legend: false,
-          responsive: false,
-          hover: {
-            mode: false,
-          },
-        }}
-      />
-      <div>
-        <select value={category} onChange={e => setCategory(e.target.value)}>
-          <option value="All">all</option>
-          <option value="Lastweek">week</option>
-          <option value="Month">month</option>
-          <option value="Year">year</option>
-        </select>
-      </div>
-    </div>
-  );
-};
+class StatisticsChart extends Component {
+  static propTypes = {
+    statistics: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        id_user: PropTypes.string.isRequired,
+        completedTask: PropTypes.number.isRequired,
+        precents: PropTypes.number.isRequired,
+        totalRoleTasks: PropTypes.number.isRequired,
+      }),
+    ).isRequired,
+  };
 
-StatisticsChart.propTypes = {
-  statistics: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired,
-      id_user: PropTypes.string.isRequired,
-      completedTask: PropTypes.number.isRequired,
-      precents: PropTypes.number.isRequired,
-      totalRoleTasks: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
-  category: PropTypes.string.isRequired,
-  setCategory: PropTypes.func.isRequired,
-};
+  state = {
+    size: 300,
+  };
+
+  componentDidMount() {
+    this.handleWindowResize();
+    window.addEventListener('resize', this.handleWindowResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize);
+  }
+
+  handleWindowResize = () => {
+    this.setState({ size: window.innerWidth < 486 ? 300 : 366 });
+  };
+
+  render() {
+    const { statistics } = this.props;
+    const { size } = this.state;
+
+    const data = getData(statistics);
+
+    return (
+      <div
+        className={styles.chart__wrapper}
+        style={{ height: `${size}px`, width: `${size}px` }}
+      >
+        <Doughnut
+          data={data}
+          width={size}
+          height={size}
+          options={{
+            devicePixelRatio: false,
+            responsive: true,
+            legend: false,
+            hover: {
+              mode: false,
+            },
+          }}
+        />
+        <StatisticsSelectCategory />
+      </div>
+    );
+  }
+}
 
 export default StatisticsChart;

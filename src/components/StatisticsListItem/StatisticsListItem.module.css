@@ -1,16 +1,15 @@
-.statistics__list_item {
-  display: flex;
-  justify-content: space-around;
-}
-
-.item__name {
+.item__name_wrapper {
   position: relative;
 }
 
 .item__element_color {
   position: absolute;
-  top: 0;
+  top: 5%;
   left: -25px;
   height: 15px;
   width: 15px;
+}
+
+.item__value {
+  margin: 0;
 }
