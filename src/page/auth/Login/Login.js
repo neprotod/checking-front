@@ -12,7 +12,7 @@ import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import imageAuth from '../../../materials/imageAuth.jpg';
 
 const Login = ({ location, onLogin, onGoogle }) => {
-  if (location.search) {
+  if (location && location.search) {
     const token = new URLSearchParams(location.search).get('token');
     if (token) {
       onGoogle(token);
@@ -106,7 +106,7 @@ const Login = ({ location, onLogin, onGoogle }) => {
 Login.propTypes = {
   onLogin: PropTypes.func.isRequired,
   onGoogle: PropTypes.func.isRequired,
-  location: PropTypes.shape(PropTypes.shape()).isRequired,
+  location: PropTypes.shape().isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
