@@ -68,7 +68,7 @@ class CreateRoleForm extends Component {
       role => role.name.toLowerCase() === roleName.toLowerCase(),
     );
 
-    if (findNameMatch) {
+    if (findNameMatch && !roleToUpdateId) {
       return this.showMessage(`* Role "${roleName}" already exists`);
     }
 

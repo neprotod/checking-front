@@ -1,5 +1,5 @@
-@value variables: '../variables.module.css';
-@value primary-box-shadow from variables;
+@value variables: '../../../variables.module.css';
+@value gray-outline-color, box-shadow from variables;
 
 .roleSelectBtn {
   display: flex;
@@ -11,7 +11,7 @@
   padding: 0 15px 0 10px;
   font-family: inherit;
   font-size: 12px;
-  box-shadow: primary-box-shadow;
+  box-shadow: box-shadow;
   border: none;
   outline: none;
   cursor: pointer;
@@ -27,8 +27,8 @@
 
 .roleBtn {
   composes: roleSelectBtn;
-  border-top: 1px solid #f5f7fa;
-  border-bottom: 1px solid #f5f7fa;
+  border-top: 1px solid gray-outline-color;
+  border-bottom: 1px solid gray-outline-color;
   box-shadow: none;
 }
 

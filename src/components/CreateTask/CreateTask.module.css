@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
-@value variables: './variables.module.css';
-@value primary-font-stack, color-dark-grey from variables;
+@value variables: '../../variables.module.css';
+@value font-stack, text-gray-color, gray-outline-color from variables;
 
 .createTaskWrapper {
   position: relative;
@@ -9,7 +8,7 @@
 }
 
 .container {
-  font-family: primary-font-stack;
+  font-family: font-stack;
   width: 320px;
   margin: 0 auto;
   padding: 54px 0 62px;
@@ -28,13 +27,12 @@
 }
 
 .myRolesTitle {
-  color: #869096;
+  color: text-gray-color;
 }
 
 .openRoleFormBtn {
   display: flex;
   align-items: center;
-  box-sizing: border-box;
   padding: 0;
   width: 110px;
   height: 24px;
@@ -56,5 +54,5 @@
   display: block;
   width: 100%;
   height: 1px;
-  background-color: #e0e5eb;
+  background-color: gray-outline-color;
 }
