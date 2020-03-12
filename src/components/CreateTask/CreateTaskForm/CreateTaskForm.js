@@ -35,6 +35,7 @@ class CreateTask extends Component {
     ).isRequired,
     getRoles: PropTypes.func.isRequired,
     getPriorities: PropTypes.func.isRequired,
+    onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
   };
 
   state = {
@@ -303,7 +304,7 @@ class CreateTask extends Component {
       descriptionMessageText,
     } = this.state;
 
-    const { roles, priorities } = this.props;
+    const { roles, priorities, onClickIsCreateTaskFormOpen } = this.props;
 
     const rolesWithDefaultRole = [...roles, defaultRole];
 
@@ -400,10 +401,18 @@ class CreateTask extends Component {
           />
 
           <div className={styles.formControls}>
-            <button className={styles.cancelBtn} type="button">
+            <button
+              className={styles.cancelBtn}
+              type="button"
+              onClick={onClickIsCreateTaskFormOpen}
+            >
               Cancel
             </button>
-            <button className={styles.submitBtn} type="submit">
+            <button
+              className={styles.submitBtn}
+              type="submit"
+              onClick={onClickIsCreateTaskFormOpen}
+            >
               Accept
             </button>
           </div>
