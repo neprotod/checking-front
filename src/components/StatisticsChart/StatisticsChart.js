@@ -49,7 +49,7 @@ class StatisticsChart extends Component {
   }
 
   handleWindowResize = () => {
-    this.setState({ size: window.innerWidth < 486 ? 300 : 366 });
+    this.setState({ size: window.innerWidth < 767 ? 300 : 366 });
   };
 
   render() {

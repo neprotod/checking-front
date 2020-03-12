@@ -17,7 +17,7 @@ const StatisticsListItem = ({
           className={styles.item__element_color}
           style={{ backgroundColor: roleColor }}
         />
-        <p className={styles.item__value}>{role}</p>
+        <p className={styles.item__name}>{role}</p>
       </div>
       <p className={styles.item__value}>{precents} %</p>
       <p className={styles.item__value}>

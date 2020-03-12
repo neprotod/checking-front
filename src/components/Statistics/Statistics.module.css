@@ -50,7 +50,13 @@
   line-height: 1.75;
 }
 
-@media (min-width: 470px) {
+@media (min-width: 768px) {
+  .statistics__wrapper {
+    max-width: 472px;
+  }
+  .statistics__section {
+    margin-top: 60px;
+  }
   .home__button_wrapper {
     display: none;
   }

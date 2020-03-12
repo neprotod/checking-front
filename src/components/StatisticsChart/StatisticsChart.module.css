@@ -26,3 +26,10 @@
   overflow: hidden;
   background: url(../../materials/svg/arrow_drop_down-24px.svg) no-repeat right;
 }
+
+@media (min-width: 768px) {
+  .chart__wrapper {
+    margin: 0 auto;
+    margin-bottom: 60px;
+  }
+}

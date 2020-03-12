@@ -38,7 +38,8 @@
 .statistics__list_item {
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+
   margin-top: 22px;
   font-size: 12px;
   font-weight: normal;
@@ -53,4 +54,10 @@
   bottom: -7px;
   height: 2px;
   background-color: gray-underline;
+}
+
+@media (min-width: 768px) {
+  .list__header_title {
+    max-width: 250px;
+  }
 }

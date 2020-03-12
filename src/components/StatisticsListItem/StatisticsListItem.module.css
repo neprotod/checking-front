@@ -4,10 +4,14 @@
 
 .item__element_color {
   position: absolute;
-  top: 5%;
-  left: -25px;
+  top: 1%;
+  left: 0px;
   height: 15px;
   width: 15px;
+}
+.item__name {
+  margin: 0;
+  margin-left: 25px;
 }
 
 .item__value {
