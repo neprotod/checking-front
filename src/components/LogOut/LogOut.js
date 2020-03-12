@@ -1,17 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-// eslint-disable-next-line import/no-cycle
 import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-cycle
-import routes from '../../routes/routes';
 import * as authOperations from '../../redux/auth/authOperations';
+import style from './LogOut.module.css';
 
 const Logout = ({ logout }) => {
   return (
-    <NavLink onClick={logout} to={routes.LOGIN_PAGE.path}>
+    <button type="button" className={style.logoutButton} onClick={logout}>
       Logout
-    </NavLink>
+    </button>
   );
 };
 

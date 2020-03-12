@@ -1,7 +1,7 @@
 import RegistrationPage from '../page/auth/Registration/index';
 import LoginPage from '../page/auth/Login/index';
 // eslint-disable-next-line import/no-cycle
-import MainPage from '../page/MainPage';
+import MainPage from '../page/MainPage/index';
 import StatisticsPage from '../page/StatisticsPage';
 
 export default {

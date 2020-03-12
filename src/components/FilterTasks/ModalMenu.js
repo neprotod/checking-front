@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
+import LogOut from '../LogOut/index';
 
 const todayTomorrowSvg = (
   <svg
@@ -149,11 +150,7 @@ const ModalMenu = ({
           </button>
         </div>
       )}
-      {isModalOpen && (
-        <button type="button" className={styles.logoutButton}>
-          Log out
-        </button>
-      )}
+      {isModalOpen && <LogOut className={styles.logoutButton} />}
     </>
   );
 };

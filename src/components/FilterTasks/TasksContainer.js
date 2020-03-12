@@ -1,10 +1,13 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-cycle */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import Task from './Task';
+import LogOut from '../LogOut/index';
+import StatisticButton from '../StatisticButton/index';
 
 const arrowDown = (
   <svg
@@ -111,6 +114,8 @@ const TasksContainer = ({
     <>
       {!isCreateTaskFormOpen && (
         <div className={styles.container}>
+          <LogOut />
+          <StatisticButton />
           <div className={styles.menu}>
             <button
               type="button"
