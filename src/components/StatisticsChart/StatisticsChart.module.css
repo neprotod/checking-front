@@ -33,3 +33,10 @@
     margin-bottom: 60px;
   }
 }
+
+@media (min-width: 1200px) {
+  .chart__wrapper {
+    margin: 0;
+    margin-bottom: 60px;
+  }
+}

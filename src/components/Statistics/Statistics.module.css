@@ -61,3 +61,15 @@
     display: none;
   }
 }
+
+@media (min-width: 1200px) {
+  .statistics__wrapper {
+    max-width: 942px;
+  }
+  .statistics__section {
+    margin-top: 90px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

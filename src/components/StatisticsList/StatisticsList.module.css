@@ -61,3 +61,10 @@
     max-width: 250px;
   }
 }
+
+@media (min-width: 1200px) {
+  .statistics__list {
+    min-width: 470px;
+    max-width: 500px;
+  }
+}
