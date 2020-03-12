@@ -1,14 +1,25 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+import routes from '../../routes/routes';
+import ProtectedRoute from '../ProtectedRoute/index';
 
 import styles from './ErrorBoundaryItem.module.css';
 
-// add link on home page and styles
 const ErrorBoundaryItem = () => {
   return (
-    <div className={styles['error-container']}>
-      <h1>Something wrong...</h1>
-      <a href="http://localhost:3000/">Go to home page</a>
-    </div>
+    <>
+      <ProtectedRoute
+        path={routes.MAIN_PAGE.path}
+        component={routes.MAIN_PAGE.component}
+      />
+      <div className={styles['error-container']}>
+        <h1>Something wrong...</h1>
+        <NavLink className={styles.error__link} to="/main">
+          Go to home page
+        </NavLink>
+      </div>
+    </>
   );
 };
 

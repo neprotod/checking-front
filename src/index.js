@@ -9,10 +9,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 import App from './components/App';
 
-// TODO: import ApiProvider and self api, ApiProvider have value and this value needs api
-
 ReactDOM.render(
-  // TODO: Wrap in apiProvider and ErrorBoundary
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>

@@ -1,19 +1,7 @@
-// import { createSelector } from 'reselect';
-
 export const getDateTasks = store => store.statistics.dateTasks;
 export const getAllRoles = store => store.statistics.statisticsRoles;
 export const getIsLoading = store => store.statistics.isLoading;
 export const getCategory = store => store.statistics.category;
-
-// export const getTasksByRole = createSelector(
-//   [(store, roleId) => roleId, getDateTasks],
-//   (roleId, tasks) =>
-//     tasks.filter(task => {
-//       console.log('roleId: ', roleId);
-//       console.log('task: ', task);
-//       return task.role[0].id === roleId;
-//     }),
-// );
 
 export const getTasksByRole = (store, roleId) => {
   const tasks = getDateTasks(store);
@@ -53,18 +41,3 @@ export const statistics = store => {
 
   return statistic;
 };
-
-// export const statistics = createSelector(
-//   [getAllRoles, getDoneTasksByRole, rolePercents, getTasksByRole],
-//   (roles, completedTask, precents, totalRoleTasks) => {
-//     console.log(roles);
-//     const statistic = roles.map(role => ({
-//       ...role,
-//       completedTask: completedTask.length,
-//       precents,
-//       totalRoleTasks: totalRoleTasks.length,
-//     }));
-
-//     return statistic;
-//   },
-// );
