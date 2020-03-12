@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import styles from './Registration.module.css';
+
+import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import imageAuth from '../../../materials/imageAuth.jpg';
 
@@ -93,13 +95,7 @@ const Registration = ({ onSave }) => {
                     component="div"
                     className={styles.error}
                   />
-                  <button
-                    className={styles.btnAgree}
-                    type="button"
-                    onClick={() => alert('Here must be modalka')}
-                  >
-                    Agreed with Privacy Policy
-                  </button>
+                  <ModalWindow />
                 </div>
               </div>
               <button className={styles.btn} type="submit">
