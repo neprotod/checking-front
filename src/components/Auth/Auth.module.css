@@ -36,10 +36,6 @@ body {
   color: #727377;
 }
 
-.image {
-  display: none;
-}
-
 @media (min-width: 768px) {
   .container {
     width: 400px;
@@ -62,25 +58,12 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
-  .image {
-    display: block;
-    height: 750px;
-    width: 100%;
-  }
-
-  .imageContainer {
-    width: 60%;
-  }
-
-  .container {
-    width: 30%;
-    margin-right: 63px;
-    margin: auto;
-  }
-
+@media (min-width: 1280px) {
   .wrap {
     display: flex;
     justify-content: center;
+    position: absolute;
+    left: 4%;
+    top: 9%;
   }
 }

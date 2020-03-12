@@ -5,8 +5,11 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
-import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import styles from './Registration.module.css';
+
+import ModalWindow from '../../../components/ModalWindow/ModalWindow';
+import withAuthRedirect from '../../../hoc/withAuthRedirect';
+import imageAuth from '../../../materials/imageAuth.jpg';
 
 const Registration = ({ onSave }) => {
   return (
@@ -39,7 +42,7 @@ const Registration = ({ onSave }) => {
       }}
       render={() => {
         return (
-          <>
+          <div className={styles.wrapAuth}>
             <Form className={styles.form}>
               <p className={styles.title}>Your Account</p>
               <div className={styles.container}>
@@ -92,20 +95,21 @@ const Registration = ({ onSave }) => {
                     component="div"
                     className={styles.error}
                   />
-                  <button
-                    className={styles.btnAgree}
-                    type="button"
-                    onClick={() => alert('Here must be modalka')}
-                  >
-                    Agreed with Privacy Policy
-                  </button>
+                  <ModalWindow />
                 </div>
               </div>
               <button className={styles.btn} type="submit">
                 Registration
               </button>
             </Form>
-          </>
+            <div className={styles.imageContainer}>
+              <img
+                className={styles.image}
+                src={imageAuth}
+                alt="boy with lap book"
+              />
+            </div>
+          </div>
         );
       }}
     />

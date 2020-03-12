@@ -12,13 +12,7 @@ const ProtectedRoute = ({ component: Component, isAuth, ...restProps }) => (
       isAuth ? (
         <Component {...props} />
       ) : (
-        <Redirect
-          to={{
-            pathname: routes.LOGIN_PAGE.path,
-            // eslint-disable-next-line react/prop-types
-            state: { from: props.location },
-          }}
-        />
+        <Redirect to={routes.LOGIN_PAGE.path} />
       )
     }
   />
