@@ -1,23 +1,12 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import authReducer from './auth/authReducer';
-import tasksReducer from './tasks/tasksReducer';
+import { persistStore } from 'redux-persist';
 
-const persistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['token', 'isAuth'],
-};
-
-const rootReducer = combineReducers({
-  auth: persistReducer(persistConfig, authReducer),
-  tasks: tasksReducer,
-});
+import rootReducer from './rootReducer';
 
 const middleware = [ReduxThunk];
+
 const enhancer =
   process.env.NODE_ENV === 'development'
     ? composeWithDevTools(applyMiddleware(...middleware))

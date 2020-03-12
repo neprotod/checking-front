@@ -1,0 +1,19 @@
+.item__name_wrapper {
+  position: relative;
+}
+
+.item__element_color {
+  position: absolute;
+  top: 1%;
+  left: 0px;
+  height: 15px;
+  width: 15px;
+}
+.item__name {
+  margin: 0;
+  margin-left: 25px;
+}
+
+.item__value {
+  margin: 0;
+}

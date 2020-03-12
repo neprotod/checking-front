@@ -1,0 +1,42 @@
+@value variables: '../../variables.module.css';
+@value text-gray-color, font-stack from variables;
+
+.chart__wrapper {
+  position: relative;
+  margin-bottom: 38px;
+}
+
+.chart__select_wrapper {
+  position: absolute;
+  top: 47%;
+  left: 40%;
+}
+
+.chart__select {
+  background: none;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 5px;
+  cursor: pointer;
+  color: text-gray-color;
+  font-weight: 500;
+  font-size: 15px;
+  overflow: hidden;
+  background: url(../../materials/svg/arrow_drop_down-24px.svg) no-repeat right;
+}
+
+@media (min-width: 768px) {
+  .chart__wrapper {
+    margin: 0 auto;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .chart__wrapper {
+    margin: 0;
+    margin-bottom: 60px;
+  }
+}
