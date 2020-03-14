@@ -5,22 +5,45 @@ import styles from './RoleSelector.module.css';
 
 const RoleSelector = ({
   roles,
-  rolesListIsOpen,
   selectedRole,
+  defaultRole,
+  rolesListIsOpen,
   roleSelectorDisplayToggle,
   onSelectRole,
 }) => {
+  const rolesWithDefaultRole = [...roles, defaultRole];
+
+  const roleToDisplay = rolesWithDefaultRole.find(
+    role => role._id === selectedRole._id,
+  );
+
+  const roleNameToDisplay = () => {
+    if (roleToDisplay) {
+      return roleToDisplay.name.length > 11
+        ? `${roleToDisplay.name.slice(0, 11)}...`
+        : roleToDisplay.name;
+    }
+    return defaultRole.name;
+  };
+
+  const colorToDisplay = () => {
+    if (roleToDisplay) {
+      return roleToDisplay.color;
+    }
+    return defaultRole.color;
+  };
+
   return (
     <>
       <button
         type="button"
         style={{
-          backgroundColor: selectedRole.color,
+          backgroundColor: colorToDisplay(),
         }}
         className={styles.roleSelectBtn}
         onClick={roleSelectorDisplayToggle}
       >
-        <span>{selectedRole.name}</span>
+        <span>{roleNameToDisplay()}</span>
         {rolesListIsOpen ? (
           <svg className={styles.iconArrow}>
             <use href="#drop_up" />
@@ -33,7 +56,7 @@ const RoleSelector = ({
       </button>
       {rolesListIsOpen && (
         <ul className={styles.rolesList}>
-          {roles
+          {rolesWithDefaultRole
             .filter(role => role._id !== selectedRole._id)
             .map(role => (
               <li key={role._id}>
@@ -63,13 +86,19 @@ RoleSelector.propTypes = {
       id_user: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  rolesListIsOpen: PropTypes.bool.isRequired,
   selectedRole: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     id_user: PropTypes.string.isRequired,
   }).isRequired,
+  defaultRole: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    id_user: PropTypes.string.isRequired,
+  }).isRequired,
+  rolesListIsOpen: PropTypes.bool.isRequired,
   roleSelectorDisplayToggle: PropTypes.func.isRequired,
   onSelectRole: PropTypes.func.isRequired,
 };

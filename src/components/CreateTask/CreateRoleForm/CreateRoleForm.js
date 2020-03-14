@@ -57,7 +57,7 @@ class CreateRoleForm extends Component {
     const { roleName, roleColor, roleToUpdateId } = this.state;
     const { roles, addRole, updateRole } = this.props;
 
-    if (roleName.length < 3) {
+    if (roleName.length < 1) {
       return this.showMessage('* Minimum 3 characters');
     }
     if (roleName.length > 15) {
@@ -65,10 +65,12 @@ class CreateRoleForm extends Component {
     }
 
     const findNameMatch = roles.find(
-      role => role.name.toLowerCase() === roleName.toLowerCase(),
+      role =>
+        role.name.toLowerCase() === roleName.toLowerCase() &&
+        roleToUpdateId !== role._id,
     );
 
-    if (findNameMatch && !roleToUpdateId) {
+    if (findNameMatch) {
       return this.showMessage(`* Role "${roleName}" already exists`);
     }
 

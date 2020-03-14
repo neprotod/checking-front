@@ -10,7 +10,7 @@ import API from '../../../services/api';
 import styles from './CreateTaskForm.module.css';
 
 const defaultRole = {
-  _id: '',
+  _id: 'none',
   name: 'None',
   color: '#cdd0d9',
   id_user: 'none',
@@ -83,10 +83,22 @@ class CreateTask extends Component {
     24,
   ];
 
-  async componentDidMount() {
+  componentDidMount() {
     const { getRoles, getPriorities } = this.props;
     getRoles();
     getPriorities();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { selectedRole } = this.state;
+    const { roles } = this.props;
+
+    if (roles.length !== prevProps.roles.length) {
+      const match = roles.find(role => role._id === selectedRole._id);
+      if (!match) {
+        this.setDefaultRole();
+      }
+    }
   }
 
   roleSelectorDisplayToggle = () => {
@@ -125,6 +137,12 @@ class CreateTask extends Component {
     this.setState(prevState => ({
       rolesListIsOpen: !prevState.rolesListIsOpen,
     }));
+  };
+
+  setDefaultRole = () => {
+    this.setState({
+      selectedRole: defaultRole,
+    });
   };
 
   onInputChange = ({ target }) => {
@@ -305,8 +323,6 @@ class CreateTask extends Component {
 
     const { roles, priorities } = this.props;
 
-    const rolesWithDefaultRole = [...roles, defaultRole];
-
     return (
       <>
         <form className={styles.createTaskForm} onSubmit={this.onSubmit}>
@@ -314,9 +330,10 @@ class CreateTask extends Component {
             <div className={styles.selectorContainer}>
               <span className={styles.selectorLabel}>Choose role</span>
               <RoleSelector
-                roles={rolesWithDefaultRole}
-                rolesListIsOpen={rolesListIsOpen}
+                roles={roles}
+                defaultRole={defaultRole}
                 selectedRole={selectedRole}
+                rolesListIsOpen={rolesListIsOpen}
                 roleSelectorDisplayToggle={this.roleSelectorDisplayToggle}
                 onSelectRole={this.onSelectRole}
               />
