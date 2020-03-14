@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
-import LogOut from '../LogOut/index';
+
+import ModalMenuMarkup from './ModalMenuMarkup';
 
 const todayTomorrowSvg = (
   <svg
@@ -62,95 +63,72 @@ const statisticsSvg = (
   </svg>
 );
 
-const ModalMenu = ({
-  onClickIsMobile,
-  isModalOpen,
-  isMobileToday,
-  isMobileTomorrow,
-  isMobileNext7,
-  isMobileAfter7,
-  isMobileBurned,
-  isMobileDone,
-  isMobileStatistics,
-}) => {
-  const bgToday = isMobileToday ? styles.whiteBg : styles.grayBg;
-  const bgTomorrow = isMobileTomorrow ? styles.whiteBg : styles.grayBg;
-  const bgNext7 = isMobileNext7 ? styles.whiteBg : styles.grayBg;
-  const bgAfter7 = isMobileAfter7 ? styles.whiteBg : styles.grayBg;
-  const bgBurned = isMobileBurned ? styles.whiteBg : styles.grayBg;
-  const bgDone = isMobileDone ? styles.whiteBg : styles.grayBg;
-  const bgStatistics = isMobileStatistics ? styles.whiteBg : styles.grayBg;
+const ModalMenu = ({ ...props }) => {
+  const { onClickIsMobile, isModalOpen, statistics } = props;
 
+  let title;
+  let bg;
+  let picture;
+  const statisticsBg = statistics ? styles.whiteBg : styles.grayBg;
   return (
     <>
       {isModalOpen && (
         <div className={styles.menu}>
+          {Object.entries(props)
+            .filter(prop => prop[0].includes('isMobile'))
+            .map(prop => {
+              bg = prop[1] ? styles.whiteBg : styles.grayBg;
+
+              title = prop[0].slice(8);
+              switch (prop[0]) {
+                case 'isMobileToday':
+                case 'isMobileTomorrow':
+                  picture = todayTomorrowSvg;
+                  break;
+                case 'isMobileNext7Days':
+                case 'isMobileAfter7Days':
+                  picture = Next7Svg;
+                  break;
+                case 'isMobileBurnedOut':
+                  picture = burnedOutSvg;
+                  break;
+
+                case 'isMobileDone':
+                  picture = doneSvg;
+                  break;
+
+                default:
+                  return;
+              }
+              // eslint-disable-next-line consistent-return
+              return (
+                <ModalMenuMarkup
+                  key={prop[0]}
+                  name={prop[0]}
+                  bg={bg}
+                  onClickIsMobile={onClickIsMobile}
+                  picture={picture}
+                  title={title}
+                />
+              );
+            })}
           <button
             type="button"
-            name="isMobileToday"
-            className={bgToday}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{todayTomorrowSvg}</p>
-            <p className={styles.menuButtonText}>Today</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileTomorrow"
-            className={bgTomorrow}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{todayTomorrowSvg}</p>
-            <p className={styles.menuButtonText}>Tomorrow</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileNext7"
-            className={bgNext7}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{Next7Svg}</p>
-            <p className={styles.menuButtonText}>Next 7 Days</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileAfter7"
-            className={bgAfter7}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{Next7Svg}</p>
-            <p className={styles.menuButtonText}>After 7 Days</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileBurned"
-            className={bgBurned}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{burnedOutSvg}</p>
-            <p className={styles.menuButtonText}>Burned Out</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileDone"
-            className={bgDone}
-            onClick={onClickIsMobile}
-          >
-            <p className={styles.menuButtonPict}>{doneSvg}</p>
-            <p className={styles.menuButtonText}>Done</p>
-          </button>
-          <button
-            type="button"
-            name="isMobileStatistics"
-            className={bgStatistics}
-            onClick={onClickIsMobile}
+            name="statistics"
+            className={statisticsBg}
+            // onClick={}
           >
             <p className={styles.menuButtonPict}>{statisticsSvg}</p>
             <p className={styles.menuButtonText}>Statistics</p>
           </button>
         </div>
       )}
-      {isModalOpen && <LogOut className={styles.logoutButton} />}
+
+      {isModalOpen && (
+        <button type="button" className={styles.logoutButton}>
+          Log out
+        </button>
+      )}
     </>
   );
 };
@@ -160,11 +138,12 @@ ModalMenu.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   isMobileToday: PropTypes.bool.isRequired,
   isMobileTomorrow: PropTypes.bool.isRequired,
-  isMobileNext7: PropTypes.bool.isRequired,
-  isMobileAfter7: PropTypes.bool.isRequired,
-  isMobileBurned: PropTypes.bool.isRequired,
+
+  isMobileNext7Days: PropTypes.bool.isRequired,
+  isMobileAfter7Days: PropTypes.bool.isRequired,
+  isMobileBurnedOut: PropTypes.bool.isRequired,
   isMobileDone: PropTypes.bool.isRequired,
-  isMobileStatistics: PropTypes.bool.isRequired,
+  statistics: PropTypes.bool.isRequired,
 };
 
 export default ModalMenu;

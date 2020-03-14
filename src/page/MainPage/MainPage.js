@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Media from 'react-media';
 import * as tasksOperations from '../../redux/tasks/tasks/tasksOperations';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
-import TasksContainer from '../../components/FilterTasks/TasksContainer';
-import MobileTasksContainer from '../../components/FilterTasks/MobileTasksContainer';
+
+import TasksField from '../../components/FilterTasks/TasksField';
+import MobileTasksField from '../../components/FilterTasks/MobileTasksField';
+
 import CreateTask from '../../components/CreateTask/CreateTaskContainer';
 
 class MainPage extends Component {
@@ -32,11 +34,13 @@ class MainPage extends Component {
     isModalOpen: false,
     isMobileToday: true,
     isMobileTomorrow: false,
-    isMobileNext7: false,
-    isMobileAfter7: false,
-    isMobileBurned: false,
+
+    isMobileNext7Days: false,
+    isMobileAfter7Days: false,
+    isMobileBurnedOut: false,
     isMobileDone: false,
-    isMobileStatistics: false,
+    statistics: false,
+
     isCreateTaskFormOpen: false,
   };
 
@@ -84,11 +88,12 @@ class MainPage extends Component {
       isModalOpen: !prevState.isModalOpen,
       isMobileToday: false,
       isMobileTomorrow: false,
-      isMobileNext7: false,
-      isMobileAfter7: false,
-      isMobileBurned: false,
+
+      isMobileNext7Days: false,
+      isMobileAfter7Days: false,
+      isMobileBurnedOut: false,
       isMobileDone: false,
-      isMobileStatistics: false,
+      statistics: false,
       [target]: true,
     }));
   };
@@ -120,11 +125,12 @@ class MainPage extends Component {
       isModalOpen,
       isMobileToday,
       isMobileTomorrow,
-      isMobileNext7,
-      isMobileAfter7,
-      isMobileBurned,
+      
+      isMobileNext7Days,
+      isMobileAfter7Days,
+      isMobileBurnedOut,
       isMobileDone,
-      isMobileStatistics,
+      statistics,
       isCreateTaskFormOpen,
     } = this.state;
 
@@ -142,22 +148,23 @@ class MainPage extends Component {
         >
           {matches =>
             matches.small ? (
-              <MobileTasksContainer
+              <MobileTasksField
                 onClickIsMobile={this.onClickIsMobile}
                 onClickIsModalOpen={this.onClickIsModalOpen}
                 onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
                 isModalOpen={isModalOpen}
                 isMobileToday={isMobileToday}
                 isMobileTomorrow={isMobileTomorrow}
-                isMobileNext7={isMobileNext7}
-                isMobileAfter7={isMobileAfter7}
-                isMobileBurned={isMobileBurned}
+
+                isMobileNext7Days={isMobileNext7Days}
+                isMobileAfter7Days={isMobileAfter7Days}
+                isMobileBurnedOut={isMobileBurnedOut}
                 isMobileDone={isMobileDone}
-                isMobileStatistics={isMobileStatistics}
+                statistics={statistics}
                 isCreateTaskFormOpen={isCreateTaskFormOpen}
               />
             ) : (
-              <TasksContainer
+              <TasksField
                 onClickFilter={this.onClickFilter}
                 onClickTasksToggle={this.onClickTasksToggle}
                 onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
