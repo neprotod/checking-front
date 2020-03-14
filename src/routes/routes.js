@@ -1,6 +1,8 @@
 import RegistrationPage from '../page/auth/Registration/index';
 import LoginPage from '../page/auth/Login/index';
-import MainPage from '../page/MainPage';
+
+import MainPage from '../page/MainPage/index';
+import StatisticsPage from '../page/StatisticsPage';
 
 export default {
   REGISTRATION_PAGE: {
@@ -14,5 +16,9 @@ export default {
   MAIN_PAGE: {
     path: '/main',
     component: MainPage,
+  },
+  STATISTICS_PAGE: {
+    path: '/statistics',
+    component: StatisticsPage,
   },
 };

@@ -1,0 +1,20 @@
+.logoutButton {
+  position: absolute;
+  z-index: 20;
+  top: 370px;
+  background-color: #f5f7fa;
+  outline: none;
+  border: none;
+  color: #869096;
+  padding: 0;
+  border-bottom: 1px solid #869096;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .logoutButton {
+    font-size: 16px;
+    border-bottom: none;
+    right: 0px;
+    top: -30px;
+  }
+}

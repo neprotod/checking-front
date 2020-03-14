@@ -40,6 +40,7 @@ class CreateTask extends Component {
     ).isRequired,
     getRoles: PropTypes.func.isRequired,
     getPriorities: PropTypes.func.isRequired,
+    onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
   };
 
   state = {
@@ -250,7 +251,7 @@ class CreateTask extends Component {
       endHour,
     } = this.state;
 
-    const { priorities } = this.props;
+    const { priorities, onClickIsCreateTaskFormOpen } = this.props;
 
     const task = {
       role: selectedRole.name === 'None' ? '' : selectedRole._id,
@@ -266,11 +267,16 @@ class CreateTask extends Component {
       .isValid(task)
       .then(async valid => {
         if (valid) {
-          // eslint-disable-next-line no-unused-vars
-          await API.createTask(task).catch(err =>
-            notyf.error('Error while saving a task'),
-          );
-          this.resetForm();
+          await API.createTask(task)
+            .then(res => {
+              if (res) {
+                console.log(res);
+                this.resetForm();
+                onClickIsCreateTaskFormOpen();
+              }
+            })
+            // eslint-disable-next-line no-unused-vars
+            .catch(err => notyf.error('Error while saving a task'));
         } else {
           throwErr();
         }
@@ -325,7 +331,7 @@ class CreateTask extends Component {
       descriptionMessageText,
     } = this.state;
 
-    const { roles, priorities } = this.props;
+    const { roles, priorities, onClickIsCreateTaskFormOpen } = this.props;
 
     return (
       <>
@@ -421,10 +427,18 @@ class CreateTask extends Component {
           />
 
           <div className={styles.formControls}>
-            <button className={styles.cancelBtn} type="button">
+            <button
+              className={styles.cancelBtn}
+              type="button"
+              onClick={onClickIsCreateTaskFormOpen}
+            >
               Cancel
             </button>
-            <button className={styles.submitBtn} type="submit">
+            <button
+              className={styles.submitBtn}
+              type="submit"
+              onClick={this.onSubmit}
+            >
               Accept
             </button>
           </div>
