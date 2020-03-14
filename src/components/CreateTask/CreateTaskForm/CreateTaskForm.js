@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Notyf } from 'notyf';
 import RoleSelector from '../RoleSelector/RoleSelector';
@@ -8,20 +9,15 @@ import TimeSelector from '../TimeSelector/TimeSelector';
 import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import Message from '../Message/Message';
 import API from '../../../services/api';
+import config from '../../../config';
 import { taskSchema, throwErr } from './taskValidation';
 import styles from './CreateTaskForm.module.css';
 import 'notyf/notyf.min.css';
 
 const notyf = new Notyf();
+const { defaultRole } = config;
 
-const defaultRole = {
-  _id: 'none',
-  name: 'None',
-  color: '#cdd0d9',
-  id_user: 'none',
-};
-
-class CreateTask extends Component {
+class CreateTaskForm extends Component {
   static propTypes = {
     roles: PropTypes.arrayOf(
       PropTypes.shape({
@@ -41,6 +37,9 @@ class CreateTask extends Component {
     getRoles: PropTypes.func.isRequired,
     getPriorities: PropTypes.func.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -254,7 +253,7 @@ class CreateTask extends Component {
     const { priorities, onClickIsCreateTaskFormOpen } = this.props;
 
     const task = {
-      role: selectedRole.name === 'None' ? '' : selectedRole._id,
+      role: selectedRole._id === 'none' ? '' : selectedRole._id,
       priority: priority === null ? priorities[0]._id : priority._id,
       title,
       description,
@@ -270,9 +269,9 @@ class CreateTask extends Component {
           await API.createTask(task)
             .then(res => {
               if (res) {
-                console.log(res);
                 this.resetForm();
                 onClickIsCreateTaskFormOpen();
+                this.renderMainPage();
               }
             })
             // eslint-disable-next-line no-unused-vars
@@ -290,6 +289,12 @@ class CreateTask extends Component {
             this.showDescriptionMessage(errors.description);
         }
       });
+  };
+
+  renderMainPage = () => {
+    const { history } = this.props;
+    history.push('/');
+    history.push('/main');
   };
 
   resetForm = () => {
@@ -434,11 +439,7 @@ class CreateTask extends Component {
             >
               Cancel
             </button>
-            <button
-              className={styles.submitBtn}
-              type="submit"
-              onClick={this.onSubmit}
-            >
+            <button className={styles.submitBtn} type="submit">
               Accept
             </button>
           </div>
@@ -448,4 +449,4 @@ class CreateTask extends Component {
   }
 }
 
-export default CreateTask;
+export default withRouter(CreateTaskForm);

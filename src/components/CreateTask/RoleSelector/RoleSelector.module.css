@@ -1,5 +1,5 @@
 @value variables: '../../../variables.module.css';
-@value gray-outline-color, box-shadow from variables;
+@value gray-underline, box-shadow from variables;
 
 .roleSelectBtn {
   display: flex;
@@ -27,8 +27,8 @@
 
 .roleBtn {
   composes: roleSelectBtn;
-  border-top: 1px solid gray-outline-color;
-  border-bottom: 1px solid gray-outline-color;
+  border-top: 1px solid gray-underline;
+  border-bottom: 1px solid gray-underline;
   box-shadow: none;
 }
 

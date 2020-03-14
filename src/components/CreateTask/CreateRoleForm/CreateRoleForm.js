@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color';
 import Message from '../Message/Message';
 import roleSchema from './roleValidation';
-
 import styles from './CreateRoleForm.module.css';
 
 class CreateRoleForm extends Component {
