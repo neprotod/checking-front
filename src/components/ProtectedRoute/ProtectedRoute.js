@@ -20,7 +20,7 @@ const ProtectedRoute = ({ component: Component, isAuth, ...restProps }) => (
 
 ProtectedRoute.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-  component: PropTypes.func.isRequired,
+  component: PropTypes.shape().isRequired,
 };
 
 const mapStateToProps = store => ({

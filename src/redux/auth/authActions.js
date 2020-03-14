@@ -28,6 +28,18 @@ export const loginError = error => ({
   payload: { error },
 });
 
+export const logOutStart = () => ({
+  type: types.LOGOUT_START,
+});
+
+export const logOutSuccess = () => ({
+  type: types.LOGOUT_SUCCESS,
+});
+
+export const logOutError = error => ({
+  type: types.LOGOUT_ERROR,
+  payload: { error },
+});
 export const loginGoogle = token => ({
   type: types.LOGIN_GOOGLE,
   payload: { token },

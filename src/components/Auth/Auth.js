@@ -18,6 +18,7 @@ const Auth = () => {
       <header className={styles.logo}>
         <p>LOGO</p>
       </header>
+
       <div className={styles.container}>
         <div className={styles.navigation}>
           <NavLink

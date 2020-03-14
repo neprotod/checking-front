@@ -9,6 +9,7 @@ import IconsSprite from './IconsSprite/IconsSprite';
 class CreateTask extends Component {
   static propTypes = {
     isFormLoading: PropTypes.bool.isRequired,
+    onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
   };
 
   state = {
@@ -23,7 +24,7 @@ class CreateTask extends Component {
 
   render() {
     const { roleFormIsOpen } = this.state;
-    const { isFormLoading } = this.props;
+    const { isFormLoading, onClickIsCreateTaskFormOpen } = this.props;
 
     return (
       <div className={styles.createTaskWrapper}>
@@ -51,7 +52,9 @@ class CreateTask extends Component {
             <div className={styles.line} />
           </div>
           {roleFormIsOpen && <CreateRoleFormContainer />}
-          <CreateTaskForm />
+          <CreateTaskForm
+            onClickIsCreateTaskFormOpen={onClickIsCreateTaskFormOpen}
+          />
         </div>
       </div>
     );
