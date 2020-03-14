@@ -1,13 +1,18 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Notyf } from 'notyf';
 import RoleSelector from '../RoleSelector/RoleSelector';
 import DateSelector from '../DateSelector/DateSelector';
 import TimeSelector from '../TimeSelector/TimeSelector';
 import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import Message from '../Message/Message';
 import API from '../../../services/api';
+import { taskSchema, throwErr } from './taskValidation';
 import styles from './CreateTaskForm.module.css';
+import 'notyf/notyf.min.css';
+
+const notyf = new Notyf();
 
 const defaultRole = {
   _id: 'none',
@@ -247,27 +252,6 @@ class CreateTask extends Component {
 
     const { priorities } = this.props;
 
-    if (
-      title.trim() === '' ||
-      title.trim().length > 150 ||
-      description.trim() === '' ||
-      description.trim().length > 800
-    ) {
-      if (title.trim() === '') {
-        this.showTitleMessage('(task title is required)*');
-      }
-      if (title.trim().length > 150) {
-        this.showTitleMessage('(up to 150 characters)*');
-      }
-      if (description.trim() === '') {
-        this.showDescriptionMessage('(task description is required)*');
-      }
-      if (description.trim().length > 800) {
-        this.showDescriptionMessage('(up to 800 characters)');
-      }
-      return;
-    }
-
     const task = {
       role: selectedRole.name === 'None' ? '' : selectedRole._id,
       priority: priority === null ? priorities[0]._id : priority._id,
@@ -278,8 +262,28 @@ class CreateTask extends Component {
       done: false,
     };
 
-    await API.createTask(task);
-    this.resetForm();
+    taskSchema
+      .isValid(task)
+      .then(async valid => {
+        if (valid) {
+          // eslint-disable-next-line no-unused-vars
+          await API.createTask(task).catch(err =>
+            notyf.error('Error while saving a task'),
+          );
+          this.resetForm();
+        } else {
+          throwErr();
+        }
+      })
+      .catch(err => {
+        const errors = JSON.parse(err.message);
+
+        if (errors) {
+          if (errors.title) this.showTitleMessage(errors.title);
+          if (errors.description)
+            this.showDescriptionMessage(errors.description);
+        }
+      });
   };
 
   resetForm = () => {

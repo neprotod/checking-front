@@ -19,14 +19,14 @@ const RoleSelector = ({
 
   const roleNameToDisplay = () => {
     if (roleToDisplay) {
-      return roleToDisplay.name.length > 11
-        ? `${roleToDisplay.name.slice(0, 11)}...`
+      return roleToDisplay.name.length > 10
+        ? `${roleToDisplay.name.slice(0, 10)}...`
         : roleToDisplay.name;
     }
     return defaultRole.name;
   };
 
-  const colorToDisplay = () => {
+  const roleColorToDisplay = () => {
     if (roleToDisplay) {
       return roleToDisplay.color;
     }
@@ -38,7 +38,7 @@ const RoleSelector = ({
       <button
         type="button"
         style={{
-          backgroundColor: colorToDisplay(),
+          backgroundColor: roleColorToDisplay(),
         }}
         className={styles.roleSelectBtn}
         onClick={roleSelectorDisplayToggle}

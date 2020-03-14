@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SketchPicker } from 'react-color';
 import Message from '../Message/Message';
+import roleSchema from './roleValidation';
 
 import styles from './CreateRoleForm.module.css';
 
@@ -51,18 +52,11 @@ class CreateRoleForm extends Component {
   };
 
   // eslint-disable-next-line consistent-return
-  onAddRole = async e => {
+  onAddRole = e => {
     e.preventDefault();
 
     const { roleName, roleColor, roleToUpdateId } = this.state;
     const { roles, addRole, updateRole } = this.props;
-
-    if (roleName.length < 1) {
-      return this.showMessage('* Minimum 3 characters');
-    }
-    if (roleName.length > 15) {
-      return this.showMessage('* Maximum 15 characters');
-    }
 
     const findNameMatch = roles.find(
       role =>
@@ -76,12 +70,19 @@ class CreateRoleForm extends Component {
 
     const role = { name: roleName, color: roleColor || '#cdd0d9' };
 
-    if (roleToUpdateId) {
-      await updateRole(roleToUpdateId, role);
-    } else {
-      await addRole(role);
-    }
-    this.setState({ roleName: '', roleColor: '', roleToUpdateId: '' });
+    roleSchema
+      .isValid(role)
+      .then(async valid => {
+        if (valid) {
+          if (roleToUpdateId) {
+            await updateRole(roleToUpdateId, role);
+          } else {
+            await addRole(role);
+          }
+          this.resetForm();
+        }
+      })
+      .catch(err => this.showMessage(err.message));
   };
 
   onUpdateRole = id => {
@@ -114,6 +115,10 @@ class CreateRoleForm extends Component {
           }));
         }, 3000),
     );
+  };
+
+  resetForm = () => {
+    this.setState({ roleName: '', roleColor: '', roleToUpdateId: '' });
   };
 
   render() {
