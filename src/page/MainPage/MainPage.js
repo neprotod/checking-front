@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Media from 'react-media';
 import * as tasksOperations from '../../redux/tasks/tasks/tasksOperations';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
+
 import TasksField from '../../components/FilterTasks/TasksField';
 import MobileTasksField from '../../components/FilterTasks/MobileTasksField';
+
 import CreateTask from '../../components/CreateTask/CreateTaskContainer';
 
 class MainPage extends Component {
@@ -32,11 +34,13 @@ class MainPage extends Component {
     isModalOpen: false,
     isMobileToday: true,
     isMobileTomorrow: false,
+
     isMobileNext7Days: false,
     isMobileAfter7Days: false,
     isMobileBurnedOut: false,
     isMobileDone: false,
     statistics: false,
+
     isCreateTaskFormOpen: false,
   };
 
@@ -84,6 +88,7 @@ class MainPage extends Component {
       isModalOpen: !prevState.isModalOpen,
       isMobileToday: false,
       isMobileTomorrow: false,
+
       isMobileNext7Days: false,
       isMobileAfter7Days: false,
       isMobileBurnedOut: false,
@@ -120,6 +125,7 @@ class MainPage extends Component {
       isModalOpen,
       isMobileToday,
       isMobileTomorrow,
+      
       isMobileNext7Days,
       isMobileAfter7Days,
       isMobileBurnedOut,
@@ -149,6 +155,7 @@ class MainPage extends Component {
                 isModalOpen={isModalOpen}
                 isMobileToday={isMobileToday}
                 isMobileTomorrow={isMobileTomorrow}
+
                 isMobileNext7Days={isMobileNext7Days}
                 isMobileAfter7Days={isMobileAfter7Days}
                 isMobileBurnedOut={isMobileBurnedOut}

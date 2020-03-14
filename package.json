@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "clsx": "^1.1.0",
+    "core-js": "^3.6.4",
     "formik": "^2.1.4",
     "normalize.css": "^8.0.1",
     "notyf": "^3.1.0",
@@ -24,13 +25,13 @@
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "shortid": "^2.2.15",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.0.1",
     "yup": "^0.28.1"
   },
   "scripts": {

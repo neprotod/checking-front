@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
+
 import ModalMenuMarkup from './ModalMenuMarkup';
 
 const todayTomorrowSvg = (
@@ -122,6 +123,7 @@ const ModalMenu = ({ ...props }) => {
           </button>
         </div>
       )}
+
       {isModalOpen && (
         <button type="button" className={styles.logoutButton}>
           Log out
@@ -136,6 +138,7 @@ ModalMenu.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   isMobileToday: PropTypes.bool.isRequired,
   isMobileTomorrow: PropTypes.bool.isRequired,
+
   isMobileNext7Days: PropTypes.bool.isRequired,
   isMobileAfter7Days: PropTypes.bool.isRequired,
   isMobileBurnedOut: PropTypes.bool.isRequired,

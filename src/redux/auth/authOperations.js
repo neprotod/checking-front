@@ -34,3 +34,9 @@ export const login = user => dispatch => {
       dispatch(authActions.loginError(err));
     });
 };
+export const logOut = () => dispatch => {
+  dispatch(authActions.logOutStart());
+  API.logout().then(() => {
+    dispatch(authActions.logOutSuccess());
+  });
+};
