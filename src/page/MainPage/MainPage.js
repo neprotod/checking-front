@@ -125,7 +125,7 @@ class MainPage extends Component {
       isModalOpen,
       isMobileToday,
       isMobileTomorrow,
-      
+
       isMobileNext7Days,
       isMobileAfter7Days,
       isMobileBurnedOut,
@@ -155,7 +155,6 @@ class MainPage extends Component {
                 isModalOpen={isModalOpen}
                 isMobileToday={isMobileToday}
                 isMobileTomorrow={isMobileTomorrow}
-
                 isMobileNext7Days={isMobileNext7Days}
                 isMobileAfter7Days={isMobileAfter7Days}
                 isMobileBurnedOut={isMobileBurnedOut}
