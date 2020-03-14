@@ -17,7 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .tasksContainer {
@@ -181,7 +181,6 @@
   .menu {
     width: 548px;
     height: 40px;
-    margin-bottom: 16px;
   }
 
   .arrowSvg {
@@ -232,6 +231,10 @@
 }
 
 @media (min-width: 1280px) {
+  .wrapper {
+    display: flex;
+  }
+
   .container {
     width: 1228px;
     margin: 40px auto;
@@ -256,5 +259,27 @@
 
   .taskList:nth-child(3n) {
     margin-right: 0;
+  }
+
+  .taskListOpenStyles:nth-child(3n) {
+    margin-right: 40px;
+  }
+
+  .taskListOpen {
+    composes: taskList;
+    composes: taskListOpenStyles;
+    width: 350px;
+  }
+
+  .tasksContainerOpen {
+    composes: tasksContainer;
+    margin: 0 auto;
+    padding-left: 120px;
+  }
+
+  .containerOpen {
+    composes: container;
+    width: 980px;
+    margin: 40px 0;
   }
 }
