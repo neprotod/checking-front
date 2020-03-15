@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import routes from '../../routes/routes';
 import styles from './MainPage.module.css';
 import ModalMenuMarkup from './ModalMenuMarkup';
 
@@ -99,7 +101,6 @@ const ModalMenu = ({ ...props }) => {
                 default:
                   return title;
               }
-              // eslint-disable-next-line consistent-return
               return (
                 <ModalMenuMarkup
                   key={prop[0]}
@@ -111,15 +112,21 @@ const ModalMenu = ({ ...props }) => {
                 />
               );
             })}
-          <button
-            type="button"
-            name="statistics"
-            className={statisticsBg}
-            onClick={onClickIsMobile}
+
+          <NavLink
+            to={routes.STATISTICS_PAGE.path}
+            style={{ textDecoration: 'none' }}
           >
-            <p className={styles.menuButtonPict}>{statisticsSvg}</p>
-            <p className={styles.menuButtonText}>Statistics</p>
-          </button>
+            <button
+              type="button"
+              name="statistics"
+              className={statisticsBg}
+              onClick={onClickIsMobile}
+            >
+              <p className={styles.menuButtonPict}>{statisticsSvg}</p>
+              <p className={styles.menuButtonText}>Statistics</p>
+            </button>
+          </NavLink>
         </div>
       )}
 
