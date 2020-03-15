@@ -1,22 +1,23 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Notyf } from 'notyf';
 import RoleSelector from '../RoleSelector/RoleSelector';
 import DateSelector from '../DateSelector/DateSelector';
 import TimeSelector from '../TimeSelector/TimeSelector';
 import PrioritySelector from '../PrioritySelector/PrioritySelector';
 import Message from '../Message/Message';
 import API from '../../../services/api';
+import config from '../../../config';
+import { taskSchema, throwErr } from './taskValidation';
 import styles from './CreateTaskForm.module.css';
+import 'notyf/notyf.min.css';
 
-const defaultRole = {
-  _id: '',
-  name: 'None',
-  color: '#cdd0d9',
-  id_user: 'none',
-};
+const notyf = new Notyf();
+const { defaultRole } = config;
 
-class CreateTask extends Component {
+class CreateTaskForm extends Component {
   static propTypes = {
     roles: PropTypes.arrayOf(
       PropTypes.shape({
@@ -36,6 +37,9 @@ class CreateTask extends Component {
     getRoles: PropTypes.func.isRequired,
     getPriorities: PropTypes.func.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -84,10 +88,22 @@ class CreateTask extends Component {
     24,
   ];
 
-  async componentDidMount() {
+  componentDidMount() {
     const { getRoles, getPriorities } = this.props;
     getRoles();
     getPriorities();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { selectedRole } = this.state;
+    const { roles } = this.props;
+
+    if (roles.length !== prevProps.roles.length) {
+      const match = roles.find(role => role._id === selectedRole._id);
+      if (!match) {
+        this.setDefaultRole();
+      }
+    }
   }
 
   roleSelectorDisplayToggle = () => {
@@ -126,6 +142,12 @@ class CreateTask extends Component {
     this.setState(prevState => ({
       rolesListIsOpen: !prevState.rolesListIsOpen,
     }));
+  };
+
+  setDefaultRole = () => {
+    this.setState({
+      selectedRole: defaultRole,
+    });
   };
 
   onInputChange = ({ target }) => {
@@ -228,31 +250,10 @@ class CreateTask extends Component {
       endHour,
     } = this.state;
 
-    const { priorities } = this.props;
-
-    if (
-      title.trim() === '' ||
-      title.trim().length > 150 ||
-      description.trim() === '' ||
-      description.trim().length > 800
-    ) {
-      if (title.trim() === '') {
-        this.showTitleMessage('(task title is required)*');
-      }
-      if (title.trim().length > 150) {
-        this.showTitleMessage('(up to 150 characters)*');
-      }
-      if (description.trim() === '') {
-        this.showDescriptionMessage('(task description is required)*');
-      }
-      if (description.trim().length > 800) {
-        this.showDescriptionMessage('(up to 800 characters)');
-      }
-      return;
-    }
+    const { priorities, onClickIsCreateTaskFormOpen } = this.props;
 
     const task = {
-      role: selectedRole.name === 'None' ? '' : selectedRole._id,
+      role: selectedRole._id === 'none' ? '' : selectedRole._id,
       priority: priority === null ? priorities[0]._id : priority._id,
       title,
       description,
@@ -261,8 +262,39 @@ class CreateTask extends Component {
       done: false,
     };
 
-    await API.createTask(task);
-    this.resetForm();
+    taskSchema
+      .isValid(task)
+      .then(async valid => {
+        if (valid) {
+          await API.createTask(task)
+            .then(res => {
+              if (res) {
+                this.resetForm();
+                onClickIsCreateTaskFormOpen();
+                this.renderMainPage();
+              }
+            })
+            // eslint-disable-next-line no-unused-vars
+            .catch(err => notyf.error('Error while saving a task'));
+        } else {
+          throwErr();
+        }
+      })
+      .catch(err => {
+        const errors = JSON.parse(err.message);
+
+        if (errors) {
+          if (errors.title) this.showTitleMessage(errors.title);
+          if (errors.description)
+            this.showDescriptionMessage(errors.description);
+        }
+      });
+  };
+
+  renderMainPage = () => {
+    const { history } = this.props;
+    history.push('/');
+    history.push('/main');
   };
 
   resetForm = () => {
@@ -306,8 +338,6 @@ class CreateTask extends Component {
 
     const { roles, priorities, onClickIsCreateTaskFormOpen } = this.props;
 
-    const rolesWithDefaultRole = [...roles, defaultRole];
-
     return (
       <>
         <form className={styles.createTaskForm} onSubmit={this.onSubmit}>
@@ -315,9 +345,10 @@ class CreateTask extends Component {
             <div className={styles.selectorContainer}>
               <span className={styles.selectorLabel}>Choose role</span>
               <RoleSelector
-                roles={rolesWithDefaultRole}
-                rolesListIsOpen={rolesListIsOpen}
+                roles={roles}
+                defaultRole={defaultRole}
                 selectedRole={selectedRole}
+                rolesListIsOpen={rolesListIsOpen}
                 roleSelectorDisplayToggle={this.roleSelectorDisplayToggle}
                 onSelectRole={this.onSelectRole}
               />
@@ -408,11 +439,7 @@ class CreateTask extends Component {
             >
               Cancel
             </button>
-            <button
-              className={styles.submitBtn}
-              type="submit"
-              onClick={onClickIsCreateTaskFormOpen}
-            >
+            <button className={styles.submitBtn} type="submit">
               Accept
             </button>
           </div>
@@ -422,4 +449,4 @@ class CreateTask extends Component {
   }
 }
 
-export default CreateTask;
+export default withRouter(CreateTaskForm);
