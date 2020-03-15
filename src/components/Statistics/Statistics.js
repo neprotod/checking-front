@@ -30,7 +30,6 @@ Statistics.propTypes = {
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
-      id_user: PropTypes.string.isRequired,
       completedTask: PropTypes.number.isRequired,
       precents: PropTypes.number.isRequired,
       totalRoleTasks: PropTypes.number.isRequired,
