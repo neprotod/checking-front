@@ -58,3 +58,13 @@
   height: 1px;
   background-color: #e0e5eb;
 }
+
+@media (min-width: 1280px) {
+  .createTaskWrapper {
+    margin: 40px 0;
+  }
+
+  .container {
+    padding-top: 0;
+  }
+}

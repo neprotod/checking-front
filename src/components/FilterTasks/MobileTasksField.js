@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import styles from './MainPage.module.css';
 import ModalMenu from './ModalMenu';
 import MobileTasksFieldMarkup from './MobileTasksFieldMarkup';
+import Statistics from '../Statistics/index';
 
 const MobileTasksField = ({ ...props }) => {
   const {
@@ -11,6 +12,7 @@ const MobileTasksField = ({ ...props }) => {
     onClickIsModalOpen,
     isModalOpen,
     isCreateTaskFormOpen,
+    statistics,
   } = props;
 
   const StyledBurger = styled.button`
@@ -60,18 +62,21 @@ const MobileTasksField = ({ ...props }) => {
   let tasksType;
   return (
     <>
+      {statistics && <Statistics />}
       <p className={styles.burgerMenu}>
-        <StyledBurger open={isModalOpen} onClick={onClickIsModalOpen}>
-          <div />
-          <div />
-          <div />
-        </StyledBurger>
+        {!isCreateTaskFormOpen && !statistics && (
+          <StyledBurger open={isModalOpen} onClick={onClickIsModalOpen}>
+            <div />
+            <div />
+            <div />
+          </StyledBurger>
+        )}
       </p>
       <div className={modalMenuStyle}>
         <ModalMenu {...props} />
       </div>
 
-      {!isModalOpen && !isCreateTaskFormOpen && (
+      {!isModalOpen && !isCreateTaskFormOpen && !statistics && (
         <div className={styles.container}>
           <div className={styles.tasksContainer}>
             {Object.entries(props).forEach(([tasksTypeField, isMobile]) => {

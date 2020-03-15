@@ -13,13 +13,15 @@ const MobileTasksFieldMarkup = ({ tasks, title, tasksType }) => {
         <p className={styles.arrowText}>{title}</p>
       </div>
 
-      <ul className={styles.taskUl}>
-        {tasks[tasksType].map(task => (
-          <li key={task._id} className={styles.taskList}>
-            <Task task={task} />
-          </li>
-        ))}
-      </ul>
+      {tasksType && (
+        <ul className={styles.taskUl}>
+          {tasks[tasksType].map(task => (
+            <li key={task._id} className={styles.taskList}>
+              <Task task={task} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
