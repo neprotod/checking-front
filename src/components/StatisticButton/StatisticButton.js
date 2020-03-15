@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import routes from '../../routes/routes';
 import style from './StatisticButton.module.css';
 
@@ -16,12 +17,19 @@ const statisticsSvg = (
     <path fill="none" d="M0 0h24v24H0z" />
   </svg>
 );
-const StatisticButton = () => {
+const StatisticButton = ({ isCreateTaskFormOpenDesktop }) => {
+  const statisticsSvgStyle = isCreateTaskFormOpenDesktop
+    ? style.statisticsSvgWide
+    : style.statisticsSvg;
   return (
     <Link to={routes.STATISTICS_PAGE.path}>
-      <p className={style.statisticsSvg}>{statisticsSvg}</p>
+      <p className={statisticsSvgStyle}>{statisticsSvg}</p>
     </Link>
   );
+};
+
+StatisticButton.propTypes = {
+  isCreateTaskFormOpenDesktop: PropTypes.bool.isRequired,
 };
 
 export default StatisticButton;

@@ -1,10 +1,11 @@
+/* eslint-disable import/no-cycle */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
+import style from '../../components/FilterTasks/MainPage.module.css';
 import * as tasksOperations from '../../redux/tasks/tasks/tasksOperations';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
-
 import TasksField from '../../components/FilterTasks/TasksField';
 import MobileTasksField from '../../components/FilterTasks/MobileTasksField';
 
@@ -42,6 +43,9 @@ class MainPage extends Component {
     statistics: false,
 
     isCreateTaskFormOpen: false,
+    isCreateTaskFormOpenDesktop: false,
+
+    taskToEdit: {},
   };
 
   componentDidMount() {
@@ -98,6 +102,14 @@ class MainPage extends Component {
     }));
   };
 
+  editTask = task => {
+    this.setState(prevState => ({
+      taskToEdit: { ...task },
+      isCreateTaskFormOpen: !prevState.isCreateTaskFormOpen,
+      isCreateTaskFormOpenDesktop: !prevState.isCreateTaskFormOpenDesktop,
+    }));
+  };
+
   onClickIsModalOpen = () => {
     this.setState(prevState => ({
       isModalOpen: !prevState.isModalOpen,
@@ -106,7 +118,9 @@ class MainPage extends Component {
 
   onClickIsCreateTaskFormOpen = () => {
     this.setState(prevState => ({
+      taskToEdit: null,
       isCreateTaskFormOpen: !prevState.isCreateTaskFormOpen,
+      isCreateTaskFormOpenDesktop: !prevState.isCreateTaskFormOpenDesktop,
     }));
   };
 
@@ -125,45 +139,80 @@ class MainPage extends Component {
       isModalOpen,
       isMobileToday,
       isMobileTomorrow,
-      
+
       isMobileNext7Days,
       isMobileAfter7Days,
       isMobileBurnedOut,
       isMobileDone,
       statistics,
       isCreateTaskFormOpen,
+      isCreateTaskFormOpenDesktop,
+      taskToEdit,
     } = this.state;
 
     return (
-      <div>
+      <div className={style.wrapper}>
         {isCreateTaskFormOpen && (
           <CreateTask
+            taskToEdit={taskToEdit}
             onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
           />
         )}
+        {/* {isCreateTaskFormOpen && (
+          <CreateTask
+            onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
+          />
+        )} */}
+
         <Media
           queries={{
             small: '(max-width: 767px)',
+            medium: '(max-width: 1279px)',
+            large: '(min-width: 1280px)',
           }}
         >
-          {matches =>
-            matches.small ? (
-              <MobileTasksField
-                onClickIsMobile={this.onClickIsMobile}
-                onClickIsModalOpen={this.onClickIsModalOpen}
-                onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
-                isModalOpen={isModalOpen}
-                isMobileToday={isMobileToday}
-                isMobileTomorrow={isMobileTomorrow}
-
-                isMobileNext7Days={isMobileNext7Days}
-                isMobileAfter7Days={isMobileAfter7Days}
-                isMobileBurnedOut={isMobileBurnedOut}
-                isMobileDone={isMobileDone}
-                statistics={statistics}
-                isCreateTaskFormOpen={isCreateTaskFormOpen}
-              />
-            ) : (
+          {matches => {
+            if (matches.small) {
+              return (
+                <MobileTasksField
+                  onClickIsMobile={this.onClickIsMobile}
+                  onClickIsModalOpen={this.onClickIsModalOpen}
+                  onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
+                  isModalOpen={isModalOpen}
+                  isMobileToday={isMobileToday}
+                  isMobileTomorrow={isMobileTomorrow}
+                  isMobileNext7Days={isMobileNext7Days}
+                  isMobileAfter7Days={isMobileAfter7Days}
+                  isMobileBurnedOut={isMobileBurnedOut}
+                  isMobileDone={isMobileDone}
+                  statistics={statistics}
+                  isCreateTaskFormOpen={isCreateTaskFormOpen}
+                  editTask={this.editTask}
+                />
+              );
+            }
+            if (matches.medium) {
+              return (
+                <TasksField
+                  onClickFilter={this.onClickFilter}
+                  onClickTasksToggle={this.onClickTasksToggle}
+                  onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
+                  todayTomorrow={todayTomorrow}
+                  next7After7={next7After7}
+                  burned={burned}
+                  done={done}
+                  todayToggle={todayToggle}
+                  tomorrowToggle={tomorrowToggle}
+                  next7DaysToggle={next7DaysToggle}
+                  after7DaysToggle={after7DaysToggle}
+                  burnedToggle={burnedToggle}
+                  doneToggle={doneToggle}
+                  isCreateTaskFormOpen={isCreateTaskFormOpen}
+                  editTask={this.editTask}
+                />
+              );
+            }
+            return (
               <TasksField
                 onClickFilter={this.onClickFilter}
                 onClickTasksToggle={this.onClickTasksToggle}
@@ -178,10 +227,11 @@ class MainPage extends Component {
                 after7DaysToggle={after7DaysToggle}
                 burnedToggle={burnedToggle}
                 doneToggle={doneToggle}
-                isCreateTaskFormOpen={isCreateTaskFormOpen}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
+                editTask={this.editTask}
               />
-            )
-          }
+            );
+          }}
         </Media>
       </div>
     );

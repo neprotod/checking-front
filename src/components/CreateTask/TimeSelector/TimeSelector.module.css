@@ -1,5 +1,5 @@
-@value variables: '../variables.module.css';
-@value primary-font-stack, primary-background-color, primary-box-shadow from variables;
+@value variables: '../../../variables.module.css';
+@value text-gray-color, light-gray-color, box-shadow from variables;
 
 .container {
   position: relative;
@@ -18,9 +18,9 @@
 .selectorTitle {
   display: block;
   margin-bottom: 10px;
-  font-family: primary-font-stack;
+  font-family: inherit;
   font-size: 14px;
-  color: #869096;
+  color: text-gray-color;
 }
 
 .selectorContainer {
@@ -31,14 +31,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
   padding: 0 15px 0 10px;
   width: 150px;
   height: 40px;
-  font-family: primary-font-stack;
+  font-family: inherit;
   font-size: 14px;
-  background-color: primary-background-color;
-  box-shadow: primary-box-shadow;
+  background-color: light-gray-color;
+  box-shadow: box-shadow;
   border: none;
   cursor: pointer;
 }
@@ -65,20 +64,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
   width: 130px;
   font-size: 12px;
 }
 
 .hourBtn {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
   width: 150px;
   height: 30px;
-  background-color: primary-background-color;
+  background-color: light-gray-color;
   border: none;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #fff;
 }
 
 .hourBtn:first-child {

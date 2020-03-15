@@ -1,14 +1,13 @@
-@value variables: '../variables.module.css';
-@value primary-font-stack, color-light-grey, color-dark-grey,  color-orange, primary-background-color, primary-box-shadow from variables;
+@value variables: '../../../variables.module.css';
+@value input-gray-color, orange-color, gray-color, red-color, light-gray-color, gray-underline, box-shadow from variables;
 
 .container {
   margin-bottom: 10px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e0e5eb;
+  border-bottom: 1px solid gray-underline;
 }
 
 .button {
-  box-sizing: border-box;
   border: none;
   outline: none;
   cursor: pointer;
@@ -27,16 +26,17 @@
   padding: 0 15px;
   width: 150px;
   height: 40px;
-  background-color: primary-background-color;
-  box-shadow: primary-box-shadow;
+  font-size: 14px;
+  background-color: light-gray-color;
+  box-shadow: box-shadow;
   border: none;
   outline: none;
 }
 
 .roleInput::placeholder {
-  font-family: primary-font-stack;
+  font-family: inherit;
   font-size: 12px;
-  color: color-light-grey;
+  color: input-gray-color;
 }
 
 .roleColorBth {
@@ -50,7 +50,7 @@
   height: 40px;
   font-size: 12px;
   font-family: inherit;
-  box-shadow: primary-box-shadow;
+  box-shadow: box-shadow;
 }
 
 .iconArrow {
@@ -73,8 +73,8 @@
   padding: 0;
   width: 40px;
   height: 40px;
-  box-shadow: primary-box-shadow;
-  background-color: color-orange;
+  box-shadow: box-shadow;
+  background-color: orange-color;
 }
 
 .iconSave {
@@ -94,7 +94,7 @@
   justify-content: space-between;
   padding: 5px 10px;
   font-size: 12px;
-  border: 1px solid #e7e8eb;
+  border: 1px solid gray-underline;
 }
 
 .roleName {
@@ -115,7 +115,7 @@
   padding: 0;
   background-color: #fff;
   border-radius: 3px;
-  border: 1px solid #e7e8eb;
+  border: 1px solid gray-underline;
 }
 
 .editBtn {
@@ -124,12 +124,12 @@
 }
 
 .iconEdit {
-  fill: rgb(122, 124, 126);
+  fill: gray-color;
   width: 24px;
   height: 24px;
 }
 
 .iconDelete {
   composes: iconEdit;
-  fill: rgb(255, 84, 98);
+  fill: red-color;
 }

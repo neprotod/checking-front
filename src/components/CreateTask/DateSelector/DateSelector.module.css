@@ -1,5 +1,5 @@
-@value variables: '../variables.module.css';
-@value primary-font-stack, primary-background-color, primary-box-shadow from variables;
+@value variables: '../../../variables.module.css';
+@value font-stack, light-gray-color, box-shadow from variables;
 
 * {
   outline: none;
@@ -9,14 +9,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
   padding: 0 15px 0 10px;
   width: 150px;
   height: 40px;
-  font-family: primary-font-stack;
+  font-family: font-stack;
   font-size: 12px;
-  background-color: primary-background-color;
-  box-shadow: primary-box-shadow;
+  background-color: light-gray-color;
+  box-shadow: box-shadow;
   border: none;
   cursor: pointer;
 }

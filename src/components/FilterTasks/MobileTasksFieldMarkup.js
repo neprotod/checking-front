@@ -6,28 +6,30 @@ import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import Task from './Task';
 
-const MobileTasksFieldMarkup = ({ tasks, title, tasksType }) => {
+const MobileTasksFieldMarkup = ({ tasks, title, tasksType, editTask }) => {
   return (
     <div>
       <div className={styles.arrowContainer}>
         <p className={styles.arrowText}>{title}</p>
       </div>
 
-      <ul className={styles.taskUl}>
-        {tasks[tasksType].map(task => (
-          <li key={task._id} className={styles.taskList}>
-            <Task task={task} />
-          </li>
-        ))}
-      </ul>
+      {tasksType && (
+        <ul className={styles.taskUl}>
+          {tasks[tasksType].map(task => (
+            <li key={task._id} className={styles.taskList}>
+              <Task task={task} editTask={editTask} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
-
 MobileTasksFieldMarkup.propTypes = {
   tasks: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
   tasksType: PropTypes.string.isRequired,
+  editTask: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = store => ({
