@@ -97,7 +97,7 @@ const ModalMenu = ({ ...props }) => {
                   break;
 
                 default:
-                  return;
+                  return title;
               }
               // eslint-disable-next-line consistent-return
               return (
