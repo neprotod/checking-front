@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import styles from './MainPage.module.css';
 import ModalMenu from './ModalMenu';
 import MobileTasksFieldMarkup from './MobileTasksFieldMarkup';
-import Statistics from '../Statistics/index';
 
 const MobileTasksField = ({ ...props }) => {
   const {
@@ -62,7 +61,6 @@ const MobileTasksField = ({ ...props }) => {
   let tasksType;
   return (
     <>
-      {statistics && <Statistics />}
       <p className={styles.burgerMenu}>
         {!isCreateTaskFormOpen && !statistics && (
           <StyledBurger open={isModalOpen} onClick={onClickIsModalOpen}>
