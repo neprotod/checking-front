@@ -20,3 +20,10 @@
   background-color: dark-grey-color;
   transition: 400ms;
 }
+
+.statisticsSvgWide {
+  composes: statisticsSvg;
+  position: fixed;
+  top: -15px;
+  left: 0;
+}

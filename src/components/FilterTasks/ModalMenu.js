@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
-
 import ModalMenuMarkup from './ModalMenuMarkup';
 
 const todayTomorrowSvg = (
@@ -116,7 +115,7 @@ const ModalMenu = ({ ...props }) => {
             type="button"
             name="statistics"
             className={statisticsBg}
-            // onClick={}
+            onClick={onClickIsMobile}
           >
             <p className={styles.menuButtonPict}>{statisticsSvg}</p>
             <p className={styles.menuButtonText}>Statistics</p>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import TasksFieldMarkup from './TasksFieldMarkup';
 import TasksFieldButtonMarkup from './TasksFieldButtonMarkup';
+import LogOut from '../LogOut/index';
+import StatisticButton from '../StatisticButton/index';
 
 const arrowDown = (
   <svg
@@ -92,6 +94,7 @@ const TasksField = ({ ...props }) => {
     burnedToggle,
     doneToggle,
     isCreateTaskFormOpen,
+    isCreateTaskFormOpenDesktop,
   } = props;
 
   const arrowTodayBackForth = todayToggle ? arrowDown : arrowUp;
@@ -101,6 +104,14 @@ const TasksField = ({ ...props }) => {
   const arrowBurnedBackForth = burnedToggle ? arrowDown : arrowUp;
   const arrowDoneBackForth = doneToggle ? arrowDown : arrowUp;
 
+  const isCreateTaskFormOpenDesktopStylesContainer = isCreateTaskFormOpenDesktop
+    ? styles.containerOpen
+    : styles.container;
+
+  const isCreateTaskFormOpenDesktopStylesTasksContainer = isCreateTaskFormOpenDesktop
+    ? styles.tasksContainerOpen
+    : styles.tasksContainer;
+
   let title;
   let bg;
   let picture;
@@ -108,7 +119,11 @@ const TasksField = ({ ...props }) => {
   return (
     <>
       {!isCreateTaskFormOpen && (
-        <div className={styles.container}>
+        <div className={isCreateTaskFormOpenDesktopStylesContainer}>
+          <LogOut />
+          <StatisticButton
+            isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
+          />
           <div className={styles.menu}>
             {Object.entries(props)
               .filter(
@@ -153,11 +168,12 @@ const TasksField = ({ ...props }) => {
                 );
               })}
           </div>
-          <div className={styles.tasksContainer}>
+          <div className={isCreateTaskFormOpenDesktopStylesTasksContainer}>
             {todayTomorrow && (
               <TasksFieldMarkup
                 name="todayToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="Today"
                 arrowType={arrowTodayBackForth}
                 toggleType={todayToggle}
@@ -168,6 +184,7 @@ const TasksField = ({ ...props }) => {
               <TasksFieldMarkup
                 name="tomorrowToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="Tomorrow"
                 arrowType={arrowTomorrowBackForth}
                 toggleType={tomorrowToggle}
@@ -178,6 +195,7 @@ const TasksField = ({ ...props }) => {
               <TasksFieldMarkup
                 name="next7DaysToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="Next 7 Days"
                 arrowType={arrowNext7DaysBackForth}
                 toggleType={next7DaysToggle}
@@ -188,6 +206,7 @@ const TasksField = ({ ...props }) => {
               <TasksFieldMarkup
                 name="after7DaysToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="After 7 Days"
                 arrowType={arrowAfter7DaysBackForth}
                 toggleType={after7DaysToggle}
@@ -198,6 +217,7 @@ const TasksField = ({ ...props }) => {
               <TasksFieldMarkup
                 name="burnedToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="Burned Out"
                 arrowType={arrowBurnedBackForth}
                 toggleType={burnedToggle}
@@ -208,6 +228,7 @@ const TasksField = ({ ...props }) => {
               <TasksFieldMarkup
                 name="doneToggle"
                 onClickTasksToggle={onClickTasksToggle}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 title="Done"
                 arrowType={arrowDoneBackForth}
                 toggleType={doneToggle}
@@ -215,17 +236,24 @@ const TasksField = ({ ...props }) => {
               />
             )}
           </div>
-          <button
-            type="button"
-            className={styles.addTask}
-            onClick={onClickIsCreateTaskFormOpen}
-          >
-            +
-          </button>
+          {!isCreateTaskFormOpenDesktop && (
+            <button
+              type="button"
+              className={styles.addTask}
+              onClick={onClickIsCreateTaskFormOpen}
+            >
+              +
+            </button>
+          )}
         </div>
       )}
     </>
   );
+};
+
+TasksField.defaultProps = {
+  isCreateTaskFormOpen: false,
+  isCreateTaskFormOpenDesktop: false,
 };
 
 TasksField.propTypes = {
@@ -242,7 +270,8 @@ TasksField.propTypes = {
   after7DaysToggle: PropTypes.bool.isRequired,
   burnedToggle: PropTypes.bool.isRequired,
   doneToggle: PropTypes.bool.isRequired,
-  isCreateTaskFormOpen: PropTypes.bool.isRequired,
+  isCreateTaskFormOpen: PropTypes.bool,
+  isCreateTaskFormOpenDesktop: PropTypes.bool,
 };
 
 export default TasksField;

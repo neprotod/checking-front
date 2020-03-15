@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
+import style from '../../components/FilterTasks/MainPage.module.css';
 import * as tasksOperations from '../../redux/tasks/tasks/tasksOperations';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 
@@ -42,6 +43,7 @@ class MainPage extends Component {
     statistics: false,
 
     isCreateTaskFormOpen: false,
+    isCreateTaskFormOpenDesktop: false,
   };
 
   componentDidMount() {
@@ -107,6 +109,7 @@ class MainPage extends Component {
   onClickIsCreateTaskFormOpen = () => {
     this.setState(prevState => ({
       isCreateTaskFormOpen: !prevState.isCreateTaskFormOpen,
+      isCreateTaskFormOpenDesktop: !prevState.isCreateTaskFormOpenDesktop,
     }));
   };
 
@@ -132,10 +135,11 @@ class MainPage extends Component {
       isMobileDone,
       statistics,
       isCreateTaskFormOpen,
+      isCreateTaskFormOpenDesktop,
     } = this.state;
 
     return (
-      <div>
+      <div className={style.wrapper}>
         {isCreateTaskFormOpen && (
           <CreateTask
             onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
@@ -144,8 +148,11 @@ class MainPage extends Component {
         <Media
           queries={{
             small: '(max-width: 767px)',
+            medium: '(max-width: 1279px)',
+            large: '(min-width: 1280px)',
           }}
         >
+<<<<<<< HEAD
           {matches =>
             matches.small ? (
               <MobileTasksField
@@ -163,6 +170,48 @@ class MainPage extends Component {
                 isCreateTaskFormOpen={isCreateTaskFormOpen}
               />
             ) : (
+=======
+          {matches => {
+            if (matches.small) {
+              return (
+                <MobileTasksField
+                  onClickIsMobile={this.onClickIsMobile}
+                  onClickIsModalOpen={this.onClickIsModalOpen}
+                  onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
+                  isModalOpen={isModalOpen}
+                  isMobileToday={isMobileToday}
+                  isMobileTomorrow={isMobileTomorrow}
+                  isMobileNext7Days={isMobileNext7Days}
+                  isMobileAfter7Days={isMobileAfter7Days}
+                  isMobileBurnedOut={isMobileBurnedOut}
+                  isMobileDone={isMobileDone}
+                  statistics={statistics}
+                  isCreateTaskFormOpen={isCreateTaskFormOpen}
+                />
+              );
+            }
+            if (matches.medium) {
+              return (
+                <TasksField
+                  onClickFilter={this.onClickFilter}
+                  onClickTasksToggle={this.onClickTasksToggle}
+                  onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
+                  todayTomorrow={todayTomorrow}
+                  next7After7={next7After7}
+                  burned={burned}
+                  done={done}
+                  todayToggle={todayToggle}
+                  tomorrowToggle={tomorrowToggle}
+                  next7DaysToggle={next7DaysToggle}
+                  after7DaysToggle={after7DaysToggle}
+                  burnedToggle={burnedToggle}
+                  doneToggle={doneToggle}
+                  isCreateTaskFormOpen={isCreateTaskFormOpen}
+                />
+              );
+            }
+            return (
+>>>>>>> master
               <TasksField
                 onClickFilter={this.onClickFilter}
                 onClickTasksToggle={this.onClickTasksToggle}
@@ -177,10 +226,10 @@ class MainPage extends Component {
                 after7DaysToggle={after7DaysToggle}
                 burnedToggle={burnedToggle}
                 doneToggle={doneToggle}
-                isCreateTaskFormOpen={isCreateTaskFormOpen}
+                isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
               />
-            )
-          }
+            );
+          }}
         </Media>
       </div>
     );

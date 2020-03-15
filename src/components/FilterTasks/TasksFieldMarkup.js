@@ -14,7 +14,11 @@ const TasksFieldMarkup = ({
   arrowType,
   toggleType,
   tasksType,
+  isCreateTaskFormOpenDesktop,
 }) => {
+  const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
+    ? styles.taskListOpen
+    : styles.taskList;
   return (
     <div>
       <div className={styles.arrowContainer}>
@@ -32,7 +36,10 @@ const TasksFieldMarkup = ({
       {toggleType && (
         <ul className={styles.taskUl}>
           {tasks[tasksType].map(task => (
-            <li key={task._id} className={styles.taskList}>
+            <li
+              key={task._id}
+              className={isCreateTaskFormOpenDesktopStylesList}
+            >
               <Task task={task} />
             </li>
           ))}
@@ -46,6 +53,7 @@ TasksFieldMarkup.propTypes = {
   tasks: PropTypes.shape().isRequired,
   arrowType: PropTypes.shape().isRequired,
   onClickTasksToggle: PropTypes.func.isRequired,
+  isCreateTaskFormOpenDesktop: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   tasksType: PropTypes.string.isRequired,
