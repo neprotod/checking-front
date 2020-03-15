@@ -73,7 +73,7 @@ export const statistics = store => {
     totalRoleTasks: getTasksByRole(store, role._id).length,
   }));
 
-  if (tasksWithoutRole < 0) return statistic;
+  if (tasksWithoutRole.length < 1) return statistic;
 
   const withoutRoleTasks = {
     _id: shortid.generate(),
