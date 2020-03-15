@@ -4,6 +4,7 @@ import styles from './MainPage.module.css';
 import TasksFieldMarkup from './TasksFieldMarkup';
 import TasksFieldButtonMarkup from './TasksFieldButtonMarkup';
 import LogOut from '../LogOut/index';
+// eslint-disable-next-line import/no-cycle
 import StatisticButton from '../StatisticButton/index';
 
 const arrowDown = (
@@ -95,6 +96,7 @@ const TasksField = ({ ...props }) => {
     doneToggle,
     isCreateTaskFormOpen,
     isCreateTaskFormOpenDesktop,
+    editTask,
   } = props;
 
   const arrowTodayBackForth = todayToggle ? arrowDown : arrowUp;
@@ -178,6 +180,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowTodayBackForth}
                 toggleType={todayToggle}
                 tasksType="tasksToday"
+                editTask={editTask}
               />
             )}
             {todayTomorrow && (
@@ -189,6 +192,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowTomorrowBackForth}
                 toggleType={tomorrowToggle}
                 tasksType="tasksTomorrow"
+                editTask={editTask}
               />
             )}
             {next7After7 && (
@@ -200,6 +204,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowNext7DaysBackForth}
                 toggleType={next7DaysToggle}
                 tasksType="tasksNext7Days"
+                editTask={editTask}
               />
             )}
             {next7After7 && (
@@ -211,6 +216,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowAfter7DaysBackForth}
                 toggleType={after7DaysToggle}
                 tasksType="tasksAfter7Days"
+                editTask={editTask}
               />
             )}
             {burned && (
@@ -222,6 +228,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowBurnedBackForth}
                 toggleType={burnedToggle}
                 tasksType="tasksBurnedOut"
+                editTask={editTask}
               />
             )}
             {done && (
@@ -233,6 +240,7 @@ const TasksField = ({ ...props }) => {
                 arrowType={arrowDoneBackForth}
                 toggleType={doneToggle}
                 tasksType="tasksDone"
+                editTask={editTask}
               />
             )}
           </div>
@@ -272,6 +280,7 @@ TasksField.propTypes = {
   doneToggle: PropTypes.bool.isRequired,
   isCreateTaskFormOpen: PropTypes.bool,
   isCreateTaskFormOpenDesktop: PropTypes.bool,
+  editTask: PropTypes.func.isRequired,
 };
 
 export default TasksField;

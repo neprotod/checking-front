@@ -11,10 +11,15 @@ class CreateTask extends Component {
   static propTypes = {
     isFormLoading: PropTypes.bool.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
+    taskToEdit: PropTypes.shape(),
   };
 
   state = {
     roleFormIsOpen: false,
+  };
+
+  static defaultProps = {
+    taskToEdit: null,
   };
 
   roleFormDisplayToggle = () => {
@@ -25,14 +30,20 @@ class CreateTask extends Component {
 
   render() {
     const { roleFormIsOpen } = this.state;
-    const { isFormLoading, onClickIsCreateTaskFormOpen } = this.props;
+    const {
+      isFormLoading,
+      onClickIsCreateTaskFormOpen,
+      taskToEdit,
+    } = this.props;
 
     return (
       <div className={styles.createTaskWrapper}>
         {isFormLoading && <Loader />}
         <IconsSprite />
         <div className={styles.container}>
-          <h3 className={styles.header}>Create task</h3>
+          <h3 className={styles.header}>
+            {taskToEdit ? 'Edit Task' : 'Create task'}
+          </h3>
           <div className={styles.row}>
             <button
               className={styles.openRoleFormBtn}
@@ -55,6 +66,7 @@ class CreateTask extends Component {
           {roleFormIsOpen && <CreateRoleFormContainer />}
           <CreateTaskForm
             onClickIsCreateTaskFormOpen={onClickIsCreateTaskFormOpen}
+            taskToEdit={taskToEdit}
           />
         </div>
       </div>
