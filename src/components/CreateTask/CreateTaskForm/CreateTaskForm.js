@@ -40,6 +40,19 @@ class CreateTaskForm extends Component {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
+    taskToEdit: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      role: PropTypes.arrayOf(),
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
+      priority: PropTypes.PropTypes.arrayOf(),
+      _id: PropTypes.string,
+    }),
+  };
+
+  static defaultProps = {
+    taskToEdit: {},
   };
 
   state = {
@@ -58,6 +71,8 @@ class CreateTaskForm extends Component {
     descriptionMessageIsShowing: false,
     titleMessageText: '',
     descriptionMessageText: '',
+
+    idToUpdate: null,
   };
 
   hours = [
@@ -89,9 +104,21 @@ class CreateTaskForm extends Component {
   ];
 
   componentDidMount() {
-    const { getRoles, getPriorities } = this.props;
+    const { getRoles, getPriorities, taskToEdit } = this.props;
     getRoles();
     getPriorities();
+    if (taskToEdit) {
+      this.setState({
+        title: taskToEdit.title,
+        description: taskToEdit.description,
+        selectedRole: taskToEdit.role[0],
+        startDate: new Date(taskToEdit.start_date),
+        startHour: new Date(taskToEdit.start_date).getHours(),
+        endHour: new Date(taskToEdit.end_date).getHours(),
+        priority: taskToEdit.priority[0],
+        idToUpdate: taskToEdit._id,
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -248,6 +275,7 @@ class CreateTaskForm extends Component {
       startDate,
       startHour,
       endHour,
+      idToUpdate,
     } = this.state;
 
     const { priorities, onClickIsCreateTaskFormOpen } = this.props;
@@ -261,34 +289,62 @@ class CreateTaskForm extends Component {
       end_date: this.fixedHourDateCreator(startDate, endHour),
       done: false,
     };
+    if (idToUpdate) {
+      taskSchema
+        .isValid(task)
+        .then(async valid => {
+          if (valid) {
+            await API.updateTask(idToUpdate, task)
+              .then(res => {
+                if (res) {
+                  this.resetForm();
+                  onClickIsCreateTaskFormOpen();
+                  this.renderMainPage();
+                }
+              })
+              // eslint-disable-next-line no-unused-vars
+              .catch(err => notyf.error('Error while updating a task'));
+          } else {
+            throwErr();
+          }
+        })
+        .catch(err => {
+          const errors = JSON.parse(err.message);
 
-    taskSchema
-      .isValid(task)
-      .then(async valid => {
-        if (valid) {
-          await API.createTask(task)
-            .then(res => {
-              if (res) {
-                this.resetForm();
-                onClickIsCreateTaskFormOpen();
-                this.renderMainPage();
-              }
-            })
-            // eslint-disable-next-line no-unused-vars
-            .catch(err => notyf.error('Error while saving a task'));
-        } else {
-          throwErr();
-        }
-      })
-      .catch(err => {
-        const errors = JSON.parse(err.message);
+          if (errors) {
+            if (errors.title) this.showTitleMessage(errors.title);
+            if (errors.description)
+              this.showDescriptionMessage(errors.description);
+          }
+        });
+    } else
+      taskSchema
+        .isValid(task)
+        .then(async valid => {
+          if (valid) {
+            await API.createTask(task)
+              .then(res => {
+                if (res) {
+                  this.resetForm();
+                  onClickIsCreateTaskFormOpen();
+                  this.renderMainPage();
+                }
+              })
+              // eslint-disable-next-line no-unused-vars
+              .catch(err => notyf.error('Error while saving a task'));
+          } else {
+            throwErr();
+          }
+        })
+        .catch(err => {
+          const errors = JSON.parse(err.message);
 
-        if (errors) {
-          if (errors.title) this.showTitleMessage(errors.title);
-          if (errors.description)
-            this.showDescriptionMessage(errors.description);
-        }
-      });
+          if (errors) {
+            if (errors.title) this.showTitleMessage(errors.title);
+            if (errors.description)
+              this.showDescriptionMessage(errors.description);
+          }
+        });
   };
 
   renderMainPage = () => {

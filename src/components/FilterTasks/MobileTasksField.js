@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import styles from './MainPage.module.css';
+// eslint-disable-next-line import/no-cycle
 import ModalMenu from './ModalMenu';
 import MobileTasksFieldMarkup from './MobileTasksFieldMarkup';
 

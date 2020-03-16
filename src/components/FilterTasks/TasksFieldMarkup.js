@@ -15,6 +15,7 @@ const TasksFieldMarkup = ({
   toggleType,
   tasksType,
   isCreateTaskFormOpenDesktop,
+  editTask,
 }) => {
   const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
     ? styles.taskListOpen
@@ -40,7 +41,7 @@ const TasksFieldMarkup = ({
               key={task._id}
               className={isCreateTaskFormOpenDesktopStylesList}
             >
-              <Task task={task} />
+              <Task task={task} editTask={editTask} />
             </li>
           ))}
         </ul>
@@ -58,6 +59,7 @@ TasksFieldMarkup.propTypes = {
   title: PropTypes.string.isRequired,
   tasksType: PropTypes.string.isRequired,
   toggleType: PropTypes.bool.isRequired,
+  editTask: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = store => ({

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+// eslint-disable-next-line import/no-cycle
 import routes from '../../routes/routes';
 import Logout from '../LogOut/index';
 import styles from './MainPage.module.css';

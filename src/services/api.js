@@ -47,7 +47,7 @@ class Api {
   }
 
   async updateTask(id, value) {
-    const result = await axios.put(`tasks${id}`, value);
+    const result = await axios.put(`tasks/${id}`, value);
     return result;
   }
 
