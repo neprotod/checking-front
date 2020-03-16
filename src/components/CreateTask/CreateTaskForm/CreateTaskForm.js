@@ -280,20 +280,21 @@ class CreateTaskForm extends Component {
     });
   };
 
-  // onDeleteTask = () => {
-  //   const { taskToUpdateId } = this.state;
-  //   const { onClickIsCreateTaskFormOpen } = this.props;
+  onDeleteTask = () => {
+    const { taskToUpdateId } = this.state;
+    const { onClickIsCreateTaskFormOpen } = this.props;
 
-  //   API.deleteTask(taskToUpdateId)
-  //     .then(res => {
-  //       if (res) {
-  //         this.resetForm();
-  //         onClickIsCreateTaskFormOpen();
-  //         this.renderMainPage();
-  //       }
-  //     })
-  //     .catch(err => notyf.error('Error while deleting a task'));
-  // };
+    API.deleteTask(taskToUpdateId)
+      .then(res => {
+        if (res) {
+          this.resetForm();
+          onClickIsCreateTaskFormOpen();
+          this.renderMainPage();
+        }
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(err => notyf.error('Error while deleting a task'));
+  };
 
   onSubmit = async e => {
     e.preventDefault();
@@ -406,6 +407,7 @@ class CreateTaskForm extends Component {
       descriptionMessageIsShowing,
       titleMessageText,
       descriptionMessageText,
+      taskToUpdateId,
     } = this.state;
 
     const { roles, priorities, onClickIsCreateTaskFormOpen } = this.props;
@@ -503,7 +505,7 @@ class CreateTaskForm extends Component {
             onSetPriority={this.onSetPriority}
           />
 
-          {/* {taskToUpdateId && (
+          {taskToUpdateId && (
             <div className={styles.deleteBtnContainer}>
               <button
                 type="button"
@@ -515,7 +517,7 @@ class CreateTaskForm extends Component {
                 </svg>
               </button>
             </div>
-          )} */}
+          )}
 
           <div className={styles.formControls}>
             <button
