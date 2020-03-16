@@ -1,8 +1,6 @@
-/* eslint-disable import/no-cycle */
-
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+
 import routes from '../../routes/routes';
 import style from './StatisticButton.module.css';
 
@@ -17,19 +15,36 @@ const statisticsSvg = (
     <path fill="none" d="M0 0h24v24H0z" />
   </svg>
 );
-const StatisticButton = ({ isCreateTaskFormOpenDesktop }) => {
-  const statisticsSvgStyle = isCreateTaskFormOpenDesktop
-    ? style.statisticsSvgWide
-    : style.statisticsSvg;
-  return (
-    <Link to={routes.STATISTICS_PAGE.path}>
-      <p className={statisticsSvgStyle}>{statisticsSvg}</p>
-    </Link>
-  );
+
+const tasksSvg = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+  </svg>
+);
+
+let pageButton;
+
+const StatisticButton = ({ history }) => {
+  if (history.location.pathname === '/main') {
+    pageButton = (
+      <Link to={routes.STATISTICS_PAGE.path}>
+        <p className={style.statisticsSvg}>{statisticsSvg}</p>
+      </Link>
+    );
+  } else if (history.location.pathname === '/statistics') {
+    pageButton = (
+      <Link to={routes.MAIN_PAGE.path}>
+        <p className={style.statisticsSvg}>{tasksSvg}</p>
+      </Link>
+    );
+  }
+  return pageButton;
 };
 
-StatisticButton.propTypes = {
-  isCreateTaskFormOpenDesktop: PropTypes.bool.isRequired,
-};
-
-export default StatisticButton;
+export default withRouter(StatisticButton);

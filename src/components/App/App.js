@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Auth from '../Auth/index';
+import Header from '../Header/Header';
 
 import Loader from '../Loader/Loader';
 import * as authSelectors from '../../redux/auth/authSelectors';
@@ -16,6 +17,7 @@ const App = ({ isLoading, isAuth, isTasksLoading }) => {
       {isLoading && <Loader />}
       {isTasksLoading && <Loader />}
       {!isAuth && <Auth />}
+      {isAuth && <Header />}
       <Switch>
         <Route
           path={routes.REGISTRATION_PAGE.path}

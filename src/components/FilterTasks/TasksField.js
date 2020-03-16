@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import TasksFieldMarkup from './TasksFieldMarkup';
 import TasksFieldButtonMarkup from './TasksFieldButtonMarkup';
-import LogOut from '../LogOut/index';
-import StatisticButton from '../StatisticButton/index';
 
 const arrowDown = (
   <svg
@@ -120,10 +118,6 @@ const TasksField = ({ ...props }) => {
     <>
       {!isCreateTaskFormOpen && (
         <div className={isCreateTaskFormOpenDesktopStylesContainer}>
-          <LogOut />
-          <StatisticButton
-            isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
-          />
           <div className={styles.menu}>
             {Object.entries(props)
               .filter(

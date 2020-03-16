@@ -1,5 +1,5 @@
 .container {
-  width: 320px;
+  width: 100vw;
   border: 1px solid black;
   background-color: white;
   display: flex;
@@ -12,16 +12,16 @@
 }
 
 .menu {
-  width: 270px;
+  width: 100vw;
   height: 250px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 15px 0;
+  padding: 40px 0;
 }
 
 .tasksContainer {
-  width: 280px;
+  width: 70vw;
   min-height: 86vh;
 }
 
@@ -36,7 +36,8 @@
 .taskList {
   list-style: none;
   border: 1px solid blue;
-  width: 278px;
+  width: 100vw;
+  max-width: 70vw;
   margin: 10px 0;
   background-color: rgb(252, 248, 33);
 }
@@ -46,7 +47,7 @@
   justify-content: flex-start;
   outline: none;
   border: 1px solid #cdd0d9;
-  width: 260px;
+  width: 70vw;
   padding: 8px 0 8px 24px;
   cursor: pointer;
 }
@@ -89,7 +90,7 @@
 
 .modalMenu {
   composes: modalMenuBg;
-  width: 320px;
+  width: 100vw;
   margin: 40px auto;
   border: 1px solid black;
   display: flex;
@@ -139,8 +140,8 @@
   font-size: 230%;
   color: white;
   position: fixed;
-  bottom: 0;
-  transform: translate(125px, -50px);
+  right: 18px;
+  bottom: 36px;
   cursor: pointer;
 }
 
@@ -168,18 +169,19 @@
 
 @media (min-width: 768px) {
   .container {
-    width: 768px;
+    width: 100vw;
     background-color: #f5f7fa;
     padding: 22px 0;
-    margin: 40px auto;
+    margin: 0 auto;
   }
 
   .tasksContainer {
-    width: 640px;
+    width: 60vw;
+    max-width: 768px;
   }
 
   .menu {
-    width: 548px;
+    width: 100vw;
     height: 40px;
   }
 
@@ -221,32 +223,31 @@
   }
 
   .taskList {
-    width: 298px;
+    width: 28vw;
+    max-width: 768px;
     margin: 20px 0;
-  }
-
-  .addTask {
-    transform: translate(340px, -60px);
   }
 }
 
 @media (min-width: 1280px) {
   .wrapper {
     display: flex;
+    padding-left: 40px;
   }
 
   .container {
-    width: 1228px;
-    margin: 40px auto;
+    width: 100vw;
+    margin: 0 auto;
   }
 
   .tasksContainer {
-    width: 980px;
-    margin-left: 80px;
+    max-width: 100vw;
+    width: 70vw;
   }
 
   .addTask {
-    transform: translate(-615px, -280px);
+    left: 12px;
+    top: 429px;
   }
 
   .taskUl {
@@ -255,6 +256,7 @@
 
   .taskList {
     margin-right: 40px;
+    width: 21vw;
   }
 
   .taskList:nth-child(3n) {
@@ -280,6 +282,5 @@
   .containerOpen {
     composes: container;
     width: 980px;
-    margin: 40px 0;
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes/routes';
+import Logout from '../LogOut/index';
 import styles from './MainPage.module.css';
 import ModalMenuMarkup from './ModalMenuMarkup';
 
@@ -130,11 +131,7 @@ const ModalMenu = ({ ...props }) => {
         </div>
       )}
 
-      {isModalOpen && (
-        <button type="button" className={styles.logoutButton}>
-          Log out
-        </button>
-      )}
+      {isModalOpen && <Logout />}
     </>
   );
 };
