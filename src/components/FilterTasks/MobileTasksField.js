@@ -18,7 +18,8 @@ const MobileTasksField = ({ ...props }) => {
   const StyledBurger = styled.button`
     position: fixed;
     z-index: 100;
-    transform: translate(296px, -30px);
+    right: 10px;
+    top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

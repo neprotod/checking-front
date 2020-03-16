@@ -7,7 +7,7 @@ import style from './LogOut.module.css';
 const Logout = ({ logout }) => {
   return (
     <button type="button" className={style.logoutButton} onClick={logout}>
-      Logout
+      Log out
     </button>
   );
 };
