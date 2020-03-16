@@ -280,6 +280,22 @@ class CreateTaskForm extends Component {
     });
   };
 
+  onDeleteTask = () => {
+    const { taskToUpdateId } = this.state;
+    const { onClickIsCreateTaskFormOpen } = this.props;
+
+    API.deleteTask(taskToUpdateId)
+      .then(res => {
+        if (res) {
+          this.resetForm();
+          onClickIsCreateTaskFormOpen();
+          this.renderMainPage();
+        }
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(err => notyf.error('Error while deleting a task'));
+  };
+
   onSubmit = async e => {
     e.preventDefault();
 
@@ -391,6 +407,7 @@ class CreateTaskForm extends Component {
       descriptionMessageIsShowing,
       titleMessageText,
       descriptionMessageText,
+      taskToUpdateId,
     } = this.state;
 
     const { roles, priorities, onClickIsCreateTaskFormOpen } = this.props;
@@ -487,6 +504,20 @@ class CreateTaskForm extends Component {
             selectedPriority={priority === null ? priorities[0] : priority}
             onSetPriority={this.onSetPriority}
           />
+
+          {taskToUpdateId && (
+            <div className={styles.deleteBtnContainer}>
+              <button
+                type="button"
+                className={styles.deleteBtn}
+                onClick={this.onDeleteTask}
+              >
+                <svg className={styles.iconDelete}>
+                  <use href="#delete_task" />
+                </svg>
+              </button>
+            </div>
+          )}
 
           <div className={styles.formControls}>
             <button
