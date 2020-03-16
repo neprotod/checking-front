@@ -77,6 +77,10 @@ const RoleSelector = ({
   );
 };
 
+RoleSelector.defaultProps = {
+  selectedRole: '',
+};
+
 RoleSelector.propTypes = {
   roles: PropTypes.arrayOf(
     PropTypes.shape({
@@ -91,7 +95,7 @@ RoleSelector.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     id_user: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   defaultRole: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
