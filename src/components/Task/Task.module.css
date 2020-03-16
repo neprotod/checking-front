@@ -1,0 +1,72 @@
+@value gray-color from '../../variables.module.css';
+@value dark-blue-color from '../../variables.module.css';
+@value font-stack from '../../variables.module.css';
+@value light-gray-color #f5f7fa from '../../variables.module.css';
+
+.block {
+  box-shadow: 1px 2px 2px 1px rgb(206, 206, 206);
+}
+
+.headerTask {
+  font-family: font-stack;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.bodyTask {
+  font-family: font-stack;
+  background-color: dark-blue-color;
+  margin: 0;
+  color: white;
+  padding: 20px 0 20px 7px;
+  min-height: 74px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.btnDone,
+.btnEdit {
+  border-radius: 50%;
+  border: none;
+  background-color: light-gray-color;
+  width: 33px;
+  height: 33px;
+}
+
+.footerTask {
+  font-family: font-stack;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 5px 8px 5px;
+  color: gray-color;
+  background-color: white;
+}
+
+.date {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.span {
+  margin-right: 5px;
+}
+
+.priorityTask {
+  width: 21px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  box-shadow: 1px 2px 2px 1px rgba(163, 163, 163, 1);
+  font-weight: 600;
+}
+
+.role {
+  color: rgb(65, 65, 65);
+  font-weight: 600;
+}

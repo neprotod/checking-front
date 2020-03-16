@@ -44,6 +44,7 @@ class MainPage extends Component {
 
     isCreateTaskFormOpen: false,
     isCreateTaskFormOpenDesktop: false,
+    isRender: false,
 
     taskToEdit: {},
   };
@@ -64,6 +65,30 @@ class MainPage extends Component {
     burnedOutFilter('Burned');
     doneFilter('Done');
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isRender } = this.state;
+    const {
+      todayFilter,
+      tomorrowFilter,
+      next7DaysFilter,
+      after7DaysFilter,
+      burnedOutFilter,
+      doneFilter,
+    } = this.props;
+    if (prevState.isRender !== isRender) {
+      todayFilter('Today');
+      tomorrowFilter('Tomorrow');
+      next7DaysFilter('Week');
+      after7DaysFilter('Afterweek');
+      burnedOutFilter('Burned');
+      doneFilter('Done');
+    }
+  }
+
+  rendering = () => {
+    this.setState(prevState => ({ isRender: !prevState.isRender }));
+  };
 
   onClickFilter = e => {
     const target = e.currentTarget.name;
@@ -188,6 +213,7 @@ class MainPage extends Component {
                   statistics={statistics}
                   isCreateTaskFormOpen={isCreateTaskFormOpen}
                   editTask={this.editTask}
+                  isRender={this.rendering}
                 />
               );
             }
@@ -209,6 +235,7 @@ class MainPage extends Component {
                   doneToggle={doneToggle}
                   isCreateTaskFormOpen={isCreateTaskFormOpen}
                   editTask={this.editTask}
+                  isRender={this.rendering}
                 />
               );
             }
@@ -229,6 +256,7 @@ class MainPage extends Component {
                 doneToggle={doneToggle}
                 isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 editTask={this.editTask}
+                isRender={this.rendering}
               />
             );
           }}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
-import Task from './Task';
+import Task from '../Task/Task';
 
 const MobileTasksFieldMarkup = ({ tasks, title, tasksType, editTask }) => {
   return (
