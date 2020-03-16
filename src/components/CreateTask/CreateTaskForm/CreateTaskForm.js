@@ -41,6 +41,7 @@ class CreateTaskForm extends Component {
     getRoles: PropTypes.func.isRequired,
     getPriorities: PropTypes.func.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
+    renderToggle: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
@@ -310,7 +311,11 @@ class CreateTaskForm extends Component {
       taskToUpdateId,
     } = this.state;
 
-    const { priorities, onClickIsCreateTaskFormOpen } = this.props;
+    const {
+      priorities,
+      onClickIsCreateTaskFormOpen,
+      renderToggle,
+    } = this.props;
 
     const task = {
       role: selectedRole._id === 'none' ? '' : selectedRole._id,
@@ -332,7 +337,7 @@ class CreateTaskForm extends Component {
                 if (res) {
                   this.resetForm();
                   onClickIsCreateTaskFormOpen();
-                  this.renderMainPage();
+                  renderToggle();
                 }
               })
               // eslint-disable-next-line no-unused-vars
@@ -343,7 +348,7 @@ class CreateTaskForm extends Component {
                 if (res) {
                   this.resetForm();
                   onClickIsCreateTaskFormOpen();
-                  this.renderMainPage();
+                  renderToggle();
                 }
               })
               // eslint-disable-next-line no-unused-vars
@@ -362,12 +367,6 @@ class CreateTaskForm extends Component {
             this.showDescriptionMessage(errors.description);
         }
       });
-  };
-
-  renderMainPage = () => {
-    const { history } = this.props;
-    history.push('/');
-    history.push('/main');
   };
 
   resetForm = () => {

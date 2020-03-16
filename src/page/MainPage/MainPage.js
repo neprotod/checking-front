@@ -180,6 +180,7 @@ class MainPage extends Component {
         {isCreateTaskFormOpen && (
           <CreateTask
             taskToEdit={taskToEdit}
+            renderToggle={this.rendering}
             onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
           />
         )}
