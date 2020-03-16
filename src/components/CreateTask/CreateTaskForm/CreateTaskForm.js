@@ -84,7 +84,7 @@ class CreateTaskForm extends Component {
     descriptionMessageIsShowing: false,
     titleMessageText: '',
     descriptionMessageText: '',
-    idToUpdate: null,
+    taskToUpdateId: null,
   };
 
   hours = [
@@ -276,7 +276,7 @@ class CreateTaskForm extends Component {
       startHour: new Date(taskToEdit.start_date).getHours(),
       endHour: new Date(taskToEdit.end_date).getHours(),
       priority: taskToEdit.priority[0],
-      idToUpdate: taskToEdit._id,
+      taskToUpdateId: taskToEdit._id,
     });
   };
 
@@ -291,7 +291,7 @@ class CreateTaskForm extends Component {
       startDate,
       startHour,
       endHour,
-      idToUpdate,
+      taskToUpdateId,
     } = this.state;
 
     const { priorities, onClickIsCreateTaskFormOpen } = this.props;
@@ -310,8 +310,8 @@ class CreateTaskForm extends Component {
       .isValid(task)
       .then(async valid => {
         if (valid) {
-          if (idToUpdate) {
-            await API.updateTask(idToUpdate, task)
+          if (taskToUpdateId) {
+            await API.updateTask(taskToUpdateId, task)
               .then(res => {
                 if (res) {
                   this.resetForm();
