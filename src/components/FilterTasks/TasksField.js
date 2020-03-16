@@ -94,6 +94,7 @@ const TasksField = ({ ...props }) => {
     isCreateTaskFormOpen,
     isCreateTaskFormOpenDesktop,
     editTask,
+    isRender,
   } = props;
 
   const arrowTodayBackForth = todayToggle ? arrowDown : arrowUp;
@@ -174,6 +175,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={todayToggle}
                 tasksType="tasksToday"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
             {todayTomorrow && (
@@ -186,6 +188,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={tomorrowToggle}
                 tasksType="tasksTomorrow"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
             {next7After7 && (
@@ -198,6 +201,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={next7DaysToggle}
                 tasksType="tasksNext7Days"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
             {next7After7 && (
@@ -210,6 +214,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={after7DaysToggle}
                 tasksType="tasksAfter7Days"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
             {burned && (
@@ -222,6 +227,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={burnedToggle}
                 tasksType="tasksBurnedOut"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
             {done && (
@@ -234,6 +240,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={doneToggle}
                 tasksType="tasksDone"
                 editTask={editTask}
+                isRender={isRender}
               />
             )}
           </div>
@@ -274,6 +281,7 @@ TasksField.propTypes = {
   isCreateTaskFormOpen: PropTypes.bool,
   isCreateTaskFormOpenDesktop: PropTypes.bool,
   editTask: PropTypes.func.isRequired,
+  isRender: PropTypes.func.isRequired,
 };
 
 export default TasksField;

@@ -11,6 +11,7 @@
     "chart.js": "^2.9.3",
     "clsx": "^1.1.0",
     "core-js": "^3.6.4",
+    "dateformat": "^3.0.3",
     "formik": "^2.1.4",
     "normalize.css": "^8.0.1",
     "notyf": "^3.1.0",

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
-import Task from './Task';
+import Task from '../Task/Task';
 
 const TasksFieldMarkup = ({
   tasks,
@@ -16,6 +16,7 @@ const TasksFieldMarkup = ({
   tasksType,
   isCreateTaskFormOpenDesktop,
   editTask,
+  isRender,
 }) => {
   const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
     ? styles.taskListOpen
@@ -41,7 +42,7 @@ const TasksFieldMarkup = ({
               key={task._id}
               className={isCreateTaskFormOpenDesktopStylesList}
             >
-              <Task task={task} editTask={editTask} />
+              <Task task={task} editTask={editTask} isRender={isRender} />
             </li>
           ))}
         </ul>
@@ -60,6 +61,7 @@ TasksFieldMarkup.propTypes = {
   tasksType: PropTypes.string.isRequired,
   toggleType: PropTypes.bool.isRequired,
   editTask: PropTypes.func.isRequired,
+  isRender: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = store => ({
