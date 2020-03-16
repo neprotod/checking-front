@@ -1,6 +1,10 @@
 import { object, string, date, boolean } from 'yup';
+import { setTimeout } from 'core-js';
 
-const err = {};
+const err = {
+  title: null,
+  description: null,
+};
 
 export const taskSchema = object().shape({
   role: string(),
@@ -33,7 +37,11 @@ export const taskSchema = object().shape({
 });
 
 export const throwErr = () => {
-  if (Object.keys(err).length !== 0) {
+  if (err.title !== null || err.description !== null) {
+    setTimeout(() => {
+      err.title = null;
+      err.description = null;
+    }, 500);
     throw new Error(JSON.stringify(err));
   }
 };
