@@ -37,7 +37,7 @@ const StatisticButton = ({ history }) => {
         <p className={style.statisticsSvg}>{statisticsSvg}</p>
       </Link>
     );
-  } else if (history.location.pathname === '/statistics') {
+  } else {
     pageButton = (
       <Link to={routes.MAIN_PAGE.path}>
         <p className={style.statisticsSvg}>{tasksSvg}</p>
