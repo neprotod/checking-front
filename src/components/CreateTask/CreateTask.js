@@ -12,6 +12,7 @@ class CreateTask extends Component {
     isFormLoading: PropTypes.bool.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
     taskToEdit: PropTypes.shape(),
+    renderToggle: PropTypes.func.isRequired,
   };
 
   state = {
@@ -33,6 +34,7 @@ class CreateTask extends Component {
     const {
       isFormLoading,
       onClickIsCreateTaskFormOpen,
+      renderToggle,
       taskToEdit,
     } = this.props;
 
@@ -67,6 +69,7 @@ class CreateTask extends Component {
           <CreateTaskForm
             onClickIsCreateTaskFormOpen={onClickIsCreateTaskFormOpen}
             taskToEdit={taskToEdit}
+            renderToggle={renderToggle}
           />
         </div>
       </div>
