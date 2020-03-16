@@ -9,7 +9,11 @@ export const filterToday = query => dispatch => {
   dispatch(tasksActions.todayStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.todaySuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.todaySuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.todaySuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
@@ -21,7 +25,11 @@ export const filterTomorrow = query => dispatch => {
   dispatch(tasksActions.tomorrowStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.tomorrowSuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.tomorrowSuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.tomorrowSuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
@@ -33,7 +41,11 @@ export const filterNext7Days = query => dispatch => {
   dispatch(tasksActions.next7DaysStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.next7DaysSuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.next7DaysSuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.next7DaysSuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
@@ -45,7 +57,11 @@ export const filterAfter7Days = query => dispatch => {
   dispatch(tasksActions.after7DaysStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.after7DaysSuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.after7DaysSuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.after7DaysSuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
@@ -57,7 +73,11 @@ export const filterBurnedOut = query => dispatch => {
   dispatch(tasksActions.burnedOutStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.burnedOutSuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.burnedOutSuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.burnedOutSuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
@@ -69,7 +89,11 @@ export const filterDone = query => dispatch => {
   dispatch(tasksActions.doneStart());
   API.getTasks(query)
     .then(res => {
-      dispatch(tasksActions.doneSuccess(res.data[0].tasks));
+      if (res.data.length > 0) {
+        dispatch(tasksActions.doneSuccess(res.data[0].tasks));
+      } else if (res.data.length === 0) {
+        dispatch(tasksActions.doneSuccess(res.data));
+      }
     })
     .catch(err => {
       notyf.error('Something went wrong!');
