@@ -18,6 +18,10 @@ const notyf = new Notyf();
 const { defaultRole } = config;
 
 class CreateTaskForm extends Component {
+  static defaultProps = {
+    taskToEdit: null,
+  };
+
   static propTypes = {
     roles: PropTypes.arrayOf(
       PropTypes.shape({
@@ -43,16 +47,25 @@ class CreateTaskForm extends Component {
     taskToEdit: PropTypes.shape({
       title: PropTypes.string,
       description: PropTypes.string,
-      role: PropTypes.arrayOf(),
+      role: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          color: PropTypes.string.isRequired,
+          id_user: PropTypes.string.isRequired,
+        }),
+      ),
       start_date: PropTypes.string,
       end_date: PropTypes.string,
-      priority: PropTypes.PropTypes.arrayOf(),
+      priority: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          type: PropTypes.string.isRequired,
+        }),
+      ),
       _id: PropTypes.string,
     }),
-  };
-
-  static defaultProps = {
-    taskToEdit: {},
   };
 
   state = {
@@ -71,8 +84,7 @@ class CreateTaskForm extends Component {
     descriptionMessageIsShowing: false,
     titleMessageText: '',
     descriptionMessageText: '',
-
-    idToUpdate: null,
+    taskToUpdateId: null,
   };
 
   hours = [
@@ -108,16 +120,7 @@ class CreateTaskForm extends Component {
     getRoles();
     getPriorities();
     if (taskToEdit) {
-      this.setState({
-        title: taskToEdit.title,
-        description: taskToEdit.description,
-        selectedRole: taskToEdit.role[0],
-        startDate: new Date(taskToEdit.start_date),
-        startHour: new Date(taskToEdit.start_date).getHours(),
-        endHour: new Date(taskToEdit.end_date).getHours(),
-        priority: taskToEdit.priority[0],
-        idToUpdate: taskToEdit._id,
-      });
+      this.onEditTask(taskToEdit);
     }
   }
 
@@ -264,6 +267,19 @@ class CreateTaskForm extends Component {
     );
   };
 
+  onEditTask = taskToEdit => {
+    this.setState({
+      title: taskToEdit.title,
+      description: taskToEdit.description,
+      selectedRole: taskToEdit.role[0] || defaultRole,
+      startDate: new Date(taskToEdit.start_date),
+      startHour: new Date(taskToEdit.start_date).getHours(),
+      endHour: new Date(taskToEdit.end_date).getHours(),
+      priority: taskToEdit.priority[0],
+      taskToUpdateId: taskToEdit._id,
+    });
+  };
+
   // onDeleteTask = () => {
   //   const { taskToUpdateId } = this.state;
   //   const { onClickIsCreateTaskFormOpen } = this.props;
@@ -290,7 +306,7 @@ class CreateTaskForm extends Component {
       startDate,
       startHour,
       endHour,
-      idToUpdate,
+      taskToUpdateId,
     } = this.state;
 
     const { priorities, onClickIsCreateTaskFormOpen } = this.props;
@@ -304,12 +320,13 @@ class CreateTaskForm extends Component {
       end_date: this.fixedHourDateCreator(startDate, endHour),
       done: false,
     };
-    if (idToUpdate) {
-      taskSchema
-        .isValid(task)
-        .then(async valid => {
-          if (valid) {
-            await API.updateTask(idToUpdate, task)
+
+    taskSchema
+      .isValid(task)
+      .then(async valid => {
+        if (valid) {
+          if (taskToUpdateId) {
+            await API.updateTask(taskToUpdateId, task)
               .then(res => {
                 if (res) {
                   this.resetForm();
@@ -320,23 +337,6 @@ class CreateTaskForm extends Component {
               // eslint-disable-next-line no-unused-vars
               .catch(err => notyf.error('Error while updating a task'));
           } else {
-            throwErr();
-          }
-        })
-        .catch(err => {
-          const errors = JSON.parse(err.message);
-
-          if (errors) {
-            if (errors.title) this.showTitleMessage(errors.title);
-            if (errors.description)
-              this.showDescriptionMessage(errors.description);
-          }
-        });
-    } else
-      taskSchema
-        .isValid(task)
-        .then(async valid => {
-          if (valid) {
             await API.createTask(task)
               .then(res => {
                 if (res) {
@@ -347,19 +347,20 @@ class CreateTaskForm extends Component {
               })
               // eslint-disable-next-line no-unused-vars
               .catch(err => notyf.error('Error while saving a task'));
-          } else {
-            throwErr();
           }
-        })
-        .catch(err => {
-          const errors = JSON.parse(err.message);
+        } else {
+          throwErr();
+        }
+      })
+      .catch(err => {
+        const errors = JSON.parse(err.message);
 
-          if (errors) {
-            if (errors.title) this.showTitleMessage(errors.title);
-            if (errors.description)
-              this.showDescriptionMessage(errors.description);
-          }
-        });
+        if (errors) {
+          if (errors.title) this.showTitleMessage(errors.title);
+          if (errors.description)
+            this.showDescriptionMessage(errors.description);
+        }
+      });
   };
 
   renderMainPage = () => {
