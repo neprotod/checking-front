@@ -1,6 +1,9 @@
+@value variables: '../../variables.module.css';
+@value font-stack, text-gray-color, gray-underline from variables;
+
 .container {
+  font-family: font-stack;
   width: 100vw;
-  border: 1px solid black;
   background-color: white;
   display: flex;
   flex-wrap: wrap;
@@ -70,9 +73,11 @@
 }
 
 .menuButtonText {
+  font-size: 12px;
+  font-weight: 500;
   margin: 0;
   line-height: 25px;
-  color: #869096;
+  color: text-gray-color;
   width: max-content;
 }
 
@@ -92,7 +97,6 @@
   composes: modalMenuBg;
   width: 100vw;
   margin: 40px auto;
-  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -111,10 +115,12 @@
 }
 
 .arrowText {
+  font-size: 12px;
+  font-weight: 500;
   margin: 0;
   height: 28px;
   line-height: 24px;
-  color: #869096;
+  color: text-gray-color;
 }
 
 .arrowSvg {
@@ -153,21 +159,27 @@
   position: absolute;
   z-index: 20;
   top: 370px;
-  background-color: #f5f7fa;
   outline: none;
   border: none;
-  color: #869096;
+  color: text-gray-color;
+  font-size: 12px;
+  font-weight: 500;
   padding: 0;
-  border-bottom: 1px solid #869096;
+  border-bottom: 1px solid text-gray-color;
   cursor: pointer;
 }
 
 .burgerMenu {
   width: 320px;
   margin: 0 auto;
+  background-color: white;
 }
 
 @media (min-width: 768px) {
+  .wrapper {
+    background-color: white;
+  }
+
   .container {
     width: 100vw;
     background-color: #f5f7fa;
@@ -202,11 +214,11 @@
 
   .menuButton {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     outline: none;
     border: 1px solid #cdd0d9;
     width: 135px;
-    padding: 4px 0;
+    padding: 6px 0 4px 14px;
   }
 
   .menuButton:nth-child(n + 1) {
@@ -232,12 +244,13 @@
 @media (min-width: 1280px) {
   .wrapper {
     display: flex;
+    width: calc(100vw - 40px);
     padding-left: 40px;
+    align-items: flex-start;
   }
 
   .container {
-    width: 100vw;
-    margin: 0 auto;
+    width: calc(100vw - 40px);
   }
 
   .tasksContainer {
