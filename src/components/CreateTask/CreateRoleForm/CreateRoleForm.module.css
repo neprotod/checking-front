@@ -90,9 +90,12 @@
 }
 
 .roleItem {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
   font-size: 12px;
   border: 1px solid gray-underline;
 }
@@ -108,11 +111,9 @@
 
 .deleteBtn {
   composes: button;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: inherit;
-  padding: 0;
+  padding: 0 2px;
+  width: 30px;
+  height: 30px;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid gray-underline;
@@ -125,8 +126,8 @@
 
 .iconEdit {
   fill: gray-color;
-  width: 35px;
-  height: 35px;
+  width: 24px;
+  height: 24px;
 }
 
 .iconDelete {
