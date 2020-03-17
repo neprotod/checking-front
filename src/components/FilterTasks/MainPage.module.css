@@ -38,11 +38,9 @@
 
 .taskList {
   list-style: none;
-  border: 1px solid blue;
   width: 100vw;
   max-width: 70vw;
   margin: 10px 0;
-  background-color: rgb(252, 248, 33);
 }
 
 .menuButton {
