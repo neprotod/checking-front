@@ -283,14 +283,14 @@ class CreateTaskForm extends Component {
 
   onDeleteTask = () => {
     const { taskToUpdateId } = this.state;
-    const { onClickIsCreateTaskFormOpen } = this.props;
+    const { onClickIsCreateTaskFormOpen, renderToggle } = this.props;
 
     API.deleteTask(taskToUpdateId)
       .then(res => {
         if (res) {
           this.resetForm();
           onClickIsCreateTaskFormOpen();
-          this.renderMainPage();
+          renderToggle();
         }
       })
       // eslint-disable-next-line no-unused-vars
