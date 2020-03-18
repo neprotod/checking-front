@@ -1,3 +1,6 @@
+@value variables: '../../variables.module.css';
+@value font-stack, text-gray-color, white-color from variables;
+
 @media (max-width: 767px) {
   .logoutButton {
     top: 450px;
@@ -5,13 +8,16 @@
 }
 
 .logoutButton {
+  font-family: font-stack;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: transparent;
   display: flex;
   border-bottom: none;
   position: absolute;
-  background-color: #f5f7fa;
   outline: none;
   border: none;
-  color: #869096;
+  color: text-gray-color;
   padding: 0;
   cursor: pointer;
 }
