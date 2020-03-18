@@ -10,7 +10,8 @@ export const filterToday = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        dispatch(tasksActions.todaySuccess(res.data[0].tasks));
+        const arrToday = res.data[0].tasks.filter(el => el.done !== true);
+        dispatch(tasksActions.todaySuccess(arrToday));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.todaySuccess(res.data));
       }
@@ -26,7 +27,8 @@ export const filterTomorrow = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        dispatch(tasksActions.tomorrowSuccess(res.data[0].tasks));
+        const arrTomorrow = res.data[0].tasks.filter(el => el.done !== true);
+        dispatch(tasksActions.tomorrowSuccess(arrTomorrow));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.tomorrowSuccess(res.data));
       }
@@ -42,7 +44,8 @@ export const filterNext7Days = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        dispatch(tasksActions.next7DaysSuccess(res.data[0].tasks));
+        const arrNext7Days = res.data[0].tasks.filter(el => el.done !== true);
+        dispatch(tasksActions.next7DaysSuccess(arrNext7Days));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.next7DaysSuccess(res.data));
       }
@@ -58,7 +61,8 @@ export const filterAfter7Days = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        dispatch(tasksActions.after7DaysSuccess(res.data[0].tasks));
+        const arrAfter7Days = res.data[0].tasks.filter(el => el.done !== true);
+        dispatch(tasksActions.after7DaysSuccess(arrAfter7Days));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.after7DaysSuccess(res.data));
       }
