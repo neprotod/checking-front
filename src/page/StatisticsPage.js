@@ -8,6 +8,8 @@ import * as selectors from '../redux/statistics/statisticsSelectors';
 import Loader from '../components/Loader';
 import Statistics from '../components/Statistics';
 
+import styles from '../components/Statistics/Statistics.module.css';
+
 class StatisticsPage extends Component {
   static propTypes = {
     getRoles: PropTypes.func.isRequired,
@@ -36,7 +38,7 @@ class StatisticsPage extends Component {
     const { isLoading } = this.props;
 
     return (
-      <div>
+      <div className={styles.statistics__page_wrapper}>
         {isLoading && <Loader />}
         <Statistics />
       </div>

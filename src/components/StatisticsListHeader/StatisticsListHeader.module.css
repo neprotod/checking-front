@@ -1,0 +1,29 @@
+.statistics__list_header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  color: dark-blue-color;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.statistics__list_header::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -7px;
+  height: 2px;
+  background-color: gray-underline;
+}
+
+.list__header_title {
+  max-width: 85px;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .list__header_title {
+    max-width: 250px;
+  }
+}
