@@ -30,15 +30,9 @@ const DateSelector = ({
         onClick={datePickerDisplayToggle}
       >
         <span>{dateCreator()}</span>
-        {datePickerIsOpen ? (
-          <svg className={styles.iconArrow}>
-            <use href="#drop_up" />
-          </svg>
-        ) : (
-          <svg className={styles.iconArrow}>
-            <use href="#drop_down" />
-          </svg>
-        )}
+        <svg className={styles.iconArrow}>
+          <use href={datePickerIsOpen ? '#drop_up' : '#drop_down'} />
+        </svg>
       </button>
       {datePickerIsOpen && (
         <div className={styles.datePickerContainer}>

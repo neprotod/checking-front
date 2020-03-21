@@ -25,15 +25,9 @@ const TimeSelector = ({
             onClick={startHoursListDisplayToggle}
           >
             <span>{`${startHour}:00`}</span>
-            {startHoursListIsOpen ? (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_up" />
-              </svg>
-            ) : (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_down" />
-              </svg>
-            )}
+            <svg className={styles.iconArrow}>
+              <use href={startHoursListIsOpen ? '#drop_up' : '#drop_down'} />
+            </svg>
           </button>
           {startHoursListIsOpen && (
             <div className={styles.startHoursListContainer}>
@@ -64,15 +58,9 @@ const TimeSelector = ({
             onClick={endHoursListDisplayToggle}
           >
             <span>{`${endHour}:00`}</span>
-            {endHoursListIsOpen ? (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_up" />
-              </svg>
-            ) : (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_down" />
-              </svg>
-            )}
+            <svg className={styles.iconArrow}>
+              <use href={endHoursListIsOpen ? '#drop_up' : '#drop_down'} />
+            </svg>
           </button>
           {endHoursListIsOpen && (
             <div className={styles.endHoursListContainer}>

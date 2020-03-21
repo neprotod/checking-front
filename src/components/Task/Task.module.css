@@ -27,13 +27,28 @@
   font-weight: 600;
 }
 
+.taskControls {
+  display: flex;
+}
+
 .btnDone,
-.btnEdit {
+.btnEdit,
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2px;
+  padding: 2px;
   border-radius: 50%;
   border: none;
   background-color: light-gray-color;
   width: 33px;
   height: 33px;
+  cursor: pointer;
+}
+
+.btnDone {
+  margin-right: 0;
 }
 
 .footerTask {
@@ -69,4 +84,31 @@
 .role {
   color: rgb(65, 65, 65);
   font-weight: 600;
+}
+
+.doneBtn {
+  composes: btnDone;
+  background-color: #e6eeec;
+}
+
+.burnedBtn {
+  composes: btnDone;
+  background-color: #f5e6e6;
+}
+
+.undoneBtn {
+  composes: btnDone;
+  background-color: #f5f7fa;
+}
+
+.doneIcon {
+  fill: #9abbb5;
+}
+
+.burnedIcon {
+  fill: #f25137;
+}
+
+.undoneIcon {
+  fill: #939393;
 }

@@ -3,13 +3,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
+import { Notyf } from 'notyf';
 import style from '../../components/FilterTasks/MainPage.module.css';
 import * as tasksOperations from '../../redux/tasks/tasks/tasksOperations';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import TasksField from '../../components/FilterTasks/TasksField';
 import MobileTasksField from '../../components/FilterTasks/MobileTasksField';
-
 import CreateTask from '../../components/CreateTask/CreateTaskContainer';
+import API from '../../services/api';
+import 'notyf/notyf.min.css';
+
+const notyf = new Notyf();
 
 class MainPage extends Component {
   static propTypes = {
@@ -135,6 +139,17 @@ class MainPage extends Component {
     }));
   };
 
+  deleteTask = id => {
+    API.deleteTask(id)
+      .then(res => {
+        if (res) {
+          this.rendering();
+        }
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(err => notyf.error('Error while deleting a task'));
+  };
+
   onClickIsModalOpen = () => {
     this.setState(prevState => ({
       isModalOpen: !prevState.isModalOpen,
@@ -184,11 +199,6 @@ class MainPage extends Component {
             onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
           />
         )}
-        {/* {isCreateTaskFormOpen && (
-          <CreateTask
-            onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
-          />
-        )} */}
 
         <Media
           queries={{
@@ -214,6 +224,7 @@ class MainPage extends Component {
                   statistics={statistics}
                   isCreateTaskFormOpen={isCreateTaskFormOpen}
                   editTask={this.editTask}
+                  deleteTask={this.deleteTask}
                   isRender={this.rendering}
                 />
               );
@@ -236,6 +247,7 @@ class MainPage extends Component {
                   doneToggle={doneToggle}
                   isCreateTaskFormOpen={isCreateTaskFormOpen}
                   editTask={this.editTask}
+                  deleteTask={this.deleteTask}
                   isRender={this.rendering}
                 />
               );
@@ -257,6 +269,7 @@ class MainPage extends Component {
                 doneToggle={doneToggle}
                 isCreateTaskFormOpenDesktop={isCreateTaskFormOpenDesktop}
                 editTask={this.editTask}
+                deleteTask={this.deleteTask}
                 isRender={this.rendering}
               />
             );

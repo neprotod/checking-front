@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Notyf } from 'notyf';
 import RoleSelector from '../RoleSelector/RoleSelector';
@@ -42,9 +41,6 @@ class CreateTaskForm extends Component {
     getPriorities: PropTypes.func.isRequired,
     onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
     renderToggle: PropTypes.func.isRequired,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
     taskToEdit: PropTypes.shape({
       title: PropTypes.string,
       description: PropTypes.string,
@@ -536,4 +532,4 @@ class CreateTaskForm extends Component {
   }
 }
 
-export default withRouter(CreateTaskForm);
+export default CreateTaskForm;

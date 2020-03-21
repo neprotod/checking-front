@@ -13,6 +13,9 @@ const MobileTasksField = ({ ...props }) => {
     isModalOpen,
     isCreateTaskFormOpen,
     statistics,
+    editTask,
+    deleteTask,
+    isRender,
   } = props;
 
   const StyledBurger = styled.button`
@@ -61,6 +64,7 @@ const MobileTasksField = ({ ...props }) => {
   const modalMenuStyle = isModalOpen ? styles.modalMenu : styles.modalMenuBg;
   let title;
   let tasksType;
+  let burned = false;
   return (
     <>
       <p className={styles.burgerMenu}>
@@ -92,6 +96,7 @@ const MobileTasksField = ({ ...props }) => {
                     break;
                   case 'BurnedOut':
                     title = 'Burned Out';
+                    burned = true;
                     break;
                   default:
                     return title;
@@ -100,7 +105,14 @@ const MobileTasksField = ({ ...props }) => {
               return title;
             })}
 
-            <MobileTasksFieldMarkup title={title} tasksType={tasksType} />
+            <MobileTasksFieldMarkup
+              title={title}
+              tasksType={tasksType}
+              editTask={editTask}
+              deleteTask={deleteTask}
+              isRender={isRender}
+              burned={burned}
+            />
           </div>
 
           <button
@@ -116,6 +128,10 @@ const MobileTasksField = ({ ...props }) => {
   );
 };
 
+MobileTasksField.defaultProps = {
+  burned: false,
+};
+
 MobileTasksField.propTypes = {
   onClickIsMobile: PropTypes.func.isRequired,
   onClickIsCreateTaskFormOpen: PropTypes.func.isRequired,
@@ -129,6 +145,10 @@ MobileTasksField.propTypes = {
   isMobileDone: PropTypes.bool.isRequired,
   statistics: PropTypes.bool.isRequired,
   isCreateTaskFormOpen: PropTypes.bool.isRequired,
+  editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  isRender: PropTypes.func.isRequired,
+  burned: PropTypes.bool,
 };
 
 export default MobileTasksField;

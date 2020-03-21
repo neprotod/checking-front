@@ -150,15 +150,9 @@ class CreateRoleForm extends Component {
             onClick={this.colorPickerDisplayToggle}
           >
             <span>Color</span>
-            {colorPickerIsOpen ? (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_up" />
-              </svg>
-            ) : (
-              <svg className={styles.iconArrow}>
-                <use href="#drop_down" />
-              </svg>
-            )}
+            <svg className={styles.iconArrow}>
+              <use href={colorPickerIsOpen ? '#drop_up' : '#drop_down'} />
+            </svg>
           </button>
           {colorPickerIsOpen && (
             <SketchPicker
@@ -169,7 +163,7 @@ class CreateRoleForm extends Component {
           )}
           <button className={styles.saveRoleBtn} type="submit">
             <svg className={styles.iconSave}>
-              <use className={styles.iconSave} href="#save" />
+              <use href="#save" />
             </svg>
           </button>
         </form>
