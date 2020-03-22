@@ -72,8 +72,9 @@ class CreateTaskForm extends Component {
     endHoursListIsOpen: false,
     selectedRole: defaultRole,
     startDate: new Date(),
-    startHour: 0,
-    endHour: 0,
+    minStartHour: new Date().getHours(),
+    startHour: new Date().getHours(),
+    endHour: new Date().getHours(),
     title: '',
     description: '',
     priority: null,
@@ -181,10 +182,31 @@ class CreateTaskForm extends Component {
     this.setState({ [target.name]: target.value });
   };
 
-  onSetDate = date => {
-    this.setState({
+  onSetDate = async date => {
+    await this.setState({
       startDate: date,
     });
+
+    const { startDate } = this.state;
+
+    const year = startDate.getFullYear();
+    const month = startDate.getMonth();
+    const day = startDate.getDate();
+    const hours = startDate.getHours();
+
+    if (
+      year === new Date().getFullYear() &&
+      month === new Date().getMonth() &&
+      day === new Date().getDate()
+    ) {
+      this.setState({
+        minStartHour: hours,
+        startHour: hours,
+        endHour: hours,
+      });
+    } else {
+      this.setState({ minStartHour: 0, startHour: 0, endHour: 0 });
+    }
   };
 
   onSetStartHour = async ({ currentTarget }) => {
@@ -205,6 +227,11 @@ class CreateTaskForm extends Component {
       endHour: +currentTarget.name,
       endHoursListIsOpen: false,
     });
+  };
+
+  startHoursListGenerator = () => {
+    const { minStartHour } = this.state;
+    return this.hours.filter(hour => hour >= minStartHour);
   };
 
   endHoursListGenerator = () => {
@@ -484,7 +511,7 @@ class CreateTaskForm extends Component {
           <TimeSelector
             startHoursListIsOpen={startHoursListIsOpen}
             endHoursListIsOpen={endHoursListIsOpen}
-            startHours={this.hours}
+            startHours={this.startHoursListGenerator}
             endHours={this.endHoursListGenerator}
             startHour={startHour}
             endHour={endHour}

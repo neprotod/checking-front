@@ -32,7 +32,7 @@ const TimeSelector = ({
           {startHoursListIsOpen && (
             <div className={styles.startHoursListContainer}>
               <ul className={styles.timeOptionsList}>
-                {startHours.map(hour => (
+                {startHours().map(hour => (
                   <li key={`${hour}_start`} className={styles.timeOptionsItem}>
                     <button
                       className={styles.hourBtn}
@@ -91,7 +91,7 @@ TimeSelector.propTypes = {
   endHoursListIsOpen: PropTypes.bool.isRequired,
   startHoursListDisplayToggle: PropTypes.func.isRequired,
   endHoursListDisplayToggle: PropTypes.func.isRequired,
-  startHours: PropTypes.arrayOf(PropTypes.number).isRequired,
+  startHours: PropTypes.func.isRequired,
   endHours: PropTypes.func.isRequired,
   startHour: PropTypes.number.isRequired,
   endHour: PropTypes.number.isRequired,

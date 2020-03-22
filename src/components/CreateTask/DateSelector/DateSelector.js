@@ -39,6 +39,7 @@ const DateSelector = ({
           <DatePicker
             selected={startDate}
             onChange={date => onSetDate(date)}
+            minDate={new Date()}
             showMonthDropdown
             showYearDropdown
             inline

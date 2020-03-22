@@ -24,15 +24,15 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
           backgroundColor: task.role.length > 0 ? task.role[0].color : 'grey',
         }}
       >
-        <p className={styles.role}>
+        <span className={styles.role}>
           {task.role.length > 0 ? task.role[0].name : 'None'}
-        </p>
-        <p
+        </span>
+        <span
           style={{ color: task.priority[0].name === '1' ? 'red' : 'grey' }}
           className={styles.priorityTask}
         >
           {task.priority[0].name}
-        </p>
+        </span>
       </div>
       <div className={styles.bodyTask}>
         <p className={styles.title}>{task.title}</p>
