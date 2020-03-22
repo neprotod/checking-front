@@ -11,6 +11,10 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
     isRender();
   };
 
+  const date = new Date(task.start_date);
+  const startHour = new Date(task.start_date).getHours();
+  const endHour = new Date(task.end_date).getHours();
+
   // eslint-disable-next-line no-nested-ternary
   const taskState = task.done ? 'done' : burned ? 'burned' : 'undone';
   const btnStyle = `${taskState}Btn`;
@@ -40,11 +44,9 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
       </div>
       <div className={styles.footerTask}>
         <div className={styles.date}>
-          <span className={styles.span}>
-            {dateFormat(task.start_date, 'mmm dd')}
-          </span>
+          <span className={styles.span}>{dateFormat(date, 'mmm dd')}</span>
           <span>
-            {task.start_date.slice(11, 16)} - {task.end_date.slice(11, 16)}
+            {`${startHour}:00`} - {`${endHour}:00`}
           </span>
         </div>
         <div className={styles.taskControls}>

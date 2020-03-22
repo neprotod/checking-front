@@ -14,6 +14,17 @@ const TimeSelector = ({
   onSetStartHour,
   onSetEndHour,
 }) => {
+  const isMobileDevice = () => {
+    return (
+      typeof window.orientation !== 'undefined' ||
+      navigator.userAgent.indexOf('IEMobile') !== -1
+    );
+  };
+
+  const timeOptionsItemStyle = isMobileDevice()
+    ? 'timeOptionsItemMobile'
+    : 'timeOptionsItem';
+
   return (
     <div className={styles.container}>
       <div className={styles.startHourSelector}>
@@ -33,7 +44,10 @@ const TimeSelector = ({
             <div className={styles.startHoursListContainer}>
               <ul className={styles.timeOptionsList}>
                 {startHours().map(hour => (
-                  <li key={`${hour}_start`} className={styles.timeOptionsItem}>
+                  <li
+                    key={`${hour}_start`}
+                    className={styles[timeOptionsItemStyle]}
+                  >
                     <button
                       className={styles.hourBtn}
                       type="button"
@@ -66,7 +80,10 @@ const TimeSelector = ({
             <div className={styles.endHoursListContainer}>
               <ul className={styles.timeOptionsList}>
                 {endHours().map(hour => (
-                  <li key={`${hour}_end`} className={styles.timeOptionsItem}>
+                  <li
+                    key={`${hour}_end`}
+                    className={styles[timeOptionsItemStyle]}
+                  >
                     <button
                       className={styles.hourBtn}
                       type="button"

@@ -92,7 +92,7 @@
 
 .doneBtn {
   composes: btnDone;
-  background-color: #e6eeec;
+  background-color: #ddf0eb;
 }
 
 .burnedBtn {
@@ -106,7 +106,7 @@
 }
 
 .doneIcon {
-  fill: #9abbb5;
+  fill: #2bad8d;
 }
 
 .burnedIcon {

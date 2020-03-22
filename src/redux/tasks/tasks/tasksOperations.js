@@ -10,6 +10,8 @@ export const filterToday = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
+        console.log(res.data[0].tasks);
+
         dispatch(tasksActions.todaySuccess(res.data[0].tasks));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.todaySuccess(res.data));

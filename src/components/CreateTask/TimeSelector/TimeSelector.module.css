@@ -64,8 +64,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 150px;
+  width: 130px;
   font-size: 12px;
+}
+
+.timeOptionsItemMobile {
+  composes: timeOptionsItem;
+  width: 150px;
 }
 
 .hourBtn {
