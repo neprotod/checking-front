@@ -30,7 +30,14 @@ const Task = ({ task, editTask, isRender }) => {
       </div>
       <div className={styles.bodyTask}>
         <p className={styles.title}>{task.title}</p>
-        <p>{task.description}</p>
+        <p
+          style={{
+            overflowY: task.description.length > 300 && 'scroll',
+            height: 90,
+          }}
+        >
+          {task.description}
+        </p>
       </div>
       <div className={styles.footerTask}>
         <div className={styles.date}>

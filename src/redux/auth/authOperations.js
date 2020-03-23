@@ -36,7 +36,12 @@ export const login = user => dispatch => {
 };
 export const logOut = () => dispatch => {
   dispatch(authActions.logOutStart());
-  API.logout().then(() => {
-    dispatch(authActions.logOutSuccess());
-  });
+  API.logout()
+    .then(() => {
+      dispatch(authActions.logOutSuccess());
+    })
+    .catch(err => {
+      notyf.error('Something wrong!');
+      dispatch(authActions.logOutError(err));
+    });
 };
