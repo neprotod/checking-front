@@ -137,7 +137,7 @@ const TasksField = ({ ...props }) => {
                     picture = todayTomorrowSvg;
                     break;
                   case 'next7After7':
-                    title = 'Next 7';
+                    title = 'Next7/After7';
                     picture = Next7Svg;
                     break;
                   case 'burned':

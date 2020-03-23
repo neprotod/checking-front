@@ -61,4 +61,14 @@
   .container {
     padding-top: 0;
   }
+
+  .createTaskWrapper {
+    padding-right: 40px;
+    margin: 0;
+    max-width: 400px;
+    position: sticky;
+    top: 0;
+    overflow: scroll;
+    height: 100vh;
+  }
 }
