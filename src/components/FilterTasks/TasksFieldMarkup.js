@@ -21,9 +21,18 @@ const TasksFieldMarkup = ({
   const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
     ? styles.taskListOpen
     : styles.taskList;
+
+  const isCreateTaskFormOpenDesktopStylesUl = isCreateTaskFormOpenDesktop
+    ? styles.taskUlOpen
+    : styles.taskUl;
+
+  const isCreateTaskFormOpenDesktopStylesArrow = isCreateTaskFormOpenDesktop
+    ? styles.arrowContainerOpen
+    : styles.arrowContainer;
+
   return (
     <div>
-      <div className={styles.arrowContainer}>
+      <div className={isCreateTaskFormOpenDesktopStylesArrow}>
         <button
           type="button"
           name={name}
@@ -36,7 +45,7 @@ const TasksFieldMarkup = ({
         <div className={styles.line} />
       </div>
       {toggleType && (
-        <ul className={styles.taskUl}>
+        <ul className={isCreateTaskFormOpenDesktopStylesUl}>
           {tasks[tasksType].map(task => (
             <li
               key={task._id}

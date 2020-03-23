@@ -184,11 +184,6 @@ class MainPage extends Component {
             onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
           />
         )}
-        {/* {isCreateTaskFormOpen && (
-          <CreateTask
-            onClickIsCreateTaskFormOpen={this.onClickIsCreateTaskFormOpen}
-          />
-        )} */}
 
         <Media
           queries={{
