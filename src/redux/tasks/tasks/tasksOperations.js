@@ -1,9 +1,5 @@
-import { Notyf } from 'notyf';
 import * as tasksActions from './tasksActions';
 import API from '../../../services/api';
-import 'notyf/notyf.min.css';
-
-const notyf = new Notyf();
 
 const doneOrBurnedFunc = tasks => tasks.filter(el => el.done !== true);
 const sortTasksByDate = tasks => {
@@ -27,7 +23,8 @@ export const filterToday = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.todayError(err));
     });
 };
@@ -45,7 +42,8 @@ export const filterTomorrow = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.tomorrowError(err));
     });
 };
@@ -63,7 +61,8 @@ export const filterNext7Days = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.next7DaysError(err));
     });
 };
@@ -81,7 +80,8 @@ export const filterAfter7Days = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.after7DaysError(err));
     });
 };
@@ -98,7 +98,8 @@ export const filterBurnedOut = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.burnedOutError(err));
     });
 };
@@ -115,7 +116,8 @@ export const filterDone = query => dispatch => {
       }
     })
     .catch(err => {
-      notyf.error('Something went wrong!');
+      localStorage.clear();
+      window.location.reload(true);
       dispatch(tasksActions.doneError(err));
     });
 };
