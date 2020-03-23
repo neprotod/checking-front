@@ -94,6 +94,7 @@ const TasksField = ({ ...props }) => {
     isCreateTaskFormOpen,
     isCreateTaskFormOpenDesktop,
     editTask,
+    deleteTask,
     isRender,
   } = props;
 
@@ -175,6 +176,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={todayToggle}
                 tasksType="tasksToday"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
               />
             )}
@@ -188,6 +190,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={tomorrowToggle}
                 tasksType="tasksTomorrow"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
               />
             )}
@@ -201,6 +204,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={next7DaysToggle}
                 tasksType="tasksNext7Days"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
               />
             )}
@@ -214,6 +218,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={after7DaysToggle}
                 tasksType="tasksAfter7Days"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
               />
             )}
@@ -227,7 +232,9 @@ const TasksField = ({ ...props }) => {
                 toggleType={burnedToggle}
                 tasksType="tasksBurnedOut"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
+                burned
               />
             )}
             {done && (
@@ -240,6 +247,7 @@ const TasksField = ({ ...props }) => {
                 toggleType={doneToggle}
                 tasksType="tasksDone"
                 editTask={editTask}
+                deleteTask={deleteTask}
                 isRender={isRender}
               />
             )}
@@ -281,6 +289,7 @@ TasksField.propTypes = {
   isCreateTaskFormOpen: PropTypes.bool,
   isCreateTaskFormOpenDesktop: PropTypes.bool,
   editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
   isRender: PropTypes.func.isRequired,
 };
 

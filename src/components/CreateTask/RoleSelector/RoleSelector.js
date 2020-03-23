@@ -44,15 +44,9 @@ const RoleSelector = ({
         onClick={roleSelectorDisplayToggle}
       >
         <span>{roleNameToDisplay()}</span>
-        {rolesListIsOpen ? (
-          <svg className={styles.iconArrow}>
-            <use href="#drop_up" />
-          </svg>
-        ) : (
-          <svg className={styles.iconArrow}>
-            <use href="#drop_down" />
-          </svg>
-        )}
+        <svg className={styles.iconArrow}>
+          <use href={rolesListIsOpen ? '#drop_up' : '#drop_down'} />
+        </svg>
       </button>
       {rolesListIsOpen && (
         <ul className={styles.rolesList}>

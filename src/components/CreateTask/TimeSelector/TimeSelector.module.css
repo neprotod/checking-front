@@ -68,6 +68,11 @@
   font-size: 12px;
 }
 
+.timeOptionsItemMobile {
+  composes: timeOptionsItem;
+  width: 150px;
+}
+
 .hourBtn {
   margin: 0;
   padding: 0;

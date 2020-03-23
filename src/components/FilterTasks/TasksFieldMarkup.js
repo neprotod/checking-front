@@ -16,7 +16,9 @@ const TasksFieldMarkup = ({
   tasksType,
   isCreateTaskFormOpenDesktop,
   editTask,
+  deleteTask,
   isRender,
+  burned,
 }) => {
   const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
     ? styles.taskListOpen
@@ -51,13 +53,23 @@ const TasksFieldMarkup = ({
               key={task._id}
               className={isCreateTaskFormOpenDesktopStylesList}
             >
-              <Task task={task} editTask={editTask} isRender={isRender} />
+              <Task
+                task={task}
+                editTask={editTask}
+                deleteTask={deleteTask}
+                isRender={isRender}
+                burned={burned}
+              />
             </li>
           ))}
         </ul>
       )}
     </div>
   );
+};
+
+TasksFieldMarkup.defaultProps = {
+  burned: false,
 };
 
 TasksFieldMarkup.propTypes = {
@@ -70,6 +82,8 @@ TasksFieldMarkup.propTypes = {
   tasksType: PropTypes.string.isRequired,
   toggleType: PropTypes.bool.isRequired,
   editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  burned: PropTypes.bool,
   isRender: PropTypes.func.isRequired,
 };
 

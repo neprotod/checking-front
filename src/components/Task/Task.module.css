@@ -8,6 +8,9 @@
 }
 
 .headerTask {
+  display: flex;
+  align-items: center;
+  height: 40px;
   font-family: font-stack;
   display: flex;
   justify-content: space-between;
@@ -19,30 +22,62 @@
   background-color: dark-blue-color;
   margin: 0;
   color: white;
-  padding: 20px 0 20px 7px;
+  padding: 20px 15px;
   min-height: 74px;
-}
-
-.title {
-  font-weight: 600;
-}
-
-.btnDone,
-.btnEdit {
-  border-radius: 50%;
-  border: none;
-  background-color: light-gray-color;
-  width: 33px;
-  height: 33px;
 }
 
 .footerTask {
   font-family: font-stack;
   display: flex;
   justify-content: space-between;
-  padding: 8px 5px 8px 5px;
+  padding: 8px 15px;
   color: gray-color;
   background-color: white;
+}
+
+.role {
+  color: rgb(65, 65, 65);
+  font-weight: 600;
+}
+
+.priorityTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 1px 1.732px 2px 0px rgba(29, 29, 27, 0.15);
+  font-weight: 600;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.taskControls {
+  display: flex;
+}
+
+.btnDone,
+.btnEdit,
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2px;
+  padding: 2px;
+  border-radius: 50%;
+  border: none;
+  background-color: light-gray-color;
+  width: 33px;
+  height: 33px;
+  cursor: pointer;
+}
+
+.btnDone {
+  margin-right: 0;
 }
 
 .date {
@@ -55,18 +90,29 @@
   margin-right: 5px;
 }
 
-.priorityTask {
-  width: 21px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  box-shadow: 1px 2px 2px 1px rgba(163, 163, 163, 1);
-  font-weight: 600;
+.doneBtn {
+  composes: btnDone;
+  background-color: #ddf0eb;
 }
 
-.role {
-  color: rgb(65, 65, 65);
-  font-weight: 600;
+.burnedBtn {
+  composes: btnDone;
+  background-color: #f5e6e6;
+}
+
+.undoneBtn {
+  composes: btnDone;
+  background-color: #f5f7fa;
+}
+
+.doneIcon {
+  fill: #2bad8d;
+}
+
+.burnedIcon {
+  fill: #f25137;
+}
+
+.undoneIcon {
+  fill: #939393;
 }

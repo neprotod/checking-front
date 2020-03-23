@@ -6,7 +6,15 @@ import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import Task from '../Task/Task';
 
-const MobileTasksFieldMarkup = ({ tasks, title, tasksType, editTask }) => {
+const MobileTasksFieldMarkup = ({
+  tasks,
+  title,
+  tasksType,
+  editTask,
+  deleteTask,
+  isRender,
+  burned,
+}) => {
   return (
     <div>
       <div className={styles.arrowContainer}>
@@ -17,7 +25,13 @@ const MobileTasksFieldMarkup = ({ tasks, title, tasksType, editTask }) => {
         <ul className={styles.taskUl}>
           {tasks[tasksType].map(task => (
             <li key={task._id} className={styles.taskList}>
-              <Task task={task} editTask={editTask} />
+              <Task
+                task={task}
+                editTask={editTask}
+                deleteTask={deleteTask}
+                isRender={isRender}
+                burned={burned}
+              />
             </li>
           ))}
         </ul>
@@ -25,11 +39,19 @@ const MobileTasksFieldMarkup = ({ tasks, title, tasksType, editTask }) => {
     </div>
   );
 };
+
+MobileTasksFieldMarkup.defaultProps = {
+  burned: false,
+};
+
 MobileTasksFieldMarkup.propTypes = {
   tasks: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
   tasksType: PropTypes.string.isRequired,
   editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  isRender: PropTypes.func.isRequired,
+  burned: PropTypes.bool,
 };
 
 const mapStateToProps = store => ({

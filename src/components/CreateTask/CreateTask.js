@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CreateRoleFormContainer from './CreateRoleForm/CreateRoleFormContainer';
+import CreateRoleForm from './CreateRoleForm/CreateRoleFormContainer';
 import CreateTaskForm from './CreateTaskForm/CreateTaskFormContainer';
 import Loader from './Loader/Loader';
 import styles from './CreateTask.module.css';
@@ -52,19 +52,13 @@ class CreateTask extends Component {
               onClick={this.roleFormDisplayToggle}
             >
               <span className={styles.myRolesTitle}>My&nbsp;roles</span>
-              {roleFormIsOpen ? (
-                <svg className={styles.iconArrow}>
-                  <use href="#drop_up" />
-                </svg>
-              ) : (
-                <svg className={styles.iconArrow}>
-                  <use href="#drop_down" />
-                </svg>
-              )}
+              <svg className={styles.iconArrow}>
+                <use href={roleFormIsOpen ? '#drop_up' : '#drop_down'} />
+              </svg>
             </button>
             <div className={styles.line} />
           </div>
-          {roleFormIsOpen && <CreateRoleFormContainer />}
+          {roleFormIsOpen && <CreateRoleForm />}
           <CreateTaskForm
             onClickIsCreateTaskFormOpen={onClickIsCreateTaskFormOpen}
             taskToEdit={taskToEdit}
