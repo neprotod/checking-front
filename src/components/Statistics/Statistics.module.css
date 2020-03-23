@@ -1,5 +1,9 @@
 @value variables: '../../variables.module.css';
-@value dark-blue-color, orange-color, white-color, gray-underline, font-stack from variables;
+@value dark-blue-color, white-color, orange-color, white-color, gray-underline, font-stack from variables;
+
+.statistics__page_wrapper {
+  background-color: white;
+}
 
 .statistics__wrapper {
   font-family: font-stack;
