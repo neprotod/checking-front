@@ -12,7 +12,7 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
   };
 
   const date = new Date(task.start_date);
-  const startHour = new Date(task.start_date).getHours();
+  const startHour = date.getHours();
   const endHour = new Date(task.end_date).getHours();
 
   // eslint-disable-next-line no-nested-ternary
