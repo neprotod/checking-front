@@ -22,7 +22,7 @@ const statisticsRoles = (state = [], { type, payload }) => {
   }
 };
 
-const category = (state = 'all', { type, payload }) => {
+const category = (state = 'Lastweek', { type, payload }) => {
   switch (type) {
     case types.SET_CATEGORY:
       return payload.category;

@@ -67,7 +67,7 @@
   height: 24px;
   margin: 0;
   fill: #cdd0d9;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .menuButtonText {
@@ -216,7 +216,7 @@
     outline: none;
     border: 1px solid #cdd0d9;
     width: 135px;
-    padding: 6px 0 4px 14px;
+    padding: 6px 0 4px 10px;
   }
 
   .menuButton:nth-child(n + 1) {
@@ -226,6 +226,7 @@
 
   .menuButton:last-child {
     border: 1px solid #cdd0d9;
+    padding-left: 14px;
   }
 
   .toggleButton {
@@ -242,13 +243,13 @@
 @media (min-width: 1280px) {
   .wrapper {
     display: flex;
-    width: calc(100vw - 40px);
+    max-width: calc(100vw - 57px);
     padding-left: 40px;
     align-items: flex-start;
   }
 
   .container {
-    width: calc(100vw - 40px);
+    max-width: calc(100vw - 57px);
   }
 
   .tasksContainer {
@@ -261,13 +262,25 @@
     top: 429px;
   }
 
+  .arrowContainer {
+    width: 64vw;
+    margin: 0 auto;
+  }
+
+  .arrowContainerOpen {
+    composes: arrowContainer;
+    width: 61vw;
+  }
+
   .taskUl {
     justify-content: flex-start;
+    width: 64vw;
+    margin: 0 auto;
   }
 
   .taskList {
     margin-right: 40px;
-    width: 21vw;
+    width: 19vw;
   }
 
   .taskList:nth-child(3n) {
@@ -281,17 +294,21 @@
   .taskListOpen {
     composes: taskList;
     composes: taskListOpenStyles;
-    width: 350px;
+    width: 27vw;
   }
-
   .tasksContainerOpen {
     composes: tasksContainer;
     margin: 0 auto;
-    padding-left: 120px;
+    padding-left: 40px;
   }
 
   .containerOpen {
     composes: container;
-    width: 980px;
+    max-width: calc(100vw - 480px);
+  }
+
+  .taskUlOpen {
+    composes: taskUl;
+    width: 61vw;
   }
 }

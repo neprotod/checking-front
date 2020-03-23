@@ -16,14 +16,25 @@ const TasksFieldMarkup = ({
   tasksType,
   isCreateTaskFormOpenDesktop,
   editTask,
+  deleteTask,
   isRender,
+  burned,
 }) => {
   const isCreateTaskFormOpenDesktopStylesList = isCreateTaskFormOpenDesktop
     ? styles.taskListOpen
     : styles.taskList;
+
+  const isCreateTaskFormOpenDesktopStylesUl = isCreateTaskFormOpenDesktop
+    ? styles.taskUlOpen
+    : styles.taskUl;
+
+  const isCreateTaskFormOpenDesktopStylesArrow = isCreateTaskFormOpenDesktop
+    ? styles.arrowContainerOpen
+    : styles.arrowContainer;
+
   return (
     <div>
-      <div className={styles.arrowContainer}>
+      <div className={isCreateTaskFormOpenDesktopStylesArrow}>
         <button
           type="button"
           name={name}
@@ -36,19 +47,29 @@ const TasksFieldMarkup = ({
         <div className={styles.line} />
       </div>
       {toggleType && (
-        <ul className={styles.taskUl}>
+        <ul className={isCreateTaskFormOpenDesktopStylesUl}>
           {tasks[tasksType].map(task => (
             <li
               key={task._id}
               className={isCreateTaskFormOpenDesktopStylesList}
             >
-              <Task task={task} editTask={editTask} isRender={isRender} />
+              <Task
+                task={task}
+                editTask={editTask}
+                deleteTask={deleteTask}
+                isRender={isRender}
+                burned={burned}
+              />
             </li>
           ))}
         </ul>
       )}
     </div>
   );
+};
+
+TasksFieldMarkup.defaultProps = {
+  burned: false,
 };
 
 TasksFieldMarkup.propTypes = {
@@ -61,6 +82,8 @@ TasksFieldMarkup.propTypes = {
   tasksType: PropTypes.string.isRequired,
   toggleType: PropTypes.bool.isRequired,
   editTask: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  burned: PropTypes.bool,
   isRender: PropTypes.func.isRequired,
 };
 

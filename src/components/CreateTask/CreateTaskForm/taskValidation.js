@@ -13,9 +13,11 @@ export const taskSchema = object().shape({
     .test(value => {
       if (value.length === 0) {
         err.title = '(task title is required)*';
+        return false;
       }
       if (value.length > 150) {
         err.title = '(up to 150 characters)*';
+        return false;
       }
       return true;
     })
@@ -24,9 +26,11 @@ export const taskSchema = object().shape({
     .test(value => {
       if (value.length === 0) {
         err.description = '(task description is required)*';
+        return false;
       }
       if (value.length > 800) {
         err.description = '(up to 800 characters)*';
+        return false;
       }
       return true;
     })

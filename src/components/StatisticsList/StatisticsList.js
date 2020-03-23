@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StatisticsListItem from '../StatisticsListItem';
+import StatisticsListHeader from '../StatisticsListHeader';
 
 import styles from './StatisticsList.module.css';
 
@@ -10,11 +11,7 @@ const StatisticsList = ({ statistics }) => {
     <>
       {statistics && (
         <ul className={styles.statistics__list}>
-          <li className={styles.statistics__list_header}>
-            <p className={styles.list__header_title}>Roles</p>
-            <p className={styles.list__header_title}>Role percentage %</p>
-            <p className={styles.list__header_title}>Tasks done / planned</p>
-          </li>
+          <StatisticsListHeader />
           {statistics.map(statistic => (
             <li key={statistic._id} className={styles.statistics__list_item}>
               <StatisticsListItem

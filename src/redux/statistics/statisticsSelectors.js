@@ -28,29 +28,13 @@ const getDoneTasksWithoutRole = store => {
   return tasks.filter(task => task.done);
 };
 
-const withoutRolePercents = store => {
-  const withoutRoleTasks = getTasksWithoutRole(store).length;
-
-  if (withoutRoleTasks) {
-    const allTasks = getDateTasks(store).length;
-
-    const difference = withoutRoleTasks / allTasks;
-
-    return Math.round(difference * 100);
-  }
-
-  return 0;
-};
-
 const getDoneTasksByRole = (store, roleId) => {
   const tasks = getTasksByRole(store, roleId);
 
   return tasks.filter(task => task.done);
 };
 
-const rolePercents = (store, roleId) => {
-  const roleTasks = getTasksByRole(store, roleId).length;
-
+const getPercents = (store, roleTasks) => {
   if (roleTasks) {
     const allTasks = getDateTasks(store).length;
 
@@ -60,6 +44,18 @@ const rolePercents = (store, roleId) => {
   }
 
   return 0;
+};
+
+const rolePercents = (store, roleId) => {
+  const roleTasks = getTasksByRole(store, roleId).length;
+
+  return getPercents(store, roleTasks);
+};
+
+const withoutRolePercents = store => {
+  const withoutRoleTasks = getTasksWithoutRole(store).length;
+
+  return getPercents(store, withoutRoleTasks);
 };
 
 export const statistics = store => {

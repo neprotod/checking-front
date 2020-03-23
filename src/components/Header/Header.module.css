@@ -6,10 +6,13 @@
   .header {
     background-color: white;
     display: flex;
-    width: 100vw;
+    max-width: 100vw;
     height: 40px;
     justify-content: space-between;
     margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .StatisticButton {
