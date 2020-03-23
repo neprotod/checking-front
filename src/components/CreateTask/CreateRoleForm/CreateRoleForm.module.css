@@ -1,5 +1,5 @@
 @value variables: '../../../variables.module.css';
-@value input-gray-color, orange-color, gray-color, red-color, light-gray-color, gray-underline, box-shadow from variables;
+@value input-gray-color, orange-color, red-color, light-gray-color, gray-underline, box-shadow from variables;
 
 .container {
   margin-bottom: 10px;
@@ -124,13 +124,9 @@
   margin-right: 10px;
 }
 
-.iconEdit {
-  fill: gray-color;
+.iconEdit,
+.iconDelete {
+  fill: #939393;
   width: 24px;
   height: 24px;
-}
-
-.iconDelete {
-  composes: iconEdit;
-  fill: red-color;
 }
