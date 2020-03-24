@@ -41,6 +41,7 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
       <div className={styles.bodyTask}>
         <p className={styles.title}>{task.title}</p>
         <p
+          className={styles.pBody}
           style={{
             overflowY: task.description.length > 300 && 'scroll',
             height: 90,
