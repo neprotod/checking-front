@@ -24,13 +24,14 @@
 }
 
 .tasksContainer {
-  width: 70vw;
+  width: 90vw;
   min-height: 86vh;
 }
 
 .taskUl {
   display: flex;
   flex-wrap: wrap;
+  width: 90vw;
   justify-content: space-between;
   padding: 0;
   margin: 0;
@@ -39,7 +40,7 @@
 .taskList {
   list-style: none;
   width: 100vw;
-  max-width: 70vw;
+  max-width: 90vw;
   margin: 10px 0;
 }
 
@@ -186,13 +187,21 @@
   }
 
   .tasksContainer {
-    width: 60vw;
-    max-width: 768px;
+    width: 78vw;
+    max-width: 1279px;
+  }
+
+  .taskUl {
+    width: 78vw;
   }
 
   .menu {
     width: 100vw;
     height: 40px;
+  }
+
+  .arrowContainer {
+    width: 78vw;
   }
 
   .arrowSvg {
@@ -234,8 +243,8 @@
   }
 
   .taskList {
-    width: 28vw;
-    max-width: 768px;
+    width: 38vw;
+    max-width: 767px;
     margin: 20px 0;
   }
 }
@@ -253,8 +262,8 @@
   }
 
   .tasksContainer {
-    max-width: 100vw;
     width: 70vw;
+    max-width: 100vw;
   }
 
   .addTask {
@@ -263,7 +272,7 @@
   }
 
   .arrowContainer {
-    width: 64vw;
+    width: 75vw;
     margin: 0 auto;
   }
 
@@ -273,28 +282,18 @@
   }
 
   .taskUl {
-    justify-content: flex-start;
-    width: 64vw;
+    justify-content: space-between;
+    width: 75vw;
     margin: 0 auto;
   }
 
   .taskList {
-    margin-right: 40px;
-    width: 19vw;
-  }
-
-  .taskList:nth-child(3n) {
-    margin-right: 0;
-  }
-
-  .taskListOpenStyles:nth-child(3n) {
-    margin-right: 40px;
+    width: 23vw;
   }
 
   .taskListOpen {
     composes: taskList;
-    composes: taskListOpenStyles;
-    width: 27vw;
+    width: 29vw;
   }
   .tasksContainerOpen {
     composes: tasksContainer;

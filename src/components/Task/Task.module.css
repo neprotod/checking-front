@@ -22,7 +22,7 @@
   background-color: dark-blue-color;
   margin: 0;
   color: white;
-  padding: 20px 15px;
+  padding: 5px 15px 45px 15px;
   min-height: 74px;
   height: 120px;
 }
@@ -55,6 +55,11 @@
 
 .title {
   font-weight: 600;
+  margin: 5px 0;
+}
+
+.description {
+  margin: 10px 0;
 }
 
 .taskControls {

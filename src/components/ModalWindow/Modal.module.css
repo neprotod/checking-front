@@ -1,0 +1,51 @@
+@value gray-color from '../../variables.module.css';
+@value font-stack from '../../variables.module.css';
+
+.btnAgree {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: gray-color;
+  font-size: 12px;
+  font-family: font-stack;
+}
+
+.closeButton {
+  border-radius: 50%;
+  border: none;
+  width: 35px;
+  height: 35px;
+  background-color: #ffa500;
+  position: sticky;
+  left: 92%;
+  color: #2c2c2c;
+}
+
+.modal {
+  font-size: 11px;
+  font-family: font-stack;
+  position: relative;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  width: 80%;
+  height: 95%;
+  overflow-y: scroll;
+  color: #2c2c2c;
+  background-color: #ffe3af;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 50%;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1260px) {
+  .modal {
+    width: 40%;
+    font-size: 15px;
+  }
+}

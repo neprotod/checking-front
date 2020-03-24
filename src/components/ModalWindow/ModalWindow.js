@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import ModalText from './ModalText';
-import styles from './Modal.css';
+import styles from './Modal.module.css';
 
 Modal.setAppElement('body');
 
@@ -17,23 +17,24 @@ const ModalWindow = () => {
 
   return (
     <div>
-      <button type="button" style={styles.btnAgree} onClick={openModal}>
+      <button type="button" className={styles.btnAgree} onClick={openModal}>
         Agreed with Privacy Policy
       </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={styles.modal}
+        className={styles.modal}
         contentLabel="Example Modal"
       >
-        <button type="button" style={styles.xButton} onClick={closeModal}>
-          X
-        </button>
         <div>
           <ModalText />
         </div>
-        <button type="button" style={styles.closeButton} onClick={closeModal}>
-          close
+        <button
+          type="button"
+          className={styles.closeButton}
+          onClick={closeModal}
+        >
+          &#10006;
         </button>
       </Modal>
     </div>
