@@ -24,16 +24,6 @@
   margin-bottom: 30px;
 }
 
-.btnAgree {
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  color: gray-color;
-  font-size: 12px;
-  font-family: font-stack;
-  background-color: #eeeeee7c;
-}
-
 label {
   font-size: 14px;
   margin: 10px 0;
@@ -95,7 +85,7 @@ label {
 @media (min-width: 1280px) {
   .image {
     display: block;
-    height: 750px;
+    height: 100vh;
     width: 100%;
   }
 
