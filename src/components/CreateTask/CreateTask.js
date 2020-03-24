@@ -39,12 +39,14 @@ class CreateTask extends Component {
 
     return (
       <div className={styles.createTaskWrapper}>
-        {isFormLoading && <Loader />}
         <IconsSprite />
         <div className={styles.container}>
-          <h3 className={styles.header}>
-            {taskToEdit ? 'Edit Task' : 'Create task'}
-          </h3>
+          <div className={styles.headingWrapper}>
+            <h3 className={styles.heading}>
+              {taskToEdit ? 'Edit Task' : 'Create task'}
+            </h3>
+            {isFormLoading && <Loader />}
+          </div>
           <div className={styles.row}>
             <button
               className={styles.openRoleFormBtn}
