@@ -39,7 +39,7 @@ class StatisticsPage extends Component {
 
     return (
       <div className={styles.statistics__page_wrapper}>
-        {isLoading && <Loader />}
+        {isLoading && <Loader inner />}
         <Statistics />
       </div>
     );
