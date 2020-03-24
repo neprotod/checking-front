@@ -14,8 +14,15 @@
   padding: 54px 0 62px;
 }
 
-.header {
+.headingWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 0 24px;
+}
+
+.heading {
+  margin: 0;
   font-weight: 500;
 }
 

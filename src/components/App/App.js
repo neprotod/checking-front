@@ -15,7 +15,7 @@ const App = ({ isLoading, isAuth, isTasksLoading }) => {
   return (
     <>
       {isLoading && <Loader />}
-      {isTasksLoading && <Loader />}
+      {isTasksLoading && <Loader inner />}
       {!isAuth && <Auth />}
       {isAuth && <Header />}
       <Switch>
