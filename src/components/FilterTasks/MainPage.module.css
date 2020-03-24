@@ -282,19 +282,33 @@
   }
 
   .taskUl {
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 75vw;
     margin: 0 auto;
   }
 
   .taskList {
     width: 23vw;
+    margin-right: 38px;
+  }
+
+  .taskList:nth-child(3n) {
+    margin-right: 0;
   }
 
   .taskListOpen {
     composes: taskList;
     width: 29vw;
   }
+
+  .taskListOpen:nth-child(3n) {
+    margin-right: 38px;
+  }
+
+  .taskListOpen:nth-child(2n) {
+    margin-right: 0;
+  }
+
   .tasksContainerOpen {
     composes: tasksContainer;
     margin: 0 auto;
