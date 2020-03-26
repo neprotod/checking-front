@@ -16,7 +16,7 @@ const Auth = () => {
   return (
     <div className={styles.wrap}>
       <header className={styles.logo}>
-        <p>LOGO</p>
+        <p>Checking</p>
       </header>
 
       <div className={styles.container}>
