@@ -1,7 +1,11 @@
 import * as tasksActions from './tasksActions';
 import API from '../../../services/api';
 
-const doneOrBurnedFunc = tasks => tasks.filter(el => el.done !== true);
+const nowTime = Date.parse(new Date());
+
+const isTaskDone = tasks => tasks.filter(el => el.done !== true);
+const isTaskBurned = tasks =>
+  tasks.filter(el => (Date.parse(el.end_date) - nowTime) / 1000 / 60 > 0);
 const sortTasksByDate = tasks => {
   return tasks.sort((a, b) => {
     const dateA = new Date(a.start_date);
@@ -15,8 +19,9 @@ export const filterToday = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        const arrToday = doneOrBurnedFunc(res.data[0].tasks);
-        const arrTodaySorted = sortTasksByDate(arrToday);
+        const arrTodayNotDone = isTaskDone(res.data[0].tasks);
+        const arrTodayNotBurned = isTaskBurned(arrTodayNotDone);
+        const arrTodaySorted = sortTasksByDate(arrTodayNotBurned);
         dispatch(tasksActions.todaySuccess(arrTodaySorted));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.todaySuccess(res.data));
@@ -34,8 +39,9 @@ export const filterTomorrow = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        const arrTomorrow = doneOrBurnedFunc(res.data[0].tasks);
-        const arrTomorrowSorted = sortTasksByDate(arrTomorrow);
+        const arrTomorrowNotDone = isTaskDone(res.data[0].tasks);
+        const arrTomorrowNotBurned = isTaskBurned(arrTomorrowNotDone);
+        const arrTomorrowSorted = sortTasksByDate(arrTomorrowNotBurned);
         dispatch(tasksActions.tomorrowSuccess(arrTomorrowSorted));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.tomorrowSuccess(res.data));
@@ -53,8 +59,9 @@ export const filterNext7Days = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        const arrNext7Days = doneOrBurnedFunc(res.data[0].tasks);
-        const arrNext7DaysSorted = sortTasksByDate(arrNext7Days);
+        const arrNext7DaysNotDone = isTaskDone(res.data[0].tasks);
+        const arrNext7DaysNotBurned = isTaskBurned(arrNext7DaysNotDone);
+        const arrNext7DaysSorted = sortTasksByDate(arrNext7DaysNotBurned);
         dispatch(tasksActions.next7DaysSuccess(arrNext7DaysSorted));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.next7DaysSuccess(res.data));
@@ -72,8 +79,9 @@ export const filterAfter7Days = query => dispatch => {
   API.getTasks(query)
     .then(res => {
       if (res.data.length > 0) {
-        const arrAfter7Days = doneOrBurnedFunc(res.data[0].tasks);
-        const arrAfter7DaysSorted = sortTasksByDate(arrAfter7Days);
+        const arrAfter7DaysNotDone = isTaskDone(res.data[0].tasks);
+        const arrAfter7DaysNotBurned = isTaskBurned(arrAfter7DaysNotDone);
+        const arrAfter7DaysSorted = sortTasksByDate(arrAfter7DaysNotBurned);
         dispatch(tasksActions.after7DaysSuccess(arrAfter7DaysSorted));
       } else if (res.data.length === 0) {
         dispatch(tasksActions.after7DaysSuccess(res.data));
