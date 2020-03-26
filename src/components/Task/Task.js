@@ -11,9 +11,18 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
     isRender();
   };
 
-  const date = new Date(task.start_date);
-  const startHour = date.getHours();
-  const endHour = new Date(task.end_date).getHours();
+  const startDate = new Date(task.start_date);
+  const endDate = new Date(task.end_date);
+
+  const startHour = startDate.getHours();
+  let endHour = endDate.getHours();
+
+  if (endHour === 23) {
+    const minutes = endDate.getMinutes();
+    if (minutes === 59) {
+      endHour = 24;
+    }
+  }
 
   // eslint-disable-next-line no-nested-ternary
   const taskState = task.done ? 'done' : burned ? 'burned' : 'undone';
@@ -52,7 +61,7 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
       </div>
       <div className={styles.footerTask}>
         <div className={styles.date}>
-          <span className={styles.span}>{dateFormat(date, 'mmm dd')}</span>
+          <span className={styles.span}>{dateFormat(startDate, 'mmm dd')}</span>
           <span>
             {`${startHour}:00`} - {`${endHour}:00`}
           </span>

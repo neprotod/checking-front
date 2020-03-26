@@ -21,9 +21,17 @@ const TimeSelector = ({
     );
   };
 
-  const timeOptionsItemStyle = isMobileDevice()
-    ? 'timeOptionsItemMobile'
-    : 'timeOptionsItem';
+  const isMobile = isMobileDevice();
+
+  const startTimeOptionStyle =
+    isMobile || startHours().length < 4
+      ? 'timeOptionsItemWide'
+      : 'timeOptionsItemThin';
+
+  const endTimeOptionStyle =
+    isMobile || endHours().length < 4
+      ? 'timeOptionsItemWide'
+      : 'timeOptionsItemThin';
 
   return (
     <div className={styles.container}>
@@ -46,7 +54,7 @@ const TimeSelector = ({
                 {startHours().map(hour => (
                   <li
                     key={`${hour}_start`}
-                    className={styles[timeOptionsItemStyle]}
+                    className={styles[startTimeOptionStyle]}
                   >
                     <button
                       className={styles.hourBtn}
@@ -82,7 +90,7 @@ const TimeSelector = ({
                 {endHours().map(hour => (
                   <li
                     key={`${hour}_end`}
-                    className={styles[timeOptionsItemStyle]}
+                    className={styles[endTimeOptionStyle]}
                   >
                     <button
                       className={styles.hourBtn}
