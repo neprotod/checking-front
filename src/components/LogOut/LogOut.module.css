@@ -1,5 +1,5 @@
 @value variables: '../../variables.module.css';
-@value font-stack, text-gray-color, white-color from variables;
+@value font-stack, dark-blue-color, text-gray-color, white-color from variables;
 
 @media (max-width: 767px) {
   .logoutButton {
@@ -20,4 +20,9 @@
   color: text-gray-color;
   padding: 0;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.logoutButton:hover {
+  color: dark-blue-color;
 }

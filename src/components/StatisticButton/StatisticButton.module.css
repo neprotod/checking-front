@@ -1,5 +1,5 @@
 @value variables: '../../variables.module.css';
-@value input-gray-color, dark-grey-color from variables;
+@value light-gray-color, dark-grey-color from variables;
 
 .statisticsSvg {
   display: none;
@@ -14,7 +14,7 @@
 @media (min-width: 768px) {
   .statisticsSvg {
     position: absolute;
-    background-color: input-gray-color;
+    background-color: #cdd0d9;
     margin: 0;
     transition: 400ms;
     width: 50px;
@@ -23,5 +23,12 @@
     align-items: center;
     justify-content: center;
     display: flex;
+  }
+  .statisticsSvg:hover {
+    background-color: light-gray-color;
+  }
+
+  .statisticsSvg:hover > svg {
+    fill: #cdd0d9;
   }
 }
