@@ -31,7 +31,7 @@
   font-family: font-stack;
   display: flex;
   justify-content: space-between;
-  padding: 8px 15px;
+  padding: 8px 10px;
   color: gray-color;
   background-color: white;
 }
