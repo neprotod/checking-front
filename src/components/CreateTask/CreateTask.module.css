@@ -77,5 +77,6 @@
     top: 6%;
     overflow: scroll;
     height: 100vh;
+    z-index: 2;
   }
 }
