@@ -1,9 +1,5 @@
-@value gray-color from '../../../variables.module.css';
-@value dark-blue-color from '../../../variables.module.css';
-@value font-stack from '../../../variables.module.css';
-@value orange-color from '../../../variables.module.css';
-@value red-color from '../../../variables.module.css';
-@value gray-background-color from '../../../variables.module.css';
+@value variables: '../../../variables.module.css';
+@value gray-color, dark-blue-color, font-stack, orange-color, red-color, gray-background-color, white-color, light-gray-color, input-gray-color, text-gray-color, box-shadow from variables;
 
 .title {
   font-family: font-stack;
@@ -26,7 +22,7 @@
 
 .btnAgree {
   border: none;
-  background-color: white;
+  background-color: white-color;
   cursor: pointer;
   color: gray-color;
   font-size: 12px;
@@ -36,6 +32,7 @@
 
 label {
   font-size: 14px;
+  color: text-gray-color;
   margin: 10px 0;
 }
 
@@ -46,12 +43,19 @@ label {
 .btn {
   background-color: orange-color;
   border: none;
+  cursor: pointer;
   width: 100%;
-  padding: 15px 0;
-  color: white;
+  padding: 18px 0;
+  color: white-color;
   font-weight: 600;
+  font-size: 16px;
   font-family: font-stack;
   margin-bottom: 30px;
+  transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: rgb(209, 88, 7);
 }
 
 .error {
@@ -61,10 +65,14 @@ label {
 
 .inputOne,
 .inputTwo {
-  background-color: gray-background-color;
-  padding: 5px;
-  border-width: 0.5px;
-  box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+  border: 1px light-gray-color solid;
+  box-shadow: box-shadow;
+  background-color: light-gray-color;
+  padding: 11px 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: dark-blue-color;
+  transition: 0.3s ease-in-out;
 }
 
 .inputOne {
