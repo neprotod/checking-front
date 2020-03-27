@@ -19,8 +19,8 @@ const StatisticsListItem = ({
         />
         <p className={styles.item__name}>{role}</p>
       </div>
-      <p className={styles.item__value}>{precents} %</p>
-      <p className={styles.item__value}>
+      <p className={styles.item__percentage}>{precents} %</p>
+      <p className={styles.item__completed}>
         {completedTask} / {totalRoleTasks}
       </p>
     </>

@@ -1,5 +1,6 @@
 .item__name_wrapper {
   position: relative;
+  width: 50%;
 }
 
 .item__element_color {
@@ -14,6 +15,23 @@
   margin-left: 25px;
 }
 
-.item__value {
+.item__percentage {
   margin: 0;
+  width: 25%;
+  text-align: center;
+}
+
+.item__completed {
+  composes: item__percentage;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .item__name_wrapper {
+    width: 36%;
+  }
+  .item__percentage,
+  .item__completed {
+    width: 32%;
+  }
 }
