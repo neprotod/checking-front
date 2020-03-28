@@ -18,12 +18,27 @@
 }
 
 .list__header_title {
-  max-width: 85px;
+  width: 50%;
   margin: 0;
+}
+
+.list__header_title:nth-child(2) {
+  width: 25%;
+  text-align: center;
+}
+
+.list__header_title:last-child {
+  width: 25%;
+  text-align: right;
 }
 
 @media (min-width: 768px) {
   .list__header_title {
-    max-width: 250px;
+    width: 36%;
+  }
+
+  .list__header_title:nth-child(2),
+  .list__header_title:last-child {
+    width: 32%;
   }
 }

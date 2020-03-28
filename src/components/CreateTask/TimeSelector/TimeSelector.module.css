@@ -60,7 +60,7 @@
   list-style: none;
 }
 
-.timeOptionsItem {
+.timeOptionsItemThin {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,8 +68,8 @@
   font-size: 12px;
 }
 
-.timeOptionsItemMobile {
-  composes: timeOptionsItem;
+.timeOptionsItemWide {
+  composes: timeOptionsItemThin;
   width: 150px;
 }
 

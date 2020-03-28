@@ -468,7 +468,7 @@ class CreateTaskForm extends Component {
             ) : (
               <>
                 <span className={styles.inputLabelSmall}>
-                  (up to 150 characters)
+                  (up to 60 characters)
                 </span>
                 <span className={styles.required}>*</span>
               </>
