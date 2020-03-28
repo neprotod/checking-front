@@ -139,7 +139,7 @@
 .addTask {
   width: 57px;
   height: 57px;
-  border-radius: 29px;
+  border-radius: 50%;
   border: none;
   background-color: #ff6b08;
   font-size: 230%;
@@ -148,6 +148,7 @@
   right: 18px;
   bottom: 25px;
   cursor: pointer;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15);
 }
 
 .addTask:focus {
@@ -252,13 +253,24 @@
 @media (min-width: 1280px) {
   .wrapper {
     display: flex;
-    max-width: calc(100vw - 57px);
-    padding-left: 40px;
+
+    position: relative;
     align-items: flex-start;
+  }
+  .wrapper::before {
+    content: '';
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 1;
+    box-shadow: 2px 3.464px 8px 0px rgba(29, 29, 27, 0.1);
   }
 
   .container {
-    max-width: calc(100vw - 57px);
+    max-width: 100%;
   }
 
   .tasksContainer {
@@ -267,8 +279,9 @@
   }
 
   .addTask {
-    left: 12px;
-    top: 429px;
+    left: 22px;
+    top: 50%;
+    z-index: 2;
   }
 
   .arrowContainer {

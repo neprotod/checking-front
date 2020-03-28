@@ -89,7 +89,11 @@ const Registration = ({ onSave }) => {
                   className={styles.error}
                 />
                 <div className={styles.wrapAgree}>
-                  <Field type="checkbox" name="acceptPolicy" />
+                  <Field
+                    type="checkbox"
+                    name="acceptPolicy"
+                    className={styles.accept_policy}
+                  />
                   <ErrorMessage
                     name="acceptPolicy"
                     component="div"

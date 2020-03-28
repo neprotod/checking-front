@@ -20,12 +20,12 @@
 
 @media (min-width: 768px) {
   .loaderInner {
-    top: 40px;
+    top: 50px;
   }
 }
 
 @media (min-width: 1280px) {
   .loaderInner {
-    left: 40px;
+    left: 50px;
   }
 }
