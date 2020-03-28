@@ -15,8 +15,8 @@ export const taskSchema = object().shape({
         err.title = '(task title is required)*';
         return false;
       }
-      if (value.length > 150) {
-        err.title = '(up to 150 characters)*';
+      if (value.length > 60) {
+        err.title = '(up to 60 characters)*';
         return false;
       }
       return true;
