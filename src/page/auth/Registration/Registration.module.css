@@ -86,7 +86,9 @@ label {
   .image {
     display: block;
     height: 100vh;
-    width: 100%;
+    width: 60%;
+    position: absolute;
+    top: 0;
   }
 
   .imageContainer {
