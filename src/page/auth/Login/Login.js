@@ -10,6 +10,7 @@ import styles from './Login.module.css';
 import googleIcon from '../../../materials/svg/icons8-google.svg';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
 import imageAuth from '../../../materials/imageAuth.jpg';
+import config from '../../../config';
 
 const Login = ({ location, onLogin, onGoogle }) => {
   if (location && location.search) {
@@ -80,7 +81,7 @@ const Login = ({ location, onLogin, onGoogle }) => {
                 Log in
               </button>
               <a
-                href="http://localhost:3030/api/user/google"
+                href={`${config.baseUrl}user/google`}
                 className={styles.googleSignUpButton}
               >
                 <div className={styles.googleBtnContentWraper}>
