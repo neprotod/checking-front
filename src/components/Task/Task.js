@@ -49,15 +49,7 @@ const Task = ({ task, editTask, deleteTask, isRender, burned }) => {
       </div>
       <div className={styles.bodyTask}>
         <p className={styles.title}>{task.title}</p>
-        <p
-          className={styles.description}
-          style={{
-            overflowY: task.description.length > 300 && 'scroll',
-            height: 92,
-          }}
-        >
-          {task.description}
-        </p>
+        <p className={styles.description}>{task.description}</p>
       </div>
       <div className={styles.footerTask}>
         <div className={styles.date}>

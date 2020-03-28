@@ -22,16 +22,17 @@
   background-color: dark-blue-color;
   margin: 0;
   color: white;
-  padding: 5px 15px 45px 15px;
+  padding: 5px 18px 5px 10px;
   min-height: 74px;
-  height: 120px;
+  height: 160px;
+  overflow-y: overlay;
 }
 
 .footerTask {
   font-family: font-stack;
   display: flex;
   justify-content: space-between;
-  padding: 8px 15px;
+  padding: 8px 10px;
   color: gray-color;
   background-color: white;
 }
