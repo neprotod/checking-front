@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Auth from '../Auth/index';
 import Header from '../Header/Header';
 
 import Loader from '../Loader/Loader';
@@ -11,12 +10,13 @@ import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import routes from '../../routes/routes';
 import ProtectedRoute from '../ProtectedRoute/index';
 
+import './App.css';
+
 const App = ({ isLoading, isAuth, isTasksLoading }) => {
   return (
     <>
       {isLoading && <Loader />}
       {isTasksLoading && <Loader main />}
-      {!isAuth && <Auth />}
       {isAuth && <Header />}
       <Switch>
         <Route

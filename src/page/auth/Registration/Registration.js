@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import styles from './Registration.module.css';
-
 import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import imageAuth from '../../../materials/imageAuth.jpg';
+// eslint-disable-next-line import/no-cycle
+import Auth from '../../../components/Auth';
 
 const Registration = ({ onSave }) => {
   return (
@@ -43,75 +43,75 @@ const Registration = ({ onSave }) => {
       render={() => {
         return (
           <div className={styles.wrapAuth}>
-            <Form className={styles.form}>
-              <p className={styles.title}>Your Account</p>
-              <div className={styles.container}>
-                <label htmlFor="email">
-                  E-mail<span className={styles.span}>*</span>
-                </label>
-                <Field
-                  placeholder="your@email.com"
-                  name="email"
-                  type="email"
-                  className={styles.input}
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className={styles.error}
-                />
-                <label htmlFor="password">
-                  Password<span className={styles.span}>*</span>
-                </label>
-                <Field
-                  placeholder="yourpassword"
-                  name="password"
-                  type="password"
-                  className={styles.input}
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className={styles.error}
-                />
-                <label htmlFor="confirmPassword">
-                  Password Confirmation<span className={styles.span}>*</span>
-                </label>
-                <Field
-                  placeholder="confirmation"
-                  name="confirmPassword"
-                  type="password"
-                  className={styles.input}
-                />
-                <ErrorMessage
-                  name="confirmPassword"
-                  component="div"
-                  className={styles.error}
-                />
-                <div className={styles.wrapAgree}>
+            <div className={styles.formContainer}>
+              <Auth />
+              <Form className={styles.form}>
+                <p className={styles.title}>Your Account</p>
+                <div className={styles.container}>
+                  <label htmlFor="email">
+                    E-mail<span className={styles.span}>*</span>
+                  </label>
                   <Field
-                    type="checkbox"
-                    name="acceptPolicy"
-                    className={styles.accept_policy}
+                    placeholder="your@email.com"
+                    name="email"
+                    type="email"
+                    className={styles.input}
                   />
                   <ErrorMessage
-                    name="acceptPolicy"
+                    name="email"
                     component="div"
                     className={styles.error}
                   />
-                  <ModalWindow />
+                  <label htmlFor="password">
+                    Password<span className={styles.span}>*</span>
+                  </label>
+                  <Field
+                    placeholder="yourpassword"
+                    name="password"
+                    type="password"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className={styles.error}
+                  />
+                  <label htmlFor="confirmPassword">
+                    Password Confirmation
+                    <span className={styles.span}>*</span>
+                  </label>
+                  <Field
+                    placeholder="confirmation"
+                    name="confirmPassword"
+                    type="password"
+                    className={styles.input}
+                  />
+                  <ErrorMessage
+                    name="confirmPassword"
+                    component="div"
+                    className={styles.error}
+                  />
+                  <div className={styles.wrapAgree}>
+                    <Field
+                      type="checkbox"
+                      name="acceptPolicy"
+                      className={styles.accept_policy}
+                    />
+                    <ErrorMessage
+                      name="acceptPolicy"
+                      component="div"
+                      className={styles.error}
+                    />
+                    <ModalWindow />
+                  </div>
                 </div>
-              </div>
-              <button className={styles.btn} type="submit">
-                Registration
-              </button>
-            </Form>
+                <button className={styles.btn} type="submit">
+                  Registration
+                </button>
+              </Form>
+            </div>
             <div className={styles.imageContainer}>
-              <img
-                className={styles.image}
-                src={imageAuth}
-                alt="boy with lap book"
-              />
+              <div className={styles.img} />
             </div>
           </div>
         );
