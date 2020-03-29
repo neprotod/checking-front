@@ -11,7 +11,8 @@
   align-items: center;
 }
 
-.loaderInner {
+.loaderMain,
+.loaderStatistics {
   composes: loader;
   top: 0;
   left: 0;
@@ -19,13 +20,14 @@
 }
 
 @media (min-width: 768px) {
-  .loaderInner {
+  .loaderMain,
+  .loaderStatistics {
     top: 50px;
   }
 }
 
 @media (min-width: 1280px) {
-  .loaderInner {
+  .loaderMain {
     left: 50px;
   }
 }
