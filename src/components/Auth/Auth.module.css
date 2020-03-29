@@ -63,9 +63,9 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .wrap {
+  /*.wrap {
     display: flex;
     width: 35%;
     padding-top: 121px;
-  }
+  }*/
 }

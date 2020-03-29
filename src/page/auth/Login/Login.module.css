@@ -141,12 +141,32 @@ label {
 @media (min-width: 1280px) {
   .wrapAuth {
     display: flex;
+    overflow: hidden;
+    position: relative;
+    min-height: 100%;
+    align-items: center;
+  }
+
+  .formContainer {
+    width: 40%;
   }
 
   .form {
     width: 354px;
   }
-
+  .imageContainer {
+    position: relative;
+    width: 60%;
+    align-self: start;
+  }
+  .image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  /*
   .image {
     display: block;
     height: 100vh;
@@ -154,10 +174,12 @@ label {
     position: absolute;
     top: 0;
   }
-
+  */
+  /*
   .imageContainer {
     width: 60%;
   }
+  */
 
   .btn {
     margin-top: 30px;
