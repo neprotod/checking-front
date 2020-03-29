@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import LoaderComponent from 'react-loader-spinner';
 import styles from './Loader.module.css';
 
-const Loader = ({ inner }) => {
+const Loader = ({ main, statistics }) => {
+  // eslint-disable-next-line no-nested-ternary
+  const loaderStyle = main
+    ? 'loaderMain'
+    : statistics
+    ? 'loaderStatistics'
+    : 'loader';
   return (
-    <div className={inner ? styles.loaderInner : styles.loader}>
+    <div className={styles[loaderStyle]}>
       <LoaderComponent
         type="ThreeDots"
         color="#ff6b08"
@@ -17,11 +23,13 @@ const Loader = ({ inner }) => {
 };
 
 Loader.defaultProps = {
-  inner: false,
+  main: false,
+  statistics: false,
 };
 
 Loader.propTypes = {
-  inner: PropTypes.bool,
+  main: PropTypes.bool,
+  statistics: PropTypes.bool,
 };
 
 export default Loader;

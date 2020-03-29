@@ -16,7 +16,7 @@ const App = ({ isLoading, isAuth, isTasksLoading }) => {
   return (
     <>
       {isLoading && <Loader />}
-      {isTasksLoading && <Loader inner />}
+      {isTasksLoading && <Loader main />}
       {isAuth && <Header />}
       <Switch>
         <Route
