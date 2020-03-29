@@ -25,7 +25,6 @@
 
 .tasksContainer {
   width: 90vw;
-  min-height: 86vh;
 }
 
 .taskUl {
@@ -100,7 +99,7 @@
   flex-wrap: wrap;
   justify-content: center;
   position: sticky;
-  height: 100vh;
+  height: calc(100vh - 40px);
   z-index: 1;
 }
 
@@ -177,7 +176,8 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    background-color: white;
+    background-color: #f5f7fa;
+    min-height: calc(100vh - 50px);
   }
 
   .container {
@@ -253,7 +253,6 @@
 @media (min-width: 1280px) {
   .wrapper {
     display: flex;
-
     position: relative;
     align-items: flex-start;
   }
