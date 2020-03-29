@@ -64,6 +64,12 @@
   background-color: gray-underline;
 }
 
+@media (min-width: 768px) {
+  .createTaskWrapper {
+    min-height: calc(100vh - 50px);
+  }
+}
+
 @media (min-width: 1280px) {
   .container {
     padding-top: 0;
@@ -75,8 +81,8 @@
     max-width: 400px;
     position: sticky;
     top: 6%;
-    overflow: scroll;
-    height: 100vh;
+    overflow-y: scroll;
     z-index: 2;
+    height: 100vh;
   }
 }
