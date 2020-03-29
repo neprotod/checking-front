@@ -9,7 +9,6 @@ import * as authActions from '../../../redux/auth/authActions';
 import styles from './Login.module.css';
 import googleIcon from '../../../materials/svg/icons8-google.svg';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import imageAuth from '../../../materials/imageAuth.jpg';
 import config from '../../../config';
 // eslint-disable-next-line import/no-cycle
 import Auth from '../../../components/Auth';
@@ -96,12 +95,7 @@ const Login = ({ location, onLogin, onGoogle }) => {
               </Form>
             </div>
             <div className={styles.imageContainer}>
-              1
-              <img
-                className={styles.image}
-                src={imageAuth}
-                alt="boy with lap book"
-              />
+              <div className={styles.img} />
             </div>
           </div>
         );

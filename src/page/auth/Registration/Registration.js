@@ -6,11 +6,8 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import * as authOperations from '../../../redux/auth/authOperations';
 import styles from './Registration.module.css';
-
 import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 import withAuthRedirect from '../../../hoc/withAuthRedirect';
-import imageAuth from '../../../materials/imageAuth.jpg';
-
 // eslint-disable-next-line import/no-cycle
 import Auth from '../../../components/Auth';
 
@@ -45,9 +42,9 @@ const Registration = ({ onSave }) => {
       }}
       render={() => {
         return (
-          <>
-            <Auth />
-            <div className={styles.wrapAuth}>
+          <div className={styles.wrapAuth}>
+            <div className={styles.formContainer}>
+              <Auth />
               <Form className={styles.form}>
                 <p className={styles.title}>Your Account</p>
                 <div className={styles.container}>
@@ -80,7 +77,8 @@ const Registration = ({ onSave }) => {
                     className={styles.error}
                   />
                   <label htmlFor="confirmPassword">
-                    Password Confirmation<span className={styles.span}>*</span>
+                    Password Confirmation
+                    <span className={styles.span}>*</span>
                   </label>
                   <Field
                     placeholder="confirmation"
@@ -111,15 +109,11 @@ const Registration = ({ onSave }) => {
                   Registration
                 </button>
               </Form>
-              <div className={styles.imageContainer}>
-                <img
-                  className={styles.image}
-                  src={imageAuth}
-                  alt="boy with lap book"
-                />
-              </div>
             </div>
-          </>
+            <div className={styles.imageContainer}>
+              <div className={styles.img} />
+            </div>
+          </div>
         );
       }}
     />
