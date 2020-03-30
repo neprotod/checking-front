@@ -123,7 +123,7 @@ class CreateTaskForm extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { selectedRole } = this.state;
+    const { selectedRole, startDate } = this.state;
     const { roles } = this.props;
 
     if (roles.length !== prevProps.roles.length) {
@@ -207,6 +207,8 @@ class CreateTaskForm extends Component {
     } else {
       this.setState({ minStartHour: 0, startHour: 0, endHour: 0 });
     }
+
+    this.setState({ datePickerIsOpen: false });
   };
 
   onSetStartHour = async ({ currentTarget }) => {

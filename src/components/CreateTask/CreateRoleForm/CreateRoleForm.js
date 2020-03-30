@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SketchPicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 import Message from '../Message/Message';
 import roleSchema from './roleValidation';
 import styles from './CreateRoleForm.module.css';
@@ -31,6 +31,39 @@ class CreateRoleForm extends Component {
     messageText: '',
   };
 
+  colors = [
+    '#fb2135',
+    '#e76813',
+    '#ff9800',
+    '#ffc107',
+    '#ffeb3b',
+    '#bade57',
+    '#baf834',
+    '#83e42d',
+    '#54a467',
+    '#3ab8b1',
+    '#4de6dd',
+    '#54e2f3',
+    '#afe2fc',
+    '#54c4f3',
+    '#4c9cdf',
+    '#4775dd',
+    '#6363f9',
+    '#917af4',
+    '#d07af4',
+    '#af1ed8',
+    '#f860d3',
+    '#fab2e0',
+    '#f5749f',
+    '#fb5f7d',
+    '#7474ae',
+    '#749eae',
+    '#adbca1',
+    '#c7b5b7',
+    '#9c88a0',
+    '#7c7c83',
+  ];
+
   componentDidMount() {
     const { getRoles } = this.props;
     getRoles();
@@ -41,7 +74,7 @@ class CreateRoleForm extends Component {
   };
 
   handleColorChange = color => {
-    this.setState({ roleColor: color.hex });
+    this.setState({ roleColor: color.hex, colorPickerIsOpen: false });
   };
 
   colorPickerDisplayToggle = () => {
@@ -155,8 +188,10 @@ class CreateRoleForm extends Component {
             </svg>
           </button>
           {colorPickerIsOpen && (
-            <SketchPicker
+            <CirclePicker
               className={styles.colorPicker}
+              width={268}
+              colors={this.colors}
               color={roleColor}
               onChangeComplete={this.handleColorChange}
             />

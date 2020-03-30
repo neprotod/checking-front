@@ -62,7 +62,12 @@
   position: absolute;
   z-index: 3;
   top: 50px;
-  right: 10px;
+  left: 26px;
+  box-sizing: border-box;
+  padding: 10px 0 0 14px;
+  background-color: #fff;
+  border: 1px solid #aeaeae;
+  border-radius: 5px;
 }
 
 .saveRoleBtn {
