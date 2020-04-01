@@ -1,12 +1,6 @@
 @value variables: '../../variables.module.css';
 @value font-stack, dark-blue-color, text-gray-color, white-color from variables;
 
-@media (max-width: 767px) {
-  .logoutButton {
-    top: 450px;
-  }
-}
-
 .logoutButton {
   font-family: font-stack;
   font-size: 12px;
@@ -25,4 +19,10 @@
 
 .logoutButton:hover {
   color: dark-blue-color;
+}
+
+@media (max-width: 767px) {
+  .logoutButton {
+    position: static;
+  }
 }

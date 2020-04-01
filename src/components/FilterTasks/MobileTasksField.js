@@ -20,7 +20,7 @@ const MobileTasksField = ({ ...props }) => {
 
   const StyledBurger = styled.button`
     position: fixed;
-    z-index: 100;
+    z-index: 200;
     right: 10px;
     top: 10px;
     display: flex;
@@ -67,15 +67,15 @@ const MobileTasksField = ({ ...props }) => {
   let burned = false;
   return (
     <>
-      <p className={styles.burgerMenu}>
-        {!isCreateTaskFormOpen && !statistics && (
+      {!isCreateTaskFormOpen && !statistics && (
+        <p className={styles.burgerMenu}>
           <StyledBurger open={isModalOpen} onClick={onClickIsModalOpen}>
             <div />
             <div />
             <div />
           </StyledBurger>
-        )}
-      </p>
+        </p>
+      )}
       <div className={modalMenuStyle}>
         <ModalMenu {...props} />
       </div>
