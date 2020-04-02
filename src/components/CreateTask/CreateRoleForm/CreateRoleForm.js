@@ -1,7 +1,9 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CirclePicker } from 'react-color';
+import $ from 'jquery';
 import Message from '../Message/Message';
 import roleSchema from './roleValidation';
 import styles from './CreateRoleForm.module.css';
@@ -67,6 +69,10 @@ class CreateRoleForm extends Component {
   componentDidMount() {
     const { getRoles } = this.props;
     getRoles();
+
+    document
+      .querySelector('#root')
+      .addEventListener('click', this.closeColorPicker);
   }
 
   onInputChange = ({ target }) => {
@@ -74,16 +80,35 @@ class CreateRoleForm extends Component {
   };
 
   handleColorChange = color => {
-    this.setState({ roleColor: color.hex, colorPickerIsOpen: false });
+    this.setState({ roleColor: color.hex });
+    this.colorPickerDisplayToggle();
   };
 
   colorPickerDisplayToggle = () => {
-    this.setState(prevState => ({
-      colorPickerIsOpen: !prevState.colorPickerIsOpen,
-    }));
+    this.setState(
+      prevState => ({
+        colorPickerIsOpen: !prevState.colorPickerIsOpen,
+      }),
+      () => {
+        const { colorPickerIsOpen } = this.state;
+
+        if (colorPickerIsOpen) {
+          $('*').on('click', this.closeColorPicker);
+        } else {
+          $('*').off('click', this.closeColorPicker);
+        }
+      },
+    );
   };
 
-  // eslint-disable-next-line consistent-return
+  closeColorPicker = e => {
+    const { colorPickerIsOpen } = this.state;
+    if (colorPickerIsOpen && !e.target.closest('.circle-picker')) {
+      this.colorPickerDisplayToggle();
+      return false;
+    }
+  };
+
   onAddRole = e => {
     e.preventDefault();
 
@@ -190,6 +215,7 @@ class CreateRoleForm extends Component {
           {colorPickerIsOpen && (
             <CirclePicker
               className={styles.colorPicker}
+              id="colorPicker"
               width={268}
               colors={this.colors}
               color={roleColor}

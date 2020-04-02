@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Notyf } from 'notyf';
+import $ from 'jquery';
 import RoleSelector from '../RoleSelector/RoleSelector';
 import DateSelector from '../DateSelector/DateSelector';
 import TimeSelector from '../TimeSelector/TimeSelector';
@@ -123,7 +126,7 @@ class CreateTaskForm extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { selectedRole, startDate } = this.state;
+    const { selectedRole } = this.state;
     const { roles } = this.props;
 
     if (roles.length !== prevProps.roles.length) {
@@ -135,27 +138,99 @@ class CreateTaskForm extends Component {
   }
 
   roleSelectorDisplayToggle = () => {
-    this.setState(prevState => ({
-      rolesListIsOpen: !prevState.rolesListIsOpen,
-    }));
+    this.setState(
+      prevState => ({
+        rolesListIsOpen: !prevState.rolesListIsOpen,
+      }),
+      () => {
+        const { rolesListIsOpen } = this.state;
+
+        if (rolesListIsOpen) {
+          $('*').on('click', this.closeRoleSelector);
+        } else {
+          $('*').off('click', this.closeRoleSelector);
+        }
+      },
+    );
+  };
+
+  closeRoleSelector = ({ target }) => {
+    if (!target.closest('#roles-list')) {
+      this.roleSelectorDisplayToggle();
+      return false;
+    }
   };
 
   datePickerDisplayToggle = () => {
-    this.setState(prevState => ({
-      datePickerIsOpen: !prevState.datePickerIsOpen,
-    }));
+    this.setState(
+      prevState => ({
+        datePickerIsOpen: !prevState.datePickerIsOpen,
+      }),
+      () => {
+        const { datePickerIsOpen } = this.state;
+
+        if (datePickerIsOpen) {
+          $('*').on('click', this.closeDatePicker);
+        } else {
+          $('*').off('click', this.closeDatePicker);
+        }
+      },
+    );
+  };
+
+  closeDatePicker = ({ target }) => {
+    if (!target.closest('.react-datepicker')) {
+      this.datePickerDisplayToggle();
+      return false;
+    }
   };
 
   startHoursListDisplayToggle = () => {
-    this.setState(prevState => ({
-      startHoursListIsOpen: !prevState.startHoursListIsOpen,
-    }));
+    this.setState(
+      prevState => ({
+        startHoursListIsOpen: !prevState.startHoursListIsOpen,
+      }),
+      () => {
+        const { startHoursListIsOpen } = this.state;
+
+        if (startHoursListIsOpen) {
+          $('*').on('click', this.closeStartHoursList);
+        } else {
+          $('*').off('click', this.closeStartHoursList);
+        }
+      },
+    );
+  };
+
+  closeStartHoursList = ({ target }) => {
+    if (!target.closest('#start-hours-list')) {
+      this.startHoursListDisplayToggle();
+      return false;
+    }
   };
 
   endHoursListDisplayToggle = () => {
-    this.setState(prevState => ({
-      endHoursListIsOpen: !prevState.endHoursListIsOpen,
-    }));
+    this.setState(
+      prevState => ({
+        endHoursListIsOpen: !prevState.endHoursListIsOpen,
+      }),
+      () => {
+        const { endHoursListIsOpen } = this.state;
+
+        if (endHoursListIsOpen) {
+          $('*').on('click', this.closeEndHoursList);
+        } else {
+          $('*').off('click', this.closeEndHoursList);
+        }
+      },
+    );
+  };
+
+  closeEndHoursList = ({ target }) => {
+    if (!target.closest('#end-hours-list')) {
+      this.endHoursListDisplayToggle();
+      return false;
+    }
   };
 
   onSelectRole = ({ target }) => {
@@ -167,9 +242,7 @@ class CreateTaskForm extends Component {
     );
 
     this.setState({ selectedRole });
-    this.setState(prevState => ({
-      rolesListIsOpen: !prevState.rolesListIsOpen,
-    }));
+    this.roleSelectorDisplayToggle();
   };
 
   setDefaultRole = () => {
@@ -208,14 +281,15 @@ class CreateTaskForm extends Component {
       this.setState({ minStartHour: 0, startHour: 0, endHour: 0 });
     }
 
-    this.setState({ datePickerIsOpen: false });
+    this.datePickerDisplayToggle();
   };
 
   onSetStartHour = async ({ currentTarget }) => {
     await this.setState({
       startHour: +currentTarget.name,
-      startHoursListIsOpen: false,
     });
+
+    this.startHoursListDisplayToggle();
 
     const { startHour, endHour } = this.state;
 
@@ -227,8 +301,8 @@ class CreateTaskForm extends Component {
   onSetEndHour = ({ currentTarget }) => {
     this.setState({
       endHour: +currentTarget.name,
-      endHoursListIsOpen: false,
     });
+    this.endHoursListDisplayToggle();
   };
 
   startHoursListGenerator = () => {
@@ -318,7 +392,6 @@ class CreateTaskForm extends Component {
           renderToggle();
         }
       })
-      // eslint-disable-next-line no-unused-vars
       .catch(err => notyf.error('Error while deleting a task'));
   };
 
@@ -365,7 +438,6 @@ class CreateTaskForm extends Component {
                   renderToggle();
                 }
               })
-              // eslint-disable-next-line no-unused-vars
               .catch(err => notyf.error('Error while updating a task'));
           } else {
             await API.createTask(task)
@@ -376,7 +448,6 @@ class CreateTaskForm extends Component {
                   renderToggle();
                 }
               })
-              // eslint-disable-next-line no-unused-vars
               .catch(err => notyf.error('Error while saving a task'));
           }
         } else {

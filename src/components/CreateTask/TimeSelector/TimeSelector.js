@@ -50,7 +50,7 @@ const TimeSelector = ({
           </button>
           {startHoursListIsOpen && (
             <div className={styles.startHoursListContainer}>
-              <ul className={styles.timeOptionsList}>
+              <ul className={styles.timeOptionsList} id="start-hours-list">
                 {startHours().map(hour => (
                   <li
                     key={`${hour}_start`}
@@ -86,7 +86,7 @@ const TimeSelector = ({
           </button>
           {endHoursListIsOpen && (
             <div className={styles.endHoursListContainer}>
-              <ul className={styles.timeOptionsList}>
+              <ul className={styles.timeOptionsList} id="end-hours-list">
                 {endHours().map(hour => (
                   <li
                     key={`${hour}_end`}
