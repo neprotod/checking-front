@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './MainPage.module.css';
 import * as tasksSelectors from '../../redux/tasks/tasks/tasksSelectors';
 import Task from '../Task/index';
+import { ReactComponent as NoTasksIcon } from '../../materials/svg/noTasks.svg';
 
 const TasksFieldMarkup = ({
   tasks,
@@ -48,20 +49,28 @@ const TasksFieldMarkup = ({
       </div>
       {toggleType && (
         <ul className={isCreateTaskFormOpenDesktopStylesUl}>
-          {tasks[tasksType].map(task => (
-            <li
-              key={task._id}
-              className={isCreateTaskFormOpenDesktopStylesList}
-            >
-              <Task
-                task={task}
-                editTask={editTask}
-                deleteTask={deleteTask}
-                isRender={isRender}
-                burned={burned}
-              />
-            </li>
-          ))}
+          {tasks[tasksType].length > 0 ? (
+            tasks[tasksType].map(task => (
+              <li
+                key={task._id}
+                className={isCreateTaskFormOpenDesktopStylesList}
+              >
+                <Task
+                  task={task}
+                  editTask={editTask}
+                  deleteTask={deleteTask}
+                  isRender={isRender}
+                  burned={burned}
+                />
+              </li>
+            ))
+          ) : (
+            <p className={styles.noTasks}>
+              <NoTasksIcon />
+              <span className={styles.noTasksTitle}>No tasks</span>
+              <span>Click "+" to add new task</span>
+            </p>
+          )}
         </ul>
       )}
     </div>

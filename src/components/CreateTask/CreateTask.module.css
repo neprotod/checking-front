@@ -11,7 +11,7 @@
   font-family: font-stack;
   width: 320px;
   margin: 0 auto;
-  padding: 54px 0 62px;
+  padding: 0 0 20px;
 }
 
 .headingWrapper {
@@ -71,10 +71,6 @@
 }
 
 @media (min-width: 1280px) {
-  .container {
-    padding-top: 0;
-  }
-
   .createTaskWrapper {
     padding-right: 40px;
     margin: 0;
@@ -83,6 +79,6 @@
     top: 6%;
     overflow-y: scroll;
     z-index: 2;
-    height: 100vh;
+    height: calc(100vh - 50px);
   }
 }

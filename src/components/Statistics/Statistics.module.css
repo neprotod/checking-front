@@ -3,7 +3,7 @@
 
 .statistics__page_wrapper {
   background-color: white;
-  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
 }
 
 .statistics__wrapper {
