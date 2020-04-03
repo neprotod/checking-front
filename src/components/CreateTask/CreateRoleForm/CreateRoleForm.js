@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CirclePicker } from 'react-color';
-import $ from 'jquery';
 import Message from '../Message/Message';
 import roleSchema from './roleValidation';
 import styles from './CreateRoleForm.module.css';
@@ -75,6 +74,12 @@ class CreateRoleForm extends Component {
       .addEventListener('click', this.closeColorPicker);
   }
 
+  componentWillUnmount() {
+    document
+      .querySelector('#root')
+      .removeEventListener('click', this.closeColorPicker);
+  }
+
   onInputChange = ({ target }) => {
     this.setState({ roleName: target.value });
   };
@@ -85,27 +90,19 @@ class CreateRoleForm extends Component {
   };
 
   colorPickerDisplayToggle = () => {
-    this.setState(
-      prevState => ({
-        colorPickerIsOpen: !prevState.colorPickerIsOpen,
-      }),
-      () => {
-        const { colorPickerIsOpen } = this.state;
-
-        if (colorPickerIsOpen) {
-          $('*').on('click', this.closeColorPicker);
-        } else {
-          $('*').off('click', this.closeColorPicker);
-        }
-      },
-    );
+    this.setState(prevState => ({
+      colorPickerIsOpen: !prevState.colorPickerIsOpen,
+    }));
   };
 
   closeColorPicker = e => {
     const { colorPickerIsOpen } = this.state;
-    if (colorPickerIsOpen && !e.target.closest('.circle-picker')) {
-      this.colorPickerDisplayToggle();
-      return false;
+
+    if (colorPickerIsOpen) {
+      if (!e.target.closest('.circle-picker')) {
+        e.stopImmediatePropagation();
+        this.colorPickerDisplayToggle();
+      }
     }
   };
 

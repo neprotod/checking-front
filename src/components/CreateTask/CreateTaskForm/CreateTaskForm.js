@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Notyf } from 'notyf';
-import $ from 'jquery';
 import RoleSelector from '../RoleSelector/RoleSelector';
 import DateSelector from '../DateSelector/DateSelector';
 import TimeSelector from '../TimeSelector/TimeSelector';
@@ -123,6 +122,8 @@ class CreateTaskForm extends Component {
     if (taskToEdit) {
       this.onEditTask(taskToEdit);
     }
+
+    document.querySelector('#root').addEventListener('click', this.closeModal);
   }
 
   componentDidUpdate(prevProps) {
@@ -137,100 +138,76 @@ class CreateTaskForm extends Component {
     }
   }
 
-  roleSelectorDisplayToggle = () => {
-    this.setState(
-      prevState => ({
-        rolesListIsOpen: !prevState.rolesListIsOpen,
-      }),
-      () => {
-        const { rolesListIsOpen } = this.state;
+  componentWillUnmount() {
+    document
+      .querySelector('#root')
+      .removeEventListener('click', this.closeModal);
+  }
 
-        if (rolesListIsOpen) {
-          $('*').on('click', this.closeRoleSelector);
-        } else {
-          $('*').off('click', this.closeRoleSelector);
+  closeModal = e => {
+    const {
+      rolesListIsOpen,
+      datePickerIsOpen,
+      startHoursListIsOpen,
+      endHoursListIsOpen,
+    } = this.state;
+
+    switch (true) {
+      case rolesListIsOpen:
+        if (!e.target.closest('#roles-list')) {
+          e.stopImmediatePropagation();
+          this.roleSelectorDisplayToggle();
         }
-      },
-    );
+        break;
+
+      case datePickerIsOpen:
+        if (!e.target.closest('.react-datepicker')) {
+          e.stopImmediatePropagation();
+          this.datePickerDisplayToggle();
+        }
+        break;
+
+      case startHoursListIsOpen:
+        if (!e.target.closest('#start-hours-list')) {
+          e.stopImmediatePropagation();
+          this.startHoursListDisplayToggle();
+        }
+        break;
+
+      case endHoursListIsOpen:
+        if (!e.target.closest('#end-hours-list')) {
+          e.stopImmediatePropagation();
+          this.endHoursListDisplayToggle();
+        }
+        break;
+
+      default:
+        return false;
+    }
   };
 
-  closeRoleSelector = ({ target }) => {
-    if (!target.closest('#roles-list')) {
-      this.roleSelectorDisplayToggle();
-      return false;
-    }
+  roleSelectorDisplayToggle = () => {
+    this.setState(prevState => ({
+      rolesListIsOpen: !prevState.rolesListIsOpen,
+    }));
   };
 
   datePickerDisplayToggle = () => {
-    this.setState(
-      prevState => ({
-        datePickerIsOpen: !prevState.datePickerIsOpen,
-      }),
-      () => {
-        const { datePickerIsOpen } = this.state;
-
-        if (datePickerIsOpen) {
-          $('*').on('click', this.closeDatePicker);
-        } else {
-          $('*').off('click', this.closeDatePicker);
-        }
-      },
-    );
-  };
-
-  closeDatePicker = ({ target }) => {
-    if (!target.closest('.react-datepicker')) {
-      this.datePickerDisplayToggle();
-      return false;
-    }
+    this.setState(prevState => ({
+      datePickerIsOpen: !prevState.datePickerIsOpen,
+    }));
   };
 
   startHoursListDisplayToggle = () => {
-    this.setState(
-      prevState => ({
-        startHoursListIsOpen: !prevState.startHoursListIsOpen,
-      }),
-      () => {
-        const { startHoursListIsOpen } = this.state;
-
-        if (startHoursListIsOpen) {
-          $('*').on('click', this.closeStartHoursList);
-        } else {
-          $('*').off('click', this.closeStartHoursList);
-        }
-      },
-    );
-  };
-
-  closeStartHoursList = ({ target }) => {
-    if (!target.closest('#start-hours-list')) {
-      this.startHoursListDisplayToggle();
-      return false;
-    }
+    this.setState(prevState => ({
+      startHoursListIsOpen: !prevState.startHoursListIsOpen,
+    }));
   };
 
   endHoursListDisplayToggle = () => {
-    this.setState(
-      prevState => ({
-        endHoursListIsOpen: !prevState.endHoursListIsOpen,
-      }),
-      () => {
-        const { endHoursListIsOpen } = this.state;
-
-        if (endHoursListIsOpen) {
-          $('*').on('click', this.closeEndHoursList);
-        } else {
-          $('*').off('click', this.closeEndHoursList);
-        }
-      },
-    );
-  };
-
-  closeEndHoursList = ({ target }) => {
-    if (!target.closest('#end-hours-list')) {
-      this.endHoursListDisplayToggle();
-      return false;
-    }
+    this.setState(prevState => ({
+      endHoursListIsOpen: !prevState.endHoursListIsOpen,
+    }));
   };
 
   onSelectRole = ({ target }) => {
