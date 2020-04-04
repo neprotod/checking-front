@@ -49,7 +49,7 @@ const RoleSelector = ({
         </svg>
       </button>
       {rolesListIsOpen && (
-        <ul className={styles.rolesList}>
+        <ul className={styles.rolesList} id="roles-list">
           {rolesWithDefaultRole
             .filter(role => role._id !== selectedRole._id)
             .map(role => (
