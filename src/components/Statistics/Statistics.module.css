@@ -39,6 +39,13 @@
   flex-direction: column;
 }
 
+.statistics__message {
+  font-size: 26px;
+  color: dark-blue-color;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
 .home__button_wrapper {
   display: block;
   margin-bottom: 40px;

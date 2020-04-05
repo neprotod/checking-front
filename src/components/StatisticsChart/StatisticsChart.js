@@ -20,6 +20,32 @@ const getData = statistics => {
   };
 };
 
+const defaultData = {
+  labels: ['nothing'],
+  datasets: [
+    {
+      data: [100],
+      backgroundColor: ['#8E8E8E'],
+    },
+  ],
+};
+
+const arrSum = arr => {
+  return arr.reduce((acm, el) => el + acm);
+};
+
+const setChartData = statistics => {
+  const data = getData(statistics);
+  if (arrSum(data.datasets[0].data)) {
+    return data;
+  }
+
+  const newChartData = data.labels.map(() => 100);
+
+  data.datasets[0].data = newChartData;
+  return data;
+};
+
 class StatisticsChart extends Component {
   static propTypes = {
     statistics: PropTypes.arrayOf(
@@ -55,8 +81,11 @@ class StatisticsChart extends Component {
     const { statistics } = this.props;
     const { size } = this.state;
 
-    const data = getData(statistics);
+    const initData = getData(statistics);
 
+    const data = initData.labels.length
+      ? setChartData(statistics)
+      : defaultData;
     return (
       <div
         className={styles.chart__wrapper}
