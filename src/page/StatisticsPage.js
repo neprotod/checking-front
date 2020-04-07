@@ -36,11 +36,10 @@ class StatisticsPage extends Component {
 
   render() {
     const { isLoading } = this.props;
-
     return (
       <div className={styles.statistics__page_wrapper}>
         {isLoading && <Loader statistics />}
-        <Statistics />
+        {!isLoading && <Statistics />}
       </div>
     );
   }

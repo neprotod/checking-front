@@ -13,7 +13,15 @@ const Statistics = ({ statistics }) => {
       <h1 className={styles.statistics__title}>Statistics</h1>
       <div className={styles.statistics__section}>
         <StatisticsChart statistics={statistics} />
-        <StatisticsList statistics={statistics} />
+        {statistics.length ? (
+          <StatisticsList statistics={statistics} />
+        ) : (
+          <div>
+            <h3 className={styles.statistics__message}>
+              You haven&apos;t roles for statistics!
+            </h3>
+          </div>
+        )}
       </div>
       <div className={styles.home__button_wrapper}>
         <NavLink className={styles.home__button} to="/main">
