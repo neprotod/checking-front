@@ -22,6 +22,12 @@
   padding: 40px 0;
 }
 
+@media (max-width: 767px) {
+  .menu {
+    padding: 20px 0 60px;
+  }
+}
+
 .tasksContainer {
   width: 90vw;
 }
@@ -110,6 +116,10 @@
   border: 1px solid #cdd0d9;
 }
 
+.modalWrapper {
+  height: 100%;
+}
+
 .modalMenuBg {
   background-color: #f5f7fa;
 }
@@ -121,7 +131,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  height: calc(100vh - 40px);
+  min-height: calc(100% - 40px);
 }
 
 .toggleButton {

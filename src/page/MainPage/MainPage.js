@@ -189,9 +189,9 @@ class MainPage extends Component {
       isCreateTaskFormOpenDesktop,
       taskToEdit,
     } = this.state;
-
+    const wrapper = isModalOpen ? style.modalWrapper : style.wrapper;
     return (
-      <div className={style.wrapper}>
+      <div className={wrapper}>
         {isCreateTaskFormOpen && (
           <CreateTask
             taskToEdit={taskToEdit}
