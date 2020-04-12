@@ -76,7 +76,7 @@ class CreateTaskForm extends Component {
     startDate: new Date(),
     minStartHour: new Date().getHours(),
     startHour: new Date().getHours(),
-    endHour: new Date().getHours(),
+    endHour: new Date().getHours() + 1,
     title: '',
     description: '',
     priority: null,
@@ -186,27 +186,11 @@ class CreateTaskForm extends Component {
     }
   };
 
+  // Set role
+
   roleSelectorDisplayToggle = () => {
     this.setState(prevState => ({
       rolesListIsOpen: !prevState.rolesListIsOpen,
-    }));
-  };
-
-  datePickerDisplayToggle = () => {
-    this.setState(prevState => ({
-      datePickerIsOpen: !prevState.datePickerIsOpen,
-    }));
-  };
-
-  startHoursListDisplayToggle = () => {
-    this.setState(prevState => ({
-      startHoursListIsOpen: !prevState.startHoursListIsOpen,
-    }));
-  };
-
-  endHoursListDisplayToggle = () => {
-    this.setState(prevState => ({
-      endHoursListIsOpen: !prevState.endHoursListIsOpen,
     }));
   };
 
@@ -228,8 +212,29 @@ class CreateTaskForm extends Component {
     });
   };
 
-  onInputChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+  // Set date
+
+  datePickerDisplayToggle = () => {
+    this.setState(prevState => ({
+      datePickerIsOpen: !prevState.datePickerIsOpen,
+    }));
+  };
+
+  isSelectedDateEqualsNewDate = () => {
+    const { startDate } = this.state;
+
+    const year = startDate.getFullYear();
+    const month = startDate.getMonth();
+    const day = startDate.getDate();
+
+    if (
+      year === new Date().getFullYear() &&
+      month === new Date().getMonth() &&
+      day === new Date().getDate()
+    ) {
+      return true;
+    }
+    return false;
   };
 
   onSetDate = async date => {
@@ -237,28 +242,35 @@ class CreateTaskForm extends Component {
       startDate: date,
     });
 
+    const isToday = this.isSelectedDateEqualsNewDate();
     const { startDate } = this.state;
-
-    const year = startDate.getFullYear();
-    const month = startDate.getMonth();
-    const day = startDate.getDate();
     const hours = startDate.getHours();
 
-    if (
-      year === new Date().getFullYear() &&
-      month === new Date().getMonth() &&
-      day === new Date().getDate()
-    ) {
+    if (isToday) {
       this.setState({
         minStartHour: hours,
         startHour: hours,
-        endHour: hours,
+        endHour: hours + 1,
       });
     } else {
       this.setState({ minStartHour: 0, startHour: 0, endHour: 0 });
     }
 
     this.datePickerDisplayToggle();
+  };
+
+  // Set title and description
+
+  onInputChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
+  // Set start hour
+
+  startHoursListDisplayToggle = () => {
+    this.setState(prevState => ({
+      startHoursListIsOpen: !prevState.startHoursListIsOpen,
+    }));
   };
 
   onSetStartHour = async ({ currentTarget }) => {
@@ -268,11 +280,29 @@ class CreateTaskForm extends Component {
 
     this.startHoursListDisplayToggle();
 
-    const { startHour, endHour } = this.state;
+    const { minStartHour, startHour, endHour } = this.state;
+    const isToday = this.isSelectedDateEqualsNewDate();
+
+    if (isToday && minStartHour === startHour) {
+      return this.setState({ endHour: startHour + 1 });
+    }
 
     if (endHour < startHour) {
       this.setState({ endHour: startHour });
     }
+  };
+
+  startHoursListGenerator = () => {
+    const { minStartHour } = this.state;
+    return this.hours.filter(hour => hour >= minStartHour);
+  };
+
+  // Set end hour
+
+  endHoursListDisplayToggle = () => {
+    this.setState(prevState => ({
+      endHoursListIsOpen: !prevState.endHoursListIsOpen,
+    }));
   };
 
   onSetEndHour = ({ currentTarget }) => {
@@ -282,15 +312,16 @@ class CreateTaskForm extends Component {
     this.endHoursListDisplayToggle();
   };
 
-  startHoursListGenerator = () => {
-    const { minStartHour } = this.state;
-    return this.hours.filter(hour => hour >= minStartHour);
-  };
-
   endHoursListGenerator = () => {
-    const { startHour } = this.state;
+    const { minStartHour, startHour } = this.state;
+    const isToday = this.isSelectedDateEqualsNewDate();
+    if (isToday && minStartHour === startHour) {
+      return this.hours.filter(hour => hour >= startHour + 1);
+    }
     return this.hours.filter(hour => hour >= startHour);
   };
+
+  // Set priority
 
   onSetPriority = ({ target }) => {
     const { priorities } = this.props;
@@ -301,76 +332,7 @@ class CreateTaskForm extends Component {
     this.setState({ priority: priorityToSet });
   };
 
-  fixedHourDateCreator = (date, hour) => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    if (hour === 24) {
-      return new Date(year, month, day, 23, 59);
-    }
-
-    return new Date(year, month, day, hour);
-  };
-
-  showTitleMessage = text => {
-    this.setState(
-      prevState => ({
-        titleMessageIsShowing: !prevState.titleMessageIsShowing,
-        titleMessageText: text,
-      }),
-      () =>
-        setTimeout(() => {
-          this.setState(prevState => ({
-            titleMessageIsShowing: !prevState.titleMessageIsShowing,
-            titleMessageText: '',
-          }));
-        }, 2000),
-    );
-  };
-
-  showDescriptionMessage = text => {
-    this.setState(
-      prevState => ({
-        descriptionMessageIsShowing: !prevState.descriptionMessageIsShowing,
-        descriptionMessageText: text,
-      }),
-      () =>
-        setTimeout(() => {
-          this.setState(prevState => ({
-            descriptionMessageIsShowing: !prevState.descriptionMessageIsShowing,
-            descriptionMessageText: '',
-          }));
-        }, 2000),
-    );
-  };
-
-  onEditTask = taskToEdit => {
-    this.setState({
-      title: taskToEdit.title,
-      description: taskToEdit.description,
-      selectedRole: taskToEdit.role[0] || defaultRole,
-      startDate: new Date(taskToEdit.start_date),
-      startHour: new Date(taskToEdit.start_date).getHours(),
-      endHour: new Date(taskToEdit.end_date).getHours(),
-      priority: taskToEdit.priority[0],
-      taskToUpdateId: taskToEdit._id,
-    });
-  };
-
-  onDeleteTask = () => {
-    const { taskToUpdateId } = this.state;
-    const { onClickIsCreateTaskFormOpen, renderToggle } = this.props;
-
-    API.deleteTask(taskToUpdateId)
-      .then(res => {
-        if (res) {
-          this.resetForm();
-          onClickIsCreateTaskFormOpen();
-          renderToggle();
-        }
-      })
-      .catch(err => notyf.error('Error while deleting a task'));
-  };
+  // Create, edit, delete task
 
   onSubmit = async e => {
     e.preventDefault();
@@ -440,6 +402,77 @@ class CreateTaskForm extends Component {
             this.showDescriptionMessage(errors.description);
         }
       });
+  };
+
+  fixedHourDateCreator = (date, hour) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    if (hour === 24) {
+      return new Date(year, month, day, 23, 59);
+    }
+
+    return new Date(year, month, day, hour);
+  };
+
+  onEditTask = taskToEdit => {
+    this.setState({
+      title: taskToEdit.title,
+      description: taskToEdit.description,
+      selectedRole: taskToEdit.role[0] || defaultRole,
+      startDate: new Date(taskToEdit.start_date),
+      startHour: new Date(taskToEdit.start_date).getHours(),
+      endHour: new Date(taskToEdit.end_date).getHours(),
+      priority: taskToEdit.priority[0],
+      taskToUpdateId: taskToEdit._id,
+    });
+  };
+
+  onDeleteTask = () => {
+    const { taskToUpdateId } = this.state;
+    const { onClickIsCreateTaskFormOpen, renderToggle } = this.props;
+
+    API.deleteTask(taskToUpdateId)
+      .then(res => {
+        if (res) {
+          this.resetForm();
+          onClickIsCreateTaskFormOpen();
+          renderToggle();
+        }
+      })
+      .catch(err => notyf.error('Error while deleting a task'));
+  };
+
+  showTitleMessage = text => {
+    this.setState(
+      prevState => ({
+        titleMessageIsShowing: !prevState.titleMessageIsShowing,
+        titleMessageText: text,
+      }),
+      () =>
+        setTimeout(() => {
+          this.setState(prevState => ({
+            titleMessageIsShowing: !prevState.titleMessageIsShowing,
+            titleMessageText: '',
+          }));
+        }, 2000),
+    );
+  };
+
+  showDescriptionMessage = text => {
+    this.setState(
+      prevState => ({
+        descriptionMessageIsShowing: !prevState.descriptionMessageIsShowing,
+        descriptionMessageText: text,
+      }),
+      () =>
+        setTimeout(() => {
+          this.setState(prevState => ({
+            descriptionMessageIsShowing: !prevState.descriptionMessageIsShowing,
+            descriptionMessageText: '',
+          }));
+        }, 2000),
+    );
   };
 
   resetForm = () => {
