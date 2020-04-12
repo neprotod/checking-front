@@ -123,6 +123,7 @@ class CreateTaskForm extends Component {
       this.onEditTask(taskToEdit);
     }
 
+    document.querySelector('#root').scrollTop = 0;
     document.querySelector('#root').addEventListener('click', this.closeModal);
   }
 

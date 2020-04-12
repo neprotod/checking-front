@@ -79,7 +79,6 @@ const MobileTasksField = ({ ...props }) => {
       <div className={modalMenuStyle}>
         <ModalMenu {...props} />
       </div>
-
       {!isModalOpen && !isCreateTaskFormOpen && !statistics && (
         <div className={styles.container}>
           <div className={styles.tasksContainer}>

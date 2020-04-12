@@ -23,6 +23,8 @@ class StatisticsPage extends Component {
 
     getRoles();
     getDateTasks(category);
+
+    document.querySelector('#root').scrollTop = 0;
   }
 
   componentDidUpdate(prevProps) {

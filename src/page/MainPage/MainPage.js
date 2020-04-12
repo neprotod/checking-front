@@ -150,10 +150,16 @@ class MainPage extends Component {
       .catch(err => notyf.error('Error while deleting a task'));
   };
 
-  onClickIsModalOpen = () => {
-    this.setState(prevState => ({
+  onClickIsModalOpen = async () => {
+    await this.setState(prevState => ({
       isModalOpen: !prevState.isModalOpen,
     }));
+
+    const { isModalOpen } = this.state;
+
+    if (isModalOpen) {
+      document.querySelector('#root').scrollTop = 0;
+    }
   };
 
   onClickIsCreateTaskFormOpen = () => {
