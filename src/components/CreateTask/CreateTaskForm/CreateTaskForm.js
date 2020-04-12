@@ -3,6 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { Notyf } from 'notyf';
 import RoleSelector from '../RoleSelector/RoleSelector';
 import DateSelector from '../DateSelector/DateSelector';
@@ -65,6 +66,9 @@ class CreateTaskForm extends Component {
       ),
       _id: PropTypes.string,
     }),
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -143,6 +147,9 @@ class CreateTaskForm extends Component {
     document
       .querySelector('#root')
       .removeEventListener('click', this.closeModal);
+
+    const { history } = this.props;
+    history.push('/main');
   }
 
   closeModal = e => {
@@ -643,4 +650,4 @@ class CreateTaskForm extends Component {
   }
 }
 
-export default CreateTaskForm;
+export default withRouter(CreateTaskForm);
